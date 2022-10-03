@@ -28,7 +28,6 @@ class _ScanState extends State<Scan> {
     } else if (Platform.isIOS) {
       controller!.resumeCamera();
     }
-    controller!.resumeCamera();
   }
 
   @override
@@ -65,6 +64,7 @@ class _ScanState extends State<Scan> {
 
   void _onQRViewCreated(QRViewController controller) {
     this.controller = controller;
+    controller.resumeCamera();
     controller.scannedDataStream.listen((scanData) {
       setState(() {
         result = scanData;
