@@ -31,45 +31,41 @@ class _ScanState extends State<Scan> {
   }
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(
-          title: const Text(MyApp.title),
-          centerTitle: true,
-        ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Expanded(
-                flex: 1,
-                child: CreateQRView(context),
-              ),
-              const SizedBox(height: 24),
-              const Header(title: 'Scan')
-            ],
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text(MyApp.title),
+        centerTitle: true,
+      ),
+      body: Column(
+        children: <Widget>[
+          Expanded(
+            flex: 5,
+            child: QRView(
+              key: qrKey,
+              onQRViewCreated: _onQRViewCreated,
+            ),
           ),
-        ),
-      );
+        ],
+      ),
+    );
+  }
 
   Widget CreateQRView(BuildContext context) {
     return QRView(
       key: qrKey,
       onQRViewCreated: _onQRViewCreated,
-      overlay: QrScannerOverlayShape(
-        cutOutSize: MediaQuery.of(context).size.width * 0.8,
-        borderRadius: 10,
-      ),
     );
   }
 
   void _onQRViewCreated(QRViewController controller) {
     this.controller = controller;
-    controller.resumeCamera();
     controller.scannedDataStream.listen((scanData) {
       setState(() {
         result = scanData;
       });
-      AlertDialog(content: Text(scanData.toString()));
+      print(result!.code!);
+      Navigator.pop(context);
     });
   }
 
