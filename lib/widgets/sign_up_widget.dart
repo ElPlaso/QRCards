@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:swen325_assignment_3/widgets/google_sign_in.dart';
 // import 'package:font';
 
 class SignUpWidget extends StatelessWidget {
@@ -8,7 +10,11 @@ class SignUpWidget extends StatelessWidget {
       child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
         ElevatedButton(
           child: Text('Sign up with Google'),
-          onPressed: () {},
+          onPressed: () {
+            final provider =
+                Provider.of<GoogleSignInProvider>(context, listen: false);
+            provider.googleLogin();
+          },
         )
       ]));
 }

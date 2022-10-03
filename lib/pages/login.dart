@@ -28,13 +28,6 @@ class _Login extends State<Login> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Header(title: 'Login'),
-              Button(
-                text: 'Scan',
-                onClicked: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const Scan()),
-                ),
-              ),
               SignUpWidget()
             ],
           ),
