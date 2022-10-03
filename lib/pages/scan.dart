@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import '../main.dart';
@@ -17,6 +19,17 @@ class _ScanState extends State<Scan> {
   final GlobalKey qrKey = GlobalKey(debugLabel: "QR");
   Barcode? result;
   QRViewController? controller;
+
+  @override
+  void reassemble() {
+    super.reassemble();
+    if (Platform.isAndroid) {
+      controller!.pauseCamera();
+    } else if (Platform.isIOS) {
+      controller!.resumeCamera();
+    }
+    controller!.resumeCamera();
+  }
 
   @override
   Widget build(BuildContext context) => Scaffold(
