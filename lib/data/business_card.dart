@@ -16,4 +16,23 @@ class BusinessCard {
     this.address = "",
     this.website = "",
   });
+
+  BusinessCard.fromJson(Map<String, dynamic> json)
+      : id = json["id"],
+        name = json["name"],
+        business = json["business"],
+        phnum = json["phnum"],
+        email = json["email"],
+        address = json["address"],
+        website = json["website"];
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "name": name,
+        "business": business,
+        "phnum": phnum,
+        "email": email,
+        "address": address,
+        "website": website,
+      };
 }

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -37,6 +39,6 @@ class _DisplayState extends State<Display> {
   }
 
   Widget CreateQRImage(BuildContext context) {
-    return QrImage(data: card.id);
+    return QrImage(data: jsonEncode(card));
   }
 }

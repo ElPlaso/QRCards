@@ -1,7 +1,9 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
+import 'package:swen325_assignment_3/data/business_card.dart';
 import '../main.dart';
 import '../widgets/button.dart';
 import '../widgets/header.dart';
@@ -64,7 +66,12 @@ class _ScanState extends State<Scan> {
       setState(() {
         result = scanData;
       });
-      print(result!.code!);
+      if (result?.code != null) {
+        print(result!.code!);
+        var cardMap = jsonDecode(result!.code!);
+        print(cardMap);
+        print(BusinessCard.fromJson(cardMap));
+      }
       Navigator.pop(context);
     });
   }
