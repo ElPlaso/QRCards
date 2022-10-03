@@ -1,4 +1,5 @@
 class BusinessCard {
+  String uid;
   String name;
   String business;
   String phnum;
@@ -7,6 +8,7 @@ class BusinessCard {
   String website;
 
   BusinessCard({
+    required this.uid,
     required this.name,
     this.business = "",
     this.phnum = "",
