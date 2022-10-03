@@ -34,7 +34,7 @@ class _EvalState extends State<Eval> {
                 child: Text('something went wrong'),
               );
             } else if (snapshot.hasData) {
-              print('hehe');
+              print('user ${snapshot.data?.uid}');
               return Home();
             } else {
               print('oh no');
