@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: title,
         theme: ThemeData(primaryColor: Colors.blue),
-        initialRoute: '/login', // could make a auth check here
+        initialRoute: '/eval', // could make a auth check here
         routes: Navigate.routes,
         // home: const Login(),
       ));
