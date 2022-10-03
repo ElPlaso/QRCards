@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:swen325_assignment_3/widgets/sign_up_widget.dart';
 import '../main.dart';
 import 'scan.dart';
 import 'userCards.dart';
@@ -26,7 +27,7 @@ class _Login extends State<Login> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Header(title: 'Menu'),
+              const Header(title: 'Login'),
               Button(
                 text: 'Scan',
                 onClicked: () => Navigator.push(
@@ -34,21 +35,7 @@ class _Login extends State<Login> {
                   MaterialPageRoute(builder: (context) => const Scan()),
                 ),
               ),
-              Button(
-                text: 'Personal',
-                onClicked: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const UserCards()),
-                ),
-              ),
-              Button(
-                text: 'Wallet',
-                onClicked: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const Wallet()),
-                ),
-              ),
-              Button(text: 'Contact Us', onClicked: () => {})
+              SignUpWidget()
             ],
           ),
         ),
