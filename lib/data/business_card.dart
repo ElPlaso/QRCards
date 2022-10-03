@@ -1,17 +1,28 @@
+import 'dart:collection';
+
 class BusinessCard {
-  String name;
-  String business;
-  String phnum;
+  String cellphone;
+  String company;
+  Map companyaddress;
+  String companyphone;
   String email;
-  String address;
+  String name;
+  String position;
   String website;
 
   BusinessCard({
+    this.cellphone = '',
+    this.company = '',
+    this.companyaddress = const {
+      'city': '',
+      'country': '',
+      'streetname': '',
+      'streetnumber': ''
+    },
+    this.companyphone = '',
+    this.email = '',
     required this.name,
-    this.business = "",
-    this.phnum = "",
-    this.email = "",
-    this.address = "",
-    this.website = "",
+    this.position = '',
+    this.website = '',
   });
 }
