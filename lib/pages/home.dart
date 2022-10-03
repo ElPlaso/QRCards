@@ -3,6 +3,7 @@ import '../main.dart';
 import 'scan.dart';
 import 'userCards.dart';
 import 'wallet.dart';
+import 'cardPage.dart';
 import '../widgets/button.dart';
 import '../widgets/header.dart';
 
@@ -48,7 +49,12 @@ class _HomeState extends State<Home> {
                   MaterialPageRoute(builder: (context) => const Wallet()),
                 ),
               ),
-              Button(text: 'Contact Us', onClicked: () => {})
+              Button(text: 'Contact Us', onClicked: () => {}),
+              Button(
+                text: 'CardDisplayTest',
+                onClicked: () => Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const CardPage())),
+              ),
             ],
           ),
         ),
