@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:swen325_assignment_3/pages/login.dart';
 import 'firebase_options.dart';
 import '/pages/home.dart';
 
@@ -32,6 +34,6 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: title,
         theme: ThemeData(primaryColor: Colors.blue),
-        home: const Home(),
+        home: const Login(),
       );
 }
