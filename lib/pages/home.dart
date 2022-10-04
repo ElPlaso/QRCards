@@ -53,7 +53,7 @@ class _HomeState extends State<Home> {
               Button(
                 text: 'CardDisplayTest',
                 onClicked: () => Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const CardPage())),
+                    MaterialPageRoute(builder: (context) => CardPage())),
               ),
             ],
           ),
