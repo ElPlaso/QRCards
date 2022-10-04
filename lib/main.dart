@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
+import 'package:swen325_assignment_3/providers/card_provider.dart';
 import '/pages/home.dart';
 
 void main() {
@@ -10,7 +12,9 @@ void main() {
     DeviceOrientation.portraitDown,
   ]);
 
-  runApp(const MyApp());
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(create: (_) => Cards()),
+  ], child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
