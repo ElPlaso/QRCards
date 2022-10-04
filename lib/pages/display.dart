@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:swen325_assignment_3/data/business_card.dart';
+import 'package:swen325_assignment_3/widgets/qr_image_gen.dart';
 
 import '../main.dart';
 import '../widgets/header.dart';
@@ -29,14 +30,12 @@ class _DisplayState extends State<Display> {
           children: <Widget>[
             const Header(title: "Display QR Code"),
             const SizedBox(height: 24),
-            CreateQRImage(context)
+            QRImageGen(
+              card: card,
+            ),
           ],
         ),
       ),
     );
-  }
-
-  Widget CreateQRImage(BuildContext context) {
-    return QrImage(data: jsonEncode(card));
   }
 }
