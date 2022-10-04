@@ -15,7 +15,7 @@ class Button extends StatelessWidget {
       margin: const EdgeInsets.only(top: 10.0),
       child: SizedBox(
         width: 300,
-        height: 100,
+        height: 50,
         child: ElevatedButton(
           onPressed: onClicked,
           child: Text(
