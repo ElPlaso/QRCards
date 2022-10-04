@@ -42,6 +42,7 @@ dependencies:
   google_sign_in: ^5.0.3
   widgets_to_image: any
   image_gallery_saver: "^1.7.1"
+  fluttertoast: ^8.0.9
 
 dev_dependencies:
   flutter_test:

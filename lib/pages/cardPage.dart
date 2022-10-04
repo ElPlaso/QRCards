@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:swen325_assignment_3/data/business_card.dart';
 import 'package:widgets_to_image/widgets_to_image.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import '../main.dart';
 import '../widgets/button.dart';
 import '../widgets/card_view.dart';
@@ -60,6 +61,14 @@ class _CardPageState extends State<CardPage> {
                     ImageGallerySaver.saveImage(bytes,
                         quality: 60, name: "file_name${DateTime.now()}");
                   }
+                  Fluttertoast.showToast(
+                      msg: "Image saved!",
+                      toastLength: Toast.LENGTH_SHORT,
+                      gravity: ToastGravity.CENTER,
+                      timeInSecForIosWeb: 1,
+                      backgroundColor: Colors.blue,
+                      textColor: Colors.white,
+                      fontSize: 16.0);
                 },
               ),
             ],
