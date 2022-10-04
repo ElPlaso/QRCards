@@ -26,10 +26,6 @@ class AddCard extends StatelessWidget {
                 text: 'Clear Field',
                 onClicked: () => {},
               ),
-              Button(
-                text: 'Back',
-                onClicked: () => {Navigator.pop(context)},
-              ),
             ],
           ),
         ),

@@ -11,9 +11,11 @@ class Header extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Container(
         margin: const EdgeInsets.only(bottom: 40),
-        child: Text(
-          title,
-          style: const TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
-        ),
+        child: Text(title,
+            style: const TextStyle(
+              fontSize: 40,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+            )),
       );
 }

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class Button extends StatelessWidget {
+class Floater extends StatelessWidget {
   final String text;
   final VoidCallback onClicked;
 
-  const Button({
+  const Floater({
     required this.text,
     required this.onClicked,
     Key? key,
@@ -13,15 +13,11 @@ class Button extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Container(
       margin: const EdgeInsets.only(top: 10.0),
-      child: SizedBox(
-        width: 300,
-        height: 100,
-        child: ElevatedButton(
-          onPressed: onClicked,
-          child: Text(
-            text,
-            style: const TextStyle(fontSize: 25),
-          ),
-        ),
+      child: FloatingActionButton.extended(
+        backgroundColor: Theme.of(context).primaryColor,
+        foregroundColor: Colors.white,
+        onPressed: onClicked,
+        icon: Icon(Icons.add),
+        label: Text(text),
       ));
 }
