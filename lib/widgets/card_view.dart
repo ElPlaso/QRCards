@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:swen325_assignment_3/data/business_card.dart';
+import 'package:swen325_assignment_3/widgets/qr_image_gen.dart';
 
 class CardView extends StatelessWidget {
   final BusinessCard card;
@@ -49,17 +50,13 @@ class CardView extends StatelessWidget {
                       ],
                     ),
                     const Spacer(),
-                    //TEMP!!!!! REPLACE WITH QRCODE!!!!!
                     Container(
                       height: 128,
                       width: 128,
-                      color: Colors.black,
+                      color: Colors.white,
                       alignment: Alignment.center,
-                      child: const Text(
-                        'QR CODE',
-                        style: TextStyle(
-                          color: Color.fromARGB(203, 203, 203, 255),
-                        ),
+                      child: QRImageGen(
+                        card: card,
                       ),
                     )
                   ],
