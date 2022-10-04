@@ -28,5 +28,7 @@ class Cards with ChangeNotifier {
     notifyListeners();
   }
 
-  //context.read<Cards>.method()
+  //read list with context.watch<Cards>().cards
+  //call other methods with context.read<Cards>().method()
+  //eg context.read<Cards>().add(card)
 }
