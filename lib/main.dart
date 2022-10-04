@@ -7,8 +7,11 @@ import 'package:provider/provider.dart';
 import 'package:swen325_assignment_3/widgets/google_sign_in.dart';
 import 'package:swen325_assignment_3/widgets/navigate.dart';
 import 'firebase_options.dart';
+import 'package:flutter/rendering.dart';
 
 void main() async {
+  //debugPaintSizeEnabled = true;
+
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
