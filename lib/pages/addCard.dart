@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import '../main.dart';
 import '../widgets/button.dart';
 import '../widgets/header.dart';
+import '../widgets/theme_toggle.dart';
+import '../widgets/card_form.dart';
 
 class AddCard extends StatelessWidget {
   const AddCard({super.key});
@@ -13,25 +15,29 @@ class AddCard extends StatelessWidget {
           centerTitle: true,
         ),
         body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              const Header(title: 'Add Card'),
-              const SizedBox(height: 24),
-              Button(
-                text: 'Save Card',
-                onClicked: () => {},
+          child: SizedBox(
+            height: 1000,
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  const SizedBox(height: 24),
+                  const CardForm(),
+                  const ThemeToggle(),
+                  Button(
+                    text: 'Clear All',
+                    onClicked: () => {},
+                  ),
+                  Button(
+                    text: 'Save Card',
+                    onClicked: () => {},
+                  ),
+                ],
               ),
-              Button(
-                text: 'Clear Field',
-                onClicked: () => {},
-              ),
-              Button(
-                text: 'Back',
-                onClicked: () => {Navigator.pop(context)},
-              ),
-            ],
+            ),
           ),
         ),
       );
+
+  void setState(Null Function() param0) {}
 }

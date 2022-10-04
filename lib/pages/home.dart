@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:swen325_assignment_3/widgets/floater.dart';
 import '../main.dart';
 import 'scan.dart';
 import 'userCards.dart';
 import 'wallet.dart';
 import 'cardPage.dart';
-import '../widgets/button.dart';
+import '../widgets/logo_button.dart';
 import '../widgets/header.dart';
+import '../widgets/floater.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -27,33 +29,39 @@ class _HomeState extends State<Home> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Header(title: 'Menu'),
-              Button(
+              LogoButton(
                 text: 'Scan',
                 onClicked: () => Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => const Scan()),
                 ),
+                icon: const Icon(Icons.qr_code_scanner, size: 40),
               ),
-              Button(
-                text: 'Personal',
+              LogoButton(
+                text: 'Create',
                 onClicked: () => Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => const UserCards()),
                 ),
+                icon: Icon(Icons.library_add, size: 40),
               ),
-              Button(
+              LogoButton(
                 text: 'Wallet',
                 onClicked: () => Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => const Wallet()),
                 ),
+                icon: const Icon(Icons.wallet, size: 40),
               ),
-              Button(text: 'Contact Us', onClicked: () => {}),
-              Button(
-                text: 'CardDisplayTest',
+              LogoButton(
+                  text: 'Contact Us',
+                  onClicked: () => {},
+                  icon: Icon(Icons.contact_support, size: 40)),
+              LogoButton(
+                text: 'Test',
                 onClicked: () => Navigator.push(context,
                     MaterialPageRoute(builder: (context) => CardPage())),
+                icon: Icon(Icons.add, size: 25),
               ),
             ],
           ),

@@ -15,13 +15,9 @@ class Wallet extends StatelessWidget {
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              const Header(title: 'Wallet'),
-              const SizedBox(height: 24),
-              Button(
-                text: 'Home',
-                onClicked: () => Navigator.pop(context),
-              ),
+            children: const <Widget>[
+              Header(title: 'Wallet'),
+              SizedBox(height: 24),
             ],
           ),
         ),
