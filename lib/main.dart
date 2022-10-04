@@ -32,7 +32,9 @@ void main() async {
     DeviceOrientation.portraitDown,
   ]);
 
-  runApp(const MyApp());
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(create: (_) => Cards()),
+  ], child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {

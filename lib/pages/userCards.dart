@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:swen325_assignment_3/pages/display.dart';
 import 'addCard.dart';
 import '../main.dart';
 import '../widgets/button.dart';
@@ -24,6 +25,13 @@ class UserCards extends StatelessWidget {
                 onClicked: () => Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => const AddCard()),
+                ),
+              ),
+              Button(
+                text: 'Display QR Code',
+                onClicked: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Display()),
                 ),
               ),
               Button(
