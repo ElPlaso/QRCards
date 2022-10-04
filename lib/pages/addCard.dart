@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../main.dart';
 import '../widgets/button.dart';
 import '../widgets/header.dart';
+import '../widgets/theme_toggle.dart';
 import '../widgets/card_form.dart';
 
 class AddCard extends StatelessWidget {
@@ -15,13 +16,14 @@ class AddCard extends StatelessWidget {
         ),
         body: Center(
           child: SizedBox(
-            height: double.infinity,
+            height: 1000,
             child: SingleChildScrollView(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   const SizedBox(height: 24),
                   const CardForm(),
+                  const ThemeToggle(),
                   Button(
                     text: 'Clear All',
                     onClicked: () => {},
@@ -36,4 +38,6 @@ class AddCard extends StatelessWidget {
           ),
         ),
       );
+
+  void setState(Null Function() param0) {}
 }

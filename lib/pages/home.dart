@@ -27,7 +27,6 @@ class _HomeState extends State<Home> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Header(title: 'Menu'),
               LogoButton(
                 text: 'Scan',
                 onClicked: () => Navigator.push(
