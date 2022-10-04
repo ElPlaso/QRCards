@@ -22,12 +22,13 @@ class UserCards extends StatelessWidget {
               const Header(title: 'Your Cards'),
               const SizedBox(height: 24),
               Floater(
-                text: 'Add Card',
-                onClicked: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const AddCard()),
-                ),
-              )
+                  text: 'Add Card',
+                  onClicked: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const AddCard()),
+                      ),
+                  icon: Icon(Icons.add))
             ],
           ),
         ),

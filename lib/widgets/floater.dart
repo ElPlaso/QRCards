@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 class Floater extends StatelessWidget {
   final String text;
   final VoidCallback onClicked;
+  final Icon icon;
 
   const Floater({
     required this.text,
     required this.onClicked,
+    required this.icon,
     Key? key,
   }) : super(key: key);
 
@@ -17,7 +19,7 @@ class Floater extends StatelessWidget {
         backgroundColor: Theme.of(context).primaryColor,
         foregroundColor: Colors.white,
         onPressed: onClicked,
-        icon: Icon(Icons.add),
+        icon: icon,
         label: Text(text),
       ));
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:swen325_assignment_3/widgets/floater.dart';
 import '../main.dart';
 import 'scan.dart';
 import 'userCards.dart';
@@ -6,6 +7,7 @@ import 'wallet.dart';
 import 'cardPage.dart';
 import '../widgets/logo_button.dart';
 import '../widgets/header.dart';
+import '../widgets/floater.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
