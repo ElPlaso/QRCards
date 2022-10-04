@@ -71,8 +71,8 @@ class _ScanState extends State<Scan> {
         var cardMap = jsonDecode(result!.code!);
         print(cardMap);
         print(BusinessCard.fromJson(cardMap));
+        Navigator.pop(context);
       }
-      Navigator.pop(context);
     });
   }
 
