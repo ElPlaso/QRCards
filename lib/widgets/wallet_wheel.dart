@@ -15,14 +15,13 @@ class WalletWheelState extends State<WalletWheel> {
   List<Widget> cardList = [const Item1(), const Item2(), const Item3()];
 
   @override
-  Widget build(BuildContext context) => Container(
-      child: SizedBox(
-          height: 400,
-          child: ListWheelScrollView(
-              itemExtent: 250,
-              physics: const FixedExtentScrollPhysics(),
-              onSelectedItemChanged: (index) => {},
-              children: cardList)));
+  Widget build(BuildContext context) => SizedBox(
+      height: 500,
+      child: ListWheelScrollView(
+          itemExtent: 250,
+          physics: const FixedExtentScrollPhysics(),
+          onSelectedItemChanged: (index) => {},
+          children: cardList));
 }
 
 class Item1 extends StatelessWidget {

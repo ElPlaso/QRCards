@@ -52,12 +52,6 @@ class _HomeState extends State<Home> {
                 ),
                 icon: const Icon(Icons.wallet, size: 40),
               ),
-              LogoButton(
-                text: 'Test',
-                onClicked: () => Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const CardPage())),
-                icon: Icon(Icons.add, size: 25),
-              ),
             ],
           ),
         ),
