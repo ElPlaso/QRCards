@@ -17,11 +17,12 @@ class WalletWheelState extends State<WalletWheel> {
   @override
   Widget build(BuildContext context) => SizedBox(
       height: 500,
-      child: ListWheelScrollView(
-          itemExtent: 250,
+      child: ListWheelScrollView.useDelegate(
+          itemExtent: 200,
           physics: const FixedExtentScrollPhysics(),
           onSelectedItemChanged: (index) => {},
-          children: cardList));
+          childDelegate:
+              ListWheelChildLoopingListDelegate(children: cardList)));
 }
 
 class Item1 extends StatelessWidget {
@@ -29,13 +30,16 @@ class Item1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 100,
-      width: 300,
-      child: CardView(
-        card: BusinessCard(
-          id: "testID1",
-          name: "Bob",
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(30.0),
+      child: SizedBox(
+        height: 100,
+        width: 300,
+        child: CardView(
+          card: BusinessCard(
+            id: "testID1",
+            name: "Lei",
+          ),
         ),
       ),
     );
@@ -47,13 +51,16 @@ class Item2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 100,
-      width: 300,
-      child: CardView(
-        card: BusinessCard(
-          id: "testID2",
-          name: "John",
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(30.0),
+      child: SizedBox(
+        height: 100,
+        width: 300,
+        child: CardView(
+          card: BusinessCard(
+            id: "testID2",
+            name: "John",
+          ),
         ),
       ),
     );
@@ -65,13 +72,16 @@ class Item3 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 100,
-      width: 300,
-      child: CardView(
-        card: BusinessCard(
-          id: "testID3",
-          name: "Alice",
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(30.0),
+      child: SizedBox(
+        height: 100,
+        width: 300,
+        child: CardView(
+          card: BusinessCard(
+            id: "testID3",
+            name: "Alice",
+          ),
         ),
       ),
     );
