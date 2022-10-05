@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -68,7 +70,7 @@ class AddCard extends StatelessWidget {
                                     })
                                   }
                               });
-                      String a = '';
+                      String cardId = '';
 
 // ! get the current id of the users' card
 
@@ -81,9 +83,7 @@ class AddCard extends StatelessWidget {
                         print(val);
                         print('       testtt');
 
-                        a = context.read<UserProvider>().userID +
-                            "-" +
-                            val.toString();
+                        cardId = "${context.read<UserProvider>().userID}-$val";
                       });
                       var bCard = BusinessCard(
                         name: context.read<CardCreator>().name,
@@ -96,16 +96,16 @@ class AddCard extends StatelessWidget {
                             context.read<CardCreator>().companyAddress,
                         companyphone: context.read<CardCreator>().companyPhone,
                       );
-                      print("ID ------ ${a}");
+                      print("ID ------ ${cardId}");
                       print(jsonEncode(bCard));
                       // past the bussiness card to the DB
                       await FirebaseFirestore.instance
                           .collection('Cards')
-                          .doc(a)
+                          .doc(cardId)
                           .set({'card-sheesh': 'yess'});
                       await FirebaseFirestore.instance
                           .collection('Cards')
-                          .doc(a)
+                          .doc(cardId)
                           .set({'card': jsonEncode(bCard)}).onError((error,
                                   stackTrace) =>
                               print("${error} + ${stackTrace} =========== "));
@@ -113,9 +113,10 @@ class AddCard extends StatelessWidget {
                       await FirebaseFirestore.instance
                           .collection('Users')
                           .doc(context.read<UserProvider>().userID)
-                          .set({'card': jsonEncode(bCard)}).onError((error,
-                                  stackTrace) =>
-                              print("${error} + ${stackTrace} ==========="));
+                          .update({
+                        'personalcards': FieldValue.arrayUnion([cardId])
+                      }).onError((error, stackTrace) =>
+                              print("$error + $stackTrace ==========="));
                     },
                   ),
                 ],
