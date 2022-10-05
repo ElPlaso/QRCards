@@ -8,9 +8,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:swen325_assignment_3/data/business_card.dart';
+import 'package:swen325_assignment_3/pages/home.dart';
 import 'package:swen325_assignment_3/providers/cardCreator_provider.dart';
 import 'package:swen325_assignment_3/providers/user_provider.dart';
-import 'package:swen325_assignment_3/widgets/google_sign_in.dart';
 import '../main.dart';
 import '../widgets/button.dart';
 import '../widgets/theme_toggle.dart';
@@ -43,9 +43,7 @@ class AddCard extends StatelessWidget {
                     text: 'Save Card',
                     onClicked: () async {
                       WidgetsFlutterBinding.ensureInitialized();
-                      print('save card ${context.read<UserProvider>().userID}');
                       // ! get UID
-                      // ! get card-id number
                       await FirebaseFirestore.instance
                           .collection('Users')
                           .doc(context.read<UserProvider>().userID)
@@ -70,19 +68,14 @@ class AddCard extends StatelessWidget {
                                     })
                                   }
                               });
+                      // ! get the current id of the users' card
                       String cardId = '';
-
-// ! get the current id of the users' card
-
                       await FirebaseFirestore.instance
                           .collection('Users')
                           .doc(context.read<UserProvider>().userID)
                           .get()
                           .then((doc) {
                         int val = doc.get('card-id');
-                        print(val);
-                        print('       testtt');
-
                         cardId = "${context.read<UserProvider>().userID}-$val";
                       });
                       var bCard = BusinessCard(
@@ -96,7 +89,6 @@ class AddCard extends StatelessWidget {
                             context.read<CardCreator>().companyAddress,
                         companyphone: context.read<CardCreator>().companyPhone,
                       );
-                      print("ID ------ ${cardId}");
                       print(jsonEncode(bCard));
                       // past the bussiness card to the DB
                       await FirebaseFirestore.instance
@@ -106,8 +98,10 @@ class AddCard extends StatelessWidget {
                       await FirebaseFirestore.instance
                           .collection('Cards')
                           .doc(cardId)
-                          .set({'card': jsonEncode(bCard)}).onError((error,
-                                  stackTrace) =>
+                          .set({
+                        'card': jsonEncode(bCard),
+                        'owner': context.read<UserProvider>().userID
+                      }).onError((error, stackTrace) =>
                               print("${error} + ${stackTrace} =========== "));
                       // Update the user profile with the ownership of the new card
                       await FirebaseFirestore.instance
@@ -117,6 +111,9 @@ class AddCard extends StatelessWidget {
                         'personalcards': FieldValue.arrayUnion([cardId])
                       }).onError((error, stackTrace) =>
                               print("$error + $stackTrace ==========="));
+                      // ! is this how we can exit the create page flutterly?
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => Home()));
                     },
                   ),
                 ],
