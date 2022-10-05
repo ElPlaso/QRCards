@@ -49,5 +49,5 @@ class BusinessCard {
         "name": name,
         "position": position,
         "website": website,
-      };
+    };
 }
