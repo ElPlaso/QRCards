@@ -58,10 +58,13 @@ class Item1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CardView(
-      card: BusinessCard(
-        id: "testID1",
-        name: "Bob",
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(30.0),
+      child: CardView(
+        card: BusinessCard(
+          id: "testID1",
+          name: "Bob",
+        ),
       ),
     );
   }
@@ -72,10 +75,13 @@ class Item2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CardView(
-      card: BusinessCard(
-        id: "testID2",
-        name: "John",
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(30.0),
+      child: CardView(
+        card: BusinessCard(
+          id: "testID2",
+          name: "John",
+        ),
       ),
     );
   }
