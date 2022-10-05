@@ -46,6 +46,7 @@ dependencies:
   image_gallery_saver: "^1.7.1"
   fluttertoast: ^8.0.9
   carousel_slider: ^4.1.1
+  auto_size_text: ^3.0.0
 
 dev_dependencies:
   flutter_test:

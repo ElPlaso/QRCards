@@ -22,31 +22,34 @@ class CarouselState extends State<Carousel> {
   }
 
   @override
-  Widget build(BuildContext context) => Container(
-        child: SizedBox(
-          child: CarouselSlider(
-            options: CarouselOptions(
-              autoPlay: true,
-              autoPlayInterval: Duration(seconds: 3),
-              autoPlayAnimationDuration: Duration(milliseconds: 1000),
-              autoPlayCurve: Curves.fastOutSlowIn,
-              pauseAutoPlayOnTouch: true,
-              onPageChanged: (index, reason) {
-                setState(() {
-                  _currentIndex = index;
-                });
+  Widget build(BuildContext context) => CarouselSlider(
+        options: CarouselOptions(
+          autoPlay: true,
+          autoPlayInterval: Duration(seconds: 3),
+          autoPlayAnimationDuration: Duration(milliseconds: 1000),
+          autoPlayCurve: Curves.fastOutSlowIn,
+          pauseAutoPlayOnTouch: true,
+          onPageChanged: (index, reason) {
+            setState(
+              () {
+                _currentIndex = index;
               },
-            ),
-            items: cardList.map((card) {
-              return Builder(builder: (BuildContext context) {
-                return Card(
-                  color: Colors.blueAccent,
-                  child: card,
-                );
-              });
-            }).toList(),
-          ),
+            );
+          },
         ),
+        items: cardList.map(
+          (card) {
+            return Builder(
+              builder: (BuildContext context) {
+                return Card(
+                  elevation: 0,
+                  color: Colors.transparent,
+                  child: Center(child: card),
+                );
+              },
+            );
+          },
+        ).toList(),
       );
 }
 
@@ -71,9 +74,20 @@ class Item2 extends StatelessWidget {
   Widget build(BuildContext context) {
     return CardView(
       card: BusinessCard(
-        id: "testID2",
-        name: "John",
-      ),
+          id: "testID2",
+          name: "John",
+          company: "TestCompany",
+          position: "TestPosition",
+          companyaddress: {
+            'city': 'TestCity',
+            'country': 'TestCountry',
+            'streetname': 'TestStreet',
+            'streetnumber': '42'
+          },
+          companyphone: '123 456 7890',
+          email: 'test@testing.com',
+          website: 'www.testtesting.net',
+          cellphone: '098 765 4321'),
     );
   }
 }
