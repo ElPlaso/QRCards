@@ -26,13 +26,11 @@ class CarouselState extends State<Carousel> {
         child: SizedBox(
           child: CarouselSlider(
             options: CarouselOptions(
-              height: 255,
               autoPlay: true,
               autoPlayInterval: Duration(seconds: 3),
               autoPlayAnimationDuration: Duration(milliseconds: 1000),
               autoPlayCurve: Curves.fastOutSlowIn,
               pauseAutoPlayOnTouch: true,
-              aspectRatio: 1.69,
               onPageChanged: (index, reason) {
                 setState(() {
                   _currentIndex = index;
@@ -41,13 +39,9 @@ class CarouselState extends State<Carousel> {
             ),
             items: cardList.map((card) {
               return Builder(builder: (BuildContext context) {
-                return Container(
-                  height: MediaQuery.of(context).size.height * 0.30,
-                  width: MediaQuery.of(context).size.width,
-                  child: Card(
-                    color: Colors.blueAccent,
-                    child: card,
-                  ),
+                return Card(
+                  color: Colors.blueAccent,
+                  child: card,
                 );
               });
             }).toList(),
@@ -61,13 +55,10 @@ class Item1 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 300,
-      child: CardView(
-        card: BusinessCard(
-          id: "testID1",
-          name: "Bob",
-        ),
+    return CardView(
+      card: BusinessCard(
+        id: "testID1",
+        name: "Bob",
       ),
     );
   }
@@ -78,13 +69,10 @@ class Item2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 300,
-      child: CardView(
-        card: BusinessCard(
-          id: "testID2",
-          name: "John",
-        ),
+    return CardView(
+      card: BusinessCard(
+        id: "testID2",
+        name: "John",
       ),
     );
   }
