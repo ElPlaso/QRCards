@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../main.dart';
 import '../widgets/button.dart';
+import '../widgets/logo_button.dart';
 import '../widgets/header.dart';
 import '../widgets/theme_toggle.dart';
 import '../widgets/card_form.dart';
@@ -24,13 +25,16 @@ class AddCard extends StatelessWidget {
                   const SizedBox(height: 24),
                   const CardForm(),
                   const ThemeToggle(),
-                  Button(
-                    text: 'Clear All',
+                  Button(text: 'Clear All', onClicked: () => {}),
+                  LogoButton(
+                    text: 'Preview',
                     onClicked: () => {},
+                    icon: const Icon(Icons.remove_red_eye, size: 40),
                   ),
-                  Button(
-                    text: 'Save Card',
+                  LogoButton(
+                    text: 'Save',
                     onClicked: () => {},
+                    icon: const Icon(Icons.download, size: 40),
                   ),
                 ],
               ),

@@ -16,7 +16,6 @@ class ThemeToggleState extends State<ThemeToggle> {
 
   @override
   Widget build(BuildContext context) => Container(
-        margin: const EdgeInsets.all(20.0),
         child: ToggleButtons(
           color: Colors.black.withOpacity(0.60),
           selectedColor: Colors.blue,

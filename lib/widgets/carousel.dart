@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import '../data/business_card.dart';
-import '../main.dart';
 import 'card_view.dart';
 
 class Carousel extends StatefulWidget {
@@ -30,10 +29,10 @@ class CarouselState extends State<Carousel> {
               height: 255,
               autoPlay: true,
               autoPlayInterval: Duration(seconds: 3),
-              autoPlayAnimationDuration: Duration(milliseconds: 800),
+              autoPlayAnimationDuration: Duration(milliseconds: 1000),
               autoPlayCurve: Curves.fastOutSlowIn,
               pauseAutoPlayOnTouch: true,
-              aspectRatio: 2.0,
+              aspectRatio: 1.69,
               onPageChanged: (index, reason) {
                 setState(() {
                   _currentIndex = index;
@@ -66,13 +65,9 @@ class Item1 extends StatelessWidget {
       width: 300,
       child: CardView(
         card: BusinessCard(
-            id: "testID",
-            name: "TestName",
-            company: "TestCompany",
-            position: "TestPosition",
-            email: 'test@testing.com',
-            website: 'www.testtesting.net',
-            cellphone: '098 765 4321'),
+          id: "testID1",
+          name: "Bob",
+        ),
       ),
     );
   }
@@ -87,13 +82,9 @@ class Item2 extends StatelessWidget {
       width: 300,
       child: CardView(
         card: BusinessCard(
-            id: "testID2",
-            name: "TestName2",
-            company: "TestCompany2",
-            position: "TestPosition2",
-            email: 'test@testing.com',
-            website: 'www.testtesting.net',
-            cellphone: '098 765 4321'),
+          id: "testID2",
+          name: "John",
+        ),
       ),
     );
   }

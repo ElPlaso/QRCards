@@ -20,14 +20,14 @@ class CardFormState extends State<CardForm> {
 
   @override
   Widget build(BuildContext context) => Container(
-        margin: const EdgeInsets.all(20.0),
+        margin: const EdgeInsets.only(left: 20.0, right: 20.0, bottom: 10),
         decoration: BoxDecoration(
             border:
                 Border.all(color: const Color.fromARGB(230, 230, 230, 230))),
         child: Form(
           key: _formKey,
           child: SizedBox(
-            height: 300,
+            height: 350,
             child: Scrollbar(
               controller: controller,
               thumbVisibility: true,

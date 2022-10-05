@@ -20,7 +20,7 @@ class LogoButton extends StatelessWidget {
         height: 70,
         child: Directionality(
           textDirection: TextDirection.rtl,
-          child: ElevatedButton.icon(
+          child: OutlinedButton.icon(
             onPressed: onClicked,
             label: Align(
               alignment: Alignment.centerLeft,
@@ -29,7 +29,7 @@ class LogoButton extends StatelessWidget {
                 style: const TextStyle(
                   fontSize: 25,
                   fontWeight: FontWeight.bold,
-                  color: Colors.white,
+                  color: Colors.blue,
                 ),
               ),
             ),

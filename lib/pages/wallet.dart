@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import '../main.dart';
 import '../widgets/button.dart';
 import '../widgets/header.dart';
+import '../widgets/card_view.dart';
+import 'package:swen325_assignment_3/data/business_card.dart';
+import '../data/business_card.dart';
+import '../widgets/wallet_wheel.dart';
 
 class Wallet extends StatelessWidget {
   const Wallet({super.key});
@@ -15,10 +19,7 @@ class Wallet extends StatelessWidget {
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: const <Widget>[
-              Header(title: 'Wallet'),
-              SizedBox(height: 24),
-            ],
+            children: const [WalletWheel()],
           ),
         ),
       );
