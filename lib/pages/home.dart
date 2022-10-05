@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:swen325_assignment_3/widgets/floater.dart';
 import '../main.dart';
 import 'scan.dart';
 import 'userCards.dart';
 import 'wallet.dart';
 import 'cardPage.dart';
 import '../widgets/logo_button.dart';
-import '../widgets/header.dart';
-import '../widgets/floater.dart';
+import '../widgets/carousel.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -29,6 +27,7 @@ class _HomeState extends State<Home> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Carousel(),
               LogoButton(
                 text: 'Scan',
                 onClicked: () => Navigator.push(
@@ -46,22 +45,12 @@ class _HomeState extends State<Home> {
                 icon: Icon(Icons.library_add, size: 40),
               ),
               LogoButton(
-                text: 'Wallet',
+                text: 'View Wallet',
                 onClicked: () => Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => const Wallet()),
                 ),
                 icon: const Icon(Icons.wallet, size: 40),
-              ),
-              LogoButton(
-                  text: 'Contact Us',
-                  onClicked: () => {},
-                  icon: Icon(Icons.contact_support, size: 40)),
-              LogoButton(
-                text: 'Test',
-                onClicked: () => Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => CardPage())),
-                icon: Icon(Icons.add, size: 25),
               ),
             ],
           ),
