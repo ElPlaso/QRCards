@@ -122,7 +122,7 @@ class CardView extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 2.5, 0, 2.5),
                           child: Text(
-                            'Address: ${card.companyaddress['streetnumber']} ${card.companyaddress['streetname']}, ${card.companyaddress['city']}, ${card.companyaddress['country']}',
+                            'Address: ${card.companyaddress}',
                             textAlign: TextAlign.right,
                             style: const TextStyle(
                               color: Color.fromARGB(203, 203, 203, 255),

@@ -1,8 +1,12 @@
+import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:swen325_assignment_3/data/business_card.dart';
+import 'package:swen325_assignment_3/providers/cardCreator_provider.dart';
 import 'package:swen325_assignment_3/providers/user_provider.dart';
 import 'package:swen325_assignment_3/widgets/google_sign_in.dart';
 import '../main.dart';
@@ -64,32 +68,48 @@ class AddCard extends StatelessWidget {
                                     })
                                   }
                               });
-                      await FirebaseFirestore.instance
-                          .collection('Cards')
-                          .doc('test_id')
-                          .set({'testwwww': 'testllll'}).onError((error,
-                                  stackTrace) =>
-                              print("${error} + ${stackTrace} ==========="));
+                      String a = '';
+
+// ! get the current id of the users' card
+
                       await FirebaseFirestore.instance
                           .collection('Users')
-                          .doc()
-                          .set({'testwwww': 'testllll'}).onError(
-                              (error, stackTrace) => print(
-                                  "\n {error} + {stackTrace} ============\n"));
-                      // db.
-                      // .collection("cities")
-                      // .doc("LA")
-                      // .set(
-                      // final card =<String, String>{
-                      //   'name': context.read<CardCreator>().name,
-                      //   'postion' : context.read<CardCreator>().postion,
-                      //   'email': context.read<CardCreator>().email,
-                      //   'cellphone': context.read<CardCreator>().cellphone,
-                      //   'website': context.read<CardCreator>().website,
-                      //   'company': context.read<CardCreator>().company,
-                      //   'companyAddress': context.read<CardCreator>().companyAddress,
-                      //   'companyPhone': context.read<CardCreator>().companyPhone,
-                      // };
+                          .doc(context.read<UserProvider>().userID)
+                          .get()
+                          .then((doc) {
+                        int val = doc.get('card-id');
+                        print(val);
+                        print('       testtt');
+
+                        a = val.toString();
+                      });
+                      var bCard = BusinessCard(
+                        name: context.read<CardCreator>().name,
+                        position: context.read<CardCreator>().postion,
+                        email: context.read<CardCreator>().email,
+                        cellphone: context.read<CardCreator>().cellphone,
+                        website: context.read<CardCreator>().website,
+                        company: context.read<CardCreator>().company,
+                        companyaddress:
+                            context.read<CardCreator>().companyAddress,
+                        companyphone: context.read<CardCreator>().companyPhone,
+                      );
+                      print("ID ------ ${a}");
+                      print(jsonEncode(bCard));
+                      // past the bussiness card to the DB
+                      await FirebaseFirestore.instance
+                          .collection('Cards')
+                          .doc(a)
+                          .set({'card': jsonEncode(bCard)}).onError((error,
+                                  stackTrace) =>
+                              print("${error} + ${stackTrace} ==========="));
+                      // Update the user profile with the ownership of the new card
+                      await FirebaseFirestore.instance
+                          .collection('Users')
+                          .doc(context.read<UserProvider>().userID)
+                          .set({'card': jsonEncode(bCard)}).onError((error,
+                                  stackTrace) =>
+                              print("${error} + ${stackTrace} ==========="));
                     },
                   ),
                 ],
