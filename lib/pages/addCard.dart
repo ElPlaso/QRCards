@@ -81,7 +81,9 @@ class AddCard extends StatelessWidget {
                         print(val);
                         print('       testtt');
 
-                        a = val.toString();
+                        a = context.read<UserProvider>().userID +
+                            "-" +
+                            val.toString();
                       });
                       var bCard = BusinessCard(
                         name: context.read<CardCreator>().name,
@@ -100,9 +102,13 @@ class AddCard extends StatelessWidget {
                       await FirebaseFirestore.instance
                           .collection('Cards')
                           .doc(a)
+                          .set({'card-sheesh': 'yess'});
+                      await FirebaseFirestore.instance
+                          .collection('Cards')
+                          .doc(a)
                           .set({'card': jsonEncode(bCard)}).onError((error,
                                   stackTrace) =>
-                              print("${error} + ${stackTrace} ==========="));
+                              print("${error} + ${stackTrace} =========== "));
                       // Update the user profile with the ownership of the new card
                       await FirebaseFirestore.instance
                           .collection('Users')
