@@ -85,7 +85,14 @@ class CardFormState extends State<CardForm> {
                         decoration: const InputDecoration(
                           icon: const Icon(Icons.home),
                           hintText: 'Enter address of company',
-                          labelText: 'Company Address',
+                          labelText: 'Address Line 1',
+                        ),
+                      ),
+                      TextFormField(
+                        decoration: const InputDecoration(
+                          icon: const Icon(Icons.home),
+                          hintText: 'Enter address of company',
+                          labelText: 'Address Line 2',
                         ),
                       ),
                       TextFormField(
