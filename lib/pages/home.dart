@@ -99,8 +99,7 @@ class _HomeState extends State<Home> {
                         context.read<Cards>().add(
                             BusinessCard.fromJson(
                                 jsonDecode(element.get('card'))),
-                            true,
-                            uid);
+                            true);
                       });
                     });
                     print('dowloaded');
