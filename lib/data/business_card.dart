@@ -1,6 +1,7 @@
 import 'dart:collection';
 
 class BusinessCard {
+  String id;
   String cellphone;
   String company;
   String companyaddress;
@@ -11,6 +12,7 @@ class BusinessCard {
   String website;
 
   BusinessCard({
+    required this.id,
     this.cellphone = '',
     this.company = '',
     this.companyaddress = '',
@@ -22,7 +24,8 @@ class BusinessCard {
   });
 
   BusinessCard.fromJson(Map<String, dynamic> json)
-      : cellphone = json["cellphone"],
+      : id = json['id'],
+        cellphone = json["cellphone"],
         company = json["company"],
         companyaddress = json["companyaddress"],
         companyphone = json["companyphone"],
@@ -32,7 +35,7 @@ class BusinessCard {
         website = json["website"];
 
   Map<String, dynamic> toJson() => {
-        // "id": id,
+        "id": id,
         "cellphone": cellphone,
         "company": company,
         "companyaddress": companyaddress,

@@ -1,5 +1,3 @@
-// ignore_for_file: avoid_print
-
 import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -82,6 +80,7 @@ class AddCard extends StatelessWidget {
                         cardId = "${context.read<UserProvider>().userID}-$val";
                       });
                       var bCard = BusinessCard(
+                        id: cardId,
                         name: context.read<CardCreator>().name,
                         position: context.read<CardCreator>().postion,
                         email: context.read<CardCreator>().email,
@@ -94,14 +93,15 @@ class AddCard extends StatelessWidget {
                       );
                       print(jsonEncode(bCard));
                       // past the bussiness card to the DB
-                      await FirebaseFirestore.instance
-                          .collection('Cards')
-                          .doc(cardId)
-                          .set({'card-sheesh': 'yess'});
+                      //   await FirebaseFirestore.instance
+                      //       .collection('Cards')
+                      //       .doc(cardId)
+                      //       .set({'card-sheesh': 'yess'});
                       await FirebaseFirestore.instance
                           .collection('Cards')
                           .doc(cardId)
                           .set({
+                        'card_id': cardId,
                         'card': jsonEncode(bCard),
                         'owner': context.read<UserProvider>().userID
                       }).onError((error, stackTrace) =>

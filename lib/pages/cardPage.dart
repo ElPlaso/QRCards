@@ -39,6 +39,7 @@ class _CardPageState extends State<CardPage> {
                 controller: controller,
                 child: CardView(
                   card: BusinessCard(
+                      id: 'test_id',
                       name: "TestName",
                       company: "TestCompany",
                       position: "TestPosition",

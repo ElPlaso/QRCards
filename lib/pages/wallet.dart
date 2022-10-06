@@ -1,14 +1,20 @@
+import 'dart:convert';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:swen325_assignment_3/providers/card_provider.dart';
+
 import 'package:swen325_assignment_3/providers/user_provider.dart';
 import 'package:swen325_assignment_3/widgets/logo_button.dart';
 import '../main.dart';
-import '../widgets/button.dart';
-import '../widgets/header.dart';
-import '../widgets/card_view.dart';
+// import '../widgets/button.dart';
+// import '../widgets/header.dart';
+// import '../widgets/card_view.dart';
 import 'package:swen325_assignment_3/data/business_card.dart';
-import '../data/business_card.dart';
+// import '../data/business_card.dart';
 import '../widgets/wallet_wheel.dart';
-import '../widgets/card_stack.dart';
+// import '../widgets/card_stack.dart';
 import 'cardPage.dart';
 
 class Wallet extends StatelessWidget {
@@ -31,13 +37,34 @@ class Wallet extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                           builder: (context) => const CardPage())),
-                  icon: Icon(Icons.east, size: 25))
+                  icon: Icon(Icons.east, size: 25)),
+              LogoButton(
+                  text: 'Refresh',
+                  onClicked: () async {
+                    print('downloading cards');
+                    await FirebaseFirestore.instance
+                        .collection('Cards')
+                        .where('owner',
+                            isEqualTo: context.read<UserProvider>().userID)
+                        .get()
+                        .then((doc) {
+                      //   print(doc.docs.length);
+                      doc.docs.forEach((element) {
+                        print(element.get('card'));
+                        // ? Delete cards that wern't downloaded?
+                        context.read<Cards>().add(BusinessCard.fromJson(
+                            jsonDecode(element.get('card'))), context.read<Cards>().personalcards);
+                      });
+                    });
+                    print('dowloaded');
+                  },
+                  icon: Icon(Icons.refresh, size: 25)),
             ],
           ),
         ),
       );
 }
-// // ! returns an array of cards the user owns
+// // // ! returns an array of cards the user owns
 // String[] ret_arry;
 // await FirebaseFirestore.instance
 //                           .collection('Cards')

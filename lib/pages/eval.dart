@@ -26,8 +26,8 @@ class _EvalState extends State<Eval> {
       body: StreamBuilder(
           stream: FirebaseAuth.instance.authStateChanges(),
           builder: (context, snapshot) {
-            print('test');
             if (snapshot.connectionState == ConnectionState.waiting) {
+              print('waiting');
               return const Center(
                 child: CircularProgressIndicator(),
               );
