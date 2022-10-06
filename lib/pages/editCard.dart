@@ -7,10 +7,12 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:swen325_assignment_3/data/business_card.dart';
+import 'package:swen325_assignment_3/pages/userCardPage.dart';
 import 'package:swen325_assignment_3/providers/cardCreator_provider.dart';
 import 'package:swen325_assignment_3/providers/card_provider.dart';
 import 'package:swen325_assignment_3/providers/user_provider.dart';
 import '../main.dart';
+import '../providers/query_provider.dart';
 import '../widgets/button.dart';
 import '../widgets/card_view.dart';
 import '../widgets/logo_button.dart';
@@ -47,7 +49,21 @@ class EditCard extends StatelessWidget {
                               top: Radius.circular(20),
                             ),
                           ),
-                          builder: (context) => CardView(card: card));
+                          builder: (context) => CardView(
+                                  card: BusinessCard(
+                                id: card.id,
+                                name: context.read<CardCreator>().name,
+                                position: context.read<CardCreator>().postion,
+                                email: context.read<CardCreator>().email,
+                                cellphone:
+                                    context.read<CardCreator>().cellphone,
+                                website: context.read<CardCreator>().website,
+                                company: context.read<CardCreator>().company,
+                                companyaddress:
+                                    context.read<CardCreator>().companyAddress,
+                                companyphone:
+                                    context.read<CardCreator>().companyPhone,
+                              )));
                     },
                     icon: const Icon(Icons.remove_red_eye, size: 40),
                   ),
@@ -58,13 +74,6 @@ class EditCard extends StatelessWidget {
                       // ! get UID
                       // ! get the current id of the users' card
                       String cardId = card.id;
-                      await FirebaseFirestore.instance
-                          .collection('Users')
-                          .doc(context.read<UserProvider>().userID)
-                          .get()
-                          .then((doc) {
-                        cardId = cardId;
-                      });
 
                       var bCard = BusinessCard(
                         id: cardId,
@@ -89,6 +98,9 @@ class EditCard extends StatelessWidget {
                               print("${error} + ${stackTrace} =========== "));
                       // ! is this how we can exit the create page flutterly?
 
+                      context
+                          .read<QueryProvider>()
+                          .updatePersonalcards(context);
                       Fluttertoast.showToast(
                           msg: "Card updated!",
                           toastLength: Toast.LENGTH_SHORT,
@@ -98,6 +110,12 @@ class EditCard extends StatelessWidget {
                           textColor: Colors.white,
                           fontSize: 16.0);
                       Navigator.pop(context);
+                      Navigator.pop(context);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => UserCardPage(card: bCard)),
+                      );
                     },
                     icon: const Icon(Icons.download, size: 40),
                   )
