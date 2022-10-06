@@ -1,16 +1,12 @@
 import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:swen325_assignment_3/data/business_card.dart';
-import 'package:swen325_assignment_3/pages/home.dart';
 import 'package:swen325_assignment_3/providers/cardCreator_provider.dart';
 import 'package:swen325_assignment_3/providers/user_provider.dart';
 import '../main.dart';
-import '../widgets/button.dart';
 import '../widgets/card_view.dart';
 import '../widgets/logo_button.dart';
 import '../widgets/theme_toggle.dart';
@@ -125,7 +121,8 @@ class AddCard extends StatelessWidget {
                           .set({
                         'card_id': cardId,
                         'card': jsonEncode(bCard),
-                        'owner': context.read<UserProvider>().userID
+                        'owner': context.read<UserProvider>().userID,
+                        'scancount': 0,
                       }).onError((error, stackTrace) =>
                               print("${error} + ${stackTrace} =========== "));
                       // Update the user profile with the ownership of the new card

@@ -1,12 +1,14 @@
 import 'dart:convert';
 import 'dart:io';
+import 'dart:js';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:pdf/widgets.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:swen325_assignment_3/data/business_card.dart';
+import 'package:swen325_assignment_3/providers/user_provider.dart';
 import '../main.dart';
-import '../widgets/button.dart';
-import '../widgets/header.dart';
 
 class Scan extends StatefulWidget {
   const Scan({super.key});
@@ -66,11 +68,22 @@ class _ScanState extends State<Scan> {
       setState(() {
         result = scanData;
       });
+
       if (result?.code != null) {
         print(result!.code!);
         var cardMap = jsonDecode(result!.code!);
         print(cardMap);
         print(BusinessCard.fromJson(cardMap));
+        // ! incr scancount
+        FirebaseFirestore.instance
+            .collection('cards')
+            .doc(cardMap['card_id'])
+            .update({'scancount': FieldValue.increment(1)});
+        // ! append new card to current users' scanned cards
+        FirebaseFirestore.instance
+            .collection('users')
+            .doc(context.read<UserProvider>().getUserID)
+            .set({'wallet': FieldValue.arrayUnion(cardMap['card_id'])})
         Navigator.pop(context);
       }
     });
