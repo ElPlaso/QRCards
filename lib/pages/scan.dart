@@ -51,7 +51,7 @@ class _ScanState extends State<Scan> {
                     await FirebaseFirestore.instance
                         .collection('Users')
                         .doc(context.read<UserProvider>().getUserID)
-                        .set({
+                        .update({
                       'wallet': FieldValue.arrayUnion([cardMap['id']])
                     });
 

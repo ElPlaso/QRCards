@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:ffi';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -94,10 +95,10 @@ class _HomeState extends State<Home> {
                             isEqualTo: context.read<UserProvider>().userID)
                         .get()
                         .then((doc) {
-                      //   print(doc.docs.length);
-                      
                       String uid = context.read<UserProvider>().userID;
+
                       context.read<Cards>().clear(true, uid);
+
                       doc.docs.forEach((element) {
                         print(element.get('card'));
                         // ? Delete cards that wern't downloaded?
@@ -108,6 +109,37 @@ class _HomeState extends State<Home> {
                             uid);
                       });
                     });
+                    // * from the users' wallet, get the card references
+                    List<dynamic> pp;
+
+                    await FirebaseFirestore.instance
+                        .collection('Users')
+                        .doc(context.read<UserProvider>().getUserID)
+                        .get()
+                        .then((DocumentSnapshot value) {
+                      pp = value.get('wallet');
+                      pp.forEach((element) => {});
+                    });
+
+                    // if (pp != null) {
+                    //   print(pp.toString());
+                    //   print('printed');
+
+                    //   context
+                    //       .read<Cards>()
+                    //       .clear(true, context.read<UserProvider>().userID);
+                    //   pp;
+
+                    // doc.docs.forEach((element) {
+                    //   print(element.get('card'));
+                    //   // ? Delete cards that wern't downloaded?
+                    //   context.read<Cards>().add(
+                    //       BusinessCard.fromJson(
+                    //           jsonDecode(element.get('card'))),
+                    //       true,
+                    //       context.read<UserProvider>().userID);
+                    // });
+
                     print('dowloaded');
                   },
                   icon: const Icon(Icons.refresh, size: 25)),
