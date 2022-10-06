@@ -16,7 +16,7 @@ class WalletWheelState extends State<WalletWheel> {
 
   @override
   Widget build(BuildContext context) => SizedBox(
-      height: 500,
+      height: 400,
       child: ListWheelScrollView.useDelegate(
           itemExtent: 200,
           physics: const FixedExtentScrollPhysics(),
@@ -55,12 +55,7 @@ class Item2 extends StatelessWidget {
             name: "TestName",
             company: "TestCompany",
             position: "TestPosition",
-            companyaddress: {
-              'city': 'TestCity',
-              'country': 'TestCountry',
-              'streetname': 'TestStreet',
-              'streetnumber': '42'
-            },
+            companyaddress: 'asd',
             companyphone: '123 456 7890',
             email: 'test@testing.com',
             website: 'www.testtesting.net',

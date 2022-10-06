@@ -16,7 +16,7 @@ class Display extends StatefulWidget {
 }
 
 class _DisplayState extends State<Display> {
-  BusinessCard card = BusinessCard(id: "testUID", name: "test");
+  BusinessCard card = BusinessCard(id: 'id_test2', name: "test");
   @override
   Widget build(BuildContext context) {
     return Scaffold(
