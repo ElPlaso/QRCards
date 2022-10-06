@@ -28,19 +28,11 @@ class Wallet extends StatelessWidget {
             children: <Widget>[
               const WalletWheel(),
               LogoButton(
-                  text: 'Select Card',
-                  onClicked: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => CardPage(
-                              card: BusinessCard(id: 's', name: 'name')))),
-                  icon: Icon(Icons.east, size: 25)),
-              LogoButton(
                   text: 'Refresh',
                   onClicked: () async {
                     context.read<QueryProvider>().updateWallet(context);
                   },
-                  icon: Icon(Icons.refresh, size: 25)),
+                  icon: const Icon(Icons.refresh, size: 25)),
             ],
           ),
         ),

@@ -52,6 +52,7 @@ dependencies:
   flutter_secure_storage: ^6.0.0
   pdf: ^3.6.4
   mobile_scanner: ^2.0.0
+  clickable_list_wheel_view: ^0.2.0
 
 dev_dependencies:
   flutter_test:

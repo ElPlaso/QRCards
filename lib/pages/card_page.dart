@@ -13,6 +13,7 @@ import 'package:pdf/widgets.dart' as pw;
 import 'package:printing/printing.dart';
 
 import '../widgets/qr_image_gen.dart';
+import '../widgets/small_button.dart';
 
 class CardPage extends StatefulWidget {
   final BusinessCard card;
@@ -56,11 +57,11 @@ class _CardPageState extends State<CardPage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      OutlinedButton(
-                        child: const Text('Save Image'),
+                      SmallButton(
+                        text: 'Save Image',
 
                         // save widget as image bytes
-                        onPressed: () async {
+                        onClicked: () async {
                           final bytes = await controller.capture();
                           setState(() {
                             this.bytes = bytes;
@@ -83,12 +84,13 @@ class _CardPageState extends State<CardPage> {
                               textColor: Colors.white,
                               fontSize: 16.0);
                         },
+                        icon: const Icon(Icons.camera_alt, size: 25),
                       ),
-                      OutlinedButton(
-                        child: const Text('Print Card'),
+                      SmallButton(
+                        text: 'Print Card',
 
                         // save widget as image bytes
-                        onPressed: () async {
+                        onClicked: () async {
                           final bytes = await controller.capture();
                           setState(() {
                             this.bytes = bytes;
@@ -118,10 +120,11 @@ class _CardPageState extends State<CardPage> {
                                     doc.save());
                           }
                         },
+                        icon: const Icon(Icons.print, size: 25),
                       ),
-                      OutlinedButton(
-                        child: const Text('Show QR'),
-                        onPressed: () {
+                      SmallButton(
+                        text: 'Show QR',
+                        onClicked: () {
                           showModalBottomSheet(
                               context: context,
                               shape: const RoundedRectangleBorder(
@@ -132,9 +135,13 @@ class _CardPageState extends State<CardPage> {
                               builder: (context) =>
                                   Center(child: QRImageGen(card: card)));
                         },
+                        icon: const Icon(Icons.qr_code, size: 25),
                       ),
-                      OutlinedButton(
-                          child: const Text('Remove'), onPressed: () {}),
+                      SmallButton(
+                        text: 'Remove from wallet',
+                        onClicked: () {},
+                        icon: const Icon(Icons.remove, size: 25),
+                      ),
                     ],
                   )),
             ],

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:clickable_list_wheel_view/clickable_list_wheel_widget.dart';
 import 'package:provider/provider.dart';
+import 'package:swen325_assignment_3/pages/card_page.dart';
 import 'card_view.dart';
-import '../data/business_card.dart';
 import '../providers/card_provider.dart';
 
 class WalletWheel extends StatefulWidget {
@@ -14,31 +15,38 @@ class WalletWheel extends StatefulWidget {
 }
 
 class WalletWheelState extends State<WalletWheel> {
-  List<T> map<T>(List list, Function handler) {
-    List<T> result = [];
-    for (var i = 0; i < list.length; i++) {
-      result.add(handler(i, list[i]));
-    }
-    return result;
-  }
+  final _scrollController = FixedExtentScrollController();
 
   @override
   Widget build(BuildContext context) => SizedBox(
       height: 400,
-      child: ListWheelScrollView.useDelegate(
-          itemExtent: 200,
-          physics: const FixedExtentScrollPhysics(),
-          onSelectedItemChanged: (index) => {},
-          childDelegate: ListWheelChildLoopingListDelegate(
+      child: ClickableListWheelScrollView(
+          itemCount: context.read<Cards>().collectedcards.length,
+
+          // When a card in the list is tapped, go to CardPage for that card.
+          onItemTapCallback: (index) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => CardPage(
+                      card: context.read<Cards>().collectedcards[index])),
+            );
+          },
+          itemHeight: 200,
+          scrollController: _scrollController,
+          child: ListWheelScrollView(
+            controller: _scrollController,
+            itemExtent: 200,
+            physics: const FixedExtentScrollPhysics(),
+            onSelectedItemChanged: (index) => {},
+
+            // Get scanned cards and create a list of CardViews to be displayed.
             children: context.watch<Cards>().collectedcards.map(
               (card) {
                 return Builder(
                   builder: (BuildContext context) {
-                    return ClipRRect(
-                      borderRadius: BorderRadius.circular(15.0),
-                      child: CardView(
-                        card: card,
-                      ),
+                    return CardView(
+                      card: card,
                     );
                   },
                 );

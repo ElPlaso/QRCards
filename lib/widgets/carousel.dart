@@ -36,10 +36,8 @@ class CarouselState extends State<Carousel> {
                   elevation: 0,
                   color: Colors.transparent,
                   child: Center(
-                      child: ClipRRect(
-                    borderRadius: BorderRadius.circular(15.0),
                     child: CardView(card: card),
-                  )),
+                  ),
                 );
               },
             );

@@ -54,10 +54,7 @@ class CardStackState extends State<CardStack> {
                           ),
                         ],
                       ),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(15.0),
-                        child: CardView(card: card),
-                      ),
+                      child: CardView(card: card),
                     ),
                   ),
                 );
