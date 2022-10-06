@@ -9,6 +9,13 @@ class Cards with ChangeNotifier {
   List<BusinessCard> get personalcards => _personalcards;
   List<BusinessCard> get collectedcards => _collectedcards;
 
+  String _editid = '';
+  String get editid => _editid;
+
+  void cardToEdit(String id) {
+    _editid = id;
+  }
+
   /// adds only new cards to the provided list
   ///
   /// * Example usage

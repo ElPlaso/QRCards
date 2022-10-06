@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:js';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -7,6 +8,7 @@ import 'package:provider/provider.dart';
 import 'package:swen325_assignment_3/data/business_card.dart';
 import 'package:swen325_assignment_3/pages/home.dart';
 import 'package:swen325_assignment_3/providers/cardCreator_provider.dart';
+import 'package:swen325_assignment_3/providers/card_provider.dart';
 import 'package:swen325_assignment_3/providers/user_provider.dart';
 import '../main.dart';
 import '../widgets/button.dart';
@@ -17,6 +19,7 @@ import '../widgets/card_form.dart';
 
 class EditCard extends StatelessWidget {
   const EditCard({super.key});
+  static const String CARDID = '';
   static const CardForm cf = CardForm();
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -53,10 +56,57 @@ class EditCard extends StatelessWidget {
                   ),
                   LogoButton(
                     text: 'Save Changes',
-                    onClicked: () {},
+                    onClicked: () {
+                      FirebaseFirestore.instance
+                          .collection('Cards')
+                          .doc(CARDID)
+                          .update({
+                        'card': jsonEncode(BusinessCard(
+                          id: CARDID,
+                          name: context.read<CardCreator>().name,
+                          position: context.read<CardCreator>().postion,
+                          email: context.read<CardCreator>().email,
+                          cellphone: context.read<CardCreator>().cellphone,
+                          website: context.read<CardCreator>().website,
+                          company: context.read<CardCreator>().company,
+                          companyaddress:
+                              context.read<CardCreator>().companyAddress,
+                          companyphone:
+                              context.read<CardCreator>().companyPhone,
+                        ))
+                      });
+                    },
                     icon: const Icon(Icons.download, size: 40),
                   ),
-                  Button(text: 'Remove Card', onClicked: () => {}),
+                  Button(
+                      text: 'Remove Card',
+                      onClicked: () => {
+                            // delete card from db
+                            FirebaseFirestore.instance
+                                .collection('Cards')
+                                .doc(CARDID)
+                                .delete(),
+                            // delete card from owners' personal collection
+                            FirebaseFirestore.instance
+                                .collection('Users')
+                                .doc(context.read<UserProvider>().getUserID)
+                                .update({
+                              'personalcard': FieldValue.arrayRemove(CARDID)
+                            }),
+                            // delete every other reference to the card
+                            // FirebaseFirestore.instance.collection('Users').get().then((value) {
+                            //     value.forEach();
+                            // })
+                            FirebaseFirestore.instance.doc('User')
+                                // .collection('Users')
+                                // .where('wallet', arrayContains: CARDID).get().then((value) {})
+                                .update({
+                              'personalcard': FieldValue.arrayRemove(CARDID)
+                            })
+                            // .where('personalcards', arrayContains: CARDID)
+                            // .delete(),
+                          }),
+                  // delete card from every wallet
                 ],
               ),
             ),
