@@ -45,9 +45,7 @@ class EditCard extends StatelessWidget {
                               top: Radius.circular(20),
                             ),
                           ),
-                          builder: (context) => CardView(
-                              card: BusinessCard(
-                                  id: "preview", name: "Preview")));
+                          builder: (context) => CardView(card: card));
                     },
                     icon: const Icon(Icons.remove_red_eye, size: 40),
                   ),
