@@ -25,24 +25,23 @@ class WalletWheelState extends State<WalletWheel> {
   @override
   Widget build(BuildContext context) => SizedBox(
       height: 400,
-      child: ListWheelScrollView.useDelegate(
-          itemExtent: 200,
-          physics: const FixedExtentScrollPhysics(),
-          onSelectedItemChanged: (index) => {},
-          childDelegate: ListWheelChildLoopingListDelegate(
-            children: context.watch<Cards>().collectedcards.map(
-              (card) {
-                return Builder(
-                  builder: (BuildContext context) {
-                    return ClipRRect(
-                      borderRadius: BorderRadius.circular(15.0),
-                      child: CardView(
-                        card: card,
-                      ),
-                    );
-                  },
+      child: ListWheelScrollView(
+        itemExtent: 200,
+        physics: const FixedExtentScrollPhysics(),
+        onSelectedItemChanged: (index) => {},
+        children: context.watch<Cards>().collectedcards.map(
+          (card) {
+            return Builder(
+              builder: (BuildContext context) {
+                return ClipRRect(
+                  borderRadius: BorderRadius.circular(15.0),
+                  child: CardView(
+                    card: card,
+                  ),
                 );
               },
-            ).toList(),
-          )));
+            );
+          },
+        ).toList(),
+      ));
 }
