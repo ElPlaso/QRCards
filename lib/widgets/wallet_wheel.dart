@@ -19,7 +19,7 @@ class WalletWheelState extends State<WalletWheel> {
 
   @override
   Widget build(BuildContext context) => SizedBox(
-      height: 400,
+      height: 600,
       child: ClickableListWheelScrollView(
           itemCount: context.read<Cards>().collectedcards.length,
 

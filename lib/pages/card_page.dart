@@ -1,7 +1,10 @@
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:swen325_assignment_3/data/business_card.dart';
+import 'package:swen325_assignment_3/providers/query_provider.dart';
+import 'package:swen325_assignment_3/providers/user_provider.dart';
 import 'package:widgets_to_image/widgets_to_image.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -14,6 +17,7 @@ import 'package:printing/printing.dart';
 
 import '../widgets/qr_image_gen.dart';
 import '../widgets/small_button.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class CardPage extends StatefulWidget {
   final BusinessCard card;
@@ -139,7 +143,24 @@ class _CardPageState extends State<CardPage> {
                       ),
                       SmallButton(
                         text: 'Remove from wallet',
-                        onClicked: () {},
+                        onClicked: () async {
+                          await FirebaseFirestore.instance
+                              .collection('Users')
+                              .doc(context.read<UserProvider>().userID)
+                              .update({
+                            "wallet": FieldValue.arrayRemove([card.id])
+                          });
+                          context.read<QueryProvider>().updateWallet(context);
+                          Fluttertoast.showToast(
+                              msg: "Card Removed!",
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.CENTER,
+                              timeInSecForIosWeb: 1,
+                              backgroundColor: Colors.blue,
+                              textColor: Colors.white,
+                              fontSize: 16.0);
+                          Navigator.pop(context);
+                        },
                         icon: const Icon(Icons.remove, size: 25),
                       ),
                     ],

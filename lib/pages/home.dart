@@ -88,19 +88,6 @@ class _HomeState extends State<Home> {
                 },
                 icon: const Icon(Icons.wallet, size: 40),
               ),
-              LogoButton(
-                text: 'Refresh',
-                onClicked: () {
-                  // * download the users' personal cards
-                  print('downloading cards');
-                  context.read<QueryProvider>().updatePersonalcards(context);
-
-                  // * from the users' wallet, get the card references
-                  context.read<QueryProvider>().updateWallet(context);
-                  print('dowloaded');
-                },
-                icon: const Icon(Icons.refresh, size: 40),
-              )
             ],
           ),
         ),

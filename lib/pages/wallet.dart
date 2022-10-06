@@ -25,15 +25,7 @@ class Wallet extends StatelessWidget {
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              const WalletWheel(),
-              LogoButton(
-                  text: 'Refresh',
-                  onClicked: () async {
-                    context.read<QueryProvider>().updateWallet(context);
-                  },
-                  icon: const Icon(Icons.refresh, size: 25)),
-            ],
+            children: <Widget>[const WalletWheel()],
           ),
         ),
       );

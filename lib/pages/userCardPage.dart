@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:swen325_assignment_3/data/business_card.dart';
 import 'package:swen325_assignment_3/providers/cardCreator_provider.dart';
+import 'package:swen325_assignment_3/providers/query_provider.dart';
 import 'package:widgets_to_image/widgets_to_image.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -186,7 +187,19 @@ class UserCardPageState extends State<UserCardPage> {
                           // .update({
                           //   'personalcards': FieldValue.arrayRemove([card.id])
                           // })
+
                           context.read<Cards>().delete(card, true),
+                          context
+                              .read<QueryProvider>()
+                              .updatePersonalcards(context),
+                          Fluttertoast.showToast(
+                              msg: "Card Deleted!",
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.CENTER,
+                              timeInSecForIosWeb: 1,
+                              backgroundColor: Colors.blue,
+                              textColor: Colors.white,
+                              fontSize: 16.0),
                           Navigator.pop(context),
                         },
                         icon: const Icon(Icons.delete, size: 25),
