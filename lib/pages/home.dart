@@ -35,13 +35,14 @@ class _HomeState extends State<Home> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               context.read<Cards>().isEmpty(true)
-                  ? Column(children: const [
-                      Text(
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 24),
-                          "No Cards"),
-                      SizedBox(height: 125)
-                    ])
+                  ? Card(
+                  child: SizedBox(
+                    width: 300,
+                    height: 100,
+                    child: Center(child: Text('Welcome To CardOn, add a card to get started!')),
+                  ),
+                ),
+              )
                   : Carousel(),
               LogoButton(
                 text: 'Scan',
