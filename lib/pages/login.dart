@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:swen325_assignment_3/widgets/sign_up_widget.dart';
 import '../main.dart';
+import '../widgets/banner.dart';
 import 'scan.dart';
 import 'userCards.dart';
 import 'wallet.dart';
@@ -27,7 +28,7 @@ class _Login extends State<Login> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Header(title: 'Login'),
+              const HomeBanner(subheading: 'Sign in below :)'),
               SignUpWidget()
             ],
           ),

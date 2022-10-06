@@ -8,6 +8,7 @@ import 'package:swen325_assignment_3/providers/card_provider.dart';
 import '../data/business_card.dart';
 import '../main.dart';
 import '../providers/user_provider.dart';
+import '../widgets/banner.dart';
 import 'scan.dart';
 import 'userCards.dart';
 import 'wallet.dart';
@@ -35,15 +36,7 @@ class _HomeState extends State<Home> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               context.read<Cards>().isEmpty(true)
-                  ? const Card(
-                      child: SizedBox(
-                        width: 300,
-                        height: 100,
-                        child: Center(
-                            child: Text(
-                                'Welcome To CardOn, add a card to get started!')),
-                      ),
-                    )
+                  ? const HomeBanner(subheading: 'Add a card to get started :)')
                   : Carousel(),
               LogoButton(
                 text: 'Scan',
