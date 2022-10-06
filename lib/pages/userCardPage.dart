@@ -158,7 +158,9 @@ class UserCardPageState extends State<UserCardPage> {
                               .get()
                               .then((value) {
                             value.docs.forEach((element) {
-                              print(element);
+                              element.reference.update({
+                                'wallet': FieldValue.arrayRemove([card.id])
+                              });
                             });
                           }),
                           // .update({
