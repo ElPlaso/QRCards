@@ -65,30 +65,12 @@ class AddCard extends StatelessWidget {
                     onClicked: () async {
                       WidgetsFlutterBinding.ensureInitialized();
                       // ! get UID
-                      await FirebaseFirestore.instance
+
+                      FirebaseFirestore.instance
                           .collection('Users')
                           .doc(context.read<UserProvider>().userID)
-                          .get()
-                          .then((document) => {
-                                if (!document.exists)
-                                  {
-                                    FirebaseFirestore.instance
-                                        .collection('Users')
-                                        .doc(
-                                            context.read<UserProvider>().userID)
-                                        .set({"card-id": 0, 'wallet': []})
-                                  }
-                                else
-                                  {
-                                    FirebaseFirestore.instance
-                                        .collection('Users')
-                                        .doc(
-                                            context.read<UserProvider>().userID)
-                                        .update({
-                                      'card-id': FieldValue.increment(1)
-                                    })
-                                  }
-                              });
+                          .update({'card-id': FieldValue.increment(1)});
+
                       // * get the current id of the users' card
                       String cardId = '';
                       await FirebaseFirestore.instance
@@ -139,11 +121,9 @@ class AddCard extends StatelessWidget {
                               isEqualTo: context.read<UserProvider>().userID)
                           .get()
                           .then((doc) {
-                        //   print(doc.docs.length);
                         String uid = context.read<UserProvider>().userID;
                         context.read<Cards>().clear(true, uid);
                         doc.docs.forEach((element) {
-                        //   print(element.get('card'));
                           // ? Delete cards that wern't downloaded?
                           context.read<Cards>().add(
                               BusinessCard.fromJson(
