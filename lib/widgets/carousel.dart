@@ -35,11 +35,60 @@ class CarouselState extends State<Carousel> {
                 return Card(
                   elevation: 0,
                   color: Colors.transparent,
-                  child: Center(child: CardView(card: card)),
+                  child: Center(
+                      child: ClipRRect(
+                    borderRadius: BorderRadius.circular(30.0),
+                    child: CardView(card: card),
+                  )),
                 );
               },
             );
           },
         ).toList(),
       );
+}
+
+class Item1 extends StatelessWidget {
+  const Item1({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(30.0),
+      child: CardView(
+        card: BusinessCard(
+            id: "testID",
+            name: "TestName",
+            company: "TestCompany",
+            position: "TestPosition",
+            companyaddress: {
+              'city': 'TestCity',
+              'country': 'TestCountry',
+              'streetname': 'TestStreet',
+              'streetnumber': '42'
+            },
+            companyphone: '123 456 7890',
+            email: 'test@testing.com',
+            website: 'www.testtesting.net',
+            cellphone: '098 765 4321'),
+      ),
+    );
+  }
+}
+
+class Item2 extends StatelessWidget {
+  const Item2({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(30.0),
+      child: CardView(
+        card: BusinessCard(
+          id: "testID2",
+          name: "John",
+        ),
+      ),
+    );
+  }
 }
