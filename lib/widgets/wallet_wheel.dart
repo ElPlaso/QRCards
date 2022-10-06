@@ -46,11 +46,8 @@ class WalletWheelState extends State<WalletWheel> {
               (card) {
                 return Builder(
                   builder: (BuildContext context) {
-                    return ClipRRect(
-                      borderRadius: BorderRadius.circular(15.0),
-                      child: CardView(
-                        card: card,
-                      ),
+                    return CardView(
+                      card: card,
                     );
                   },
                 );
