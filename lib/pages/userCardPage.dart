@@ -1,4 +1,3 @@
-import 'dart:ffi';
 import 'dart:typed_data';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -11,7 +10,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import '../main.dart';
 import '../providers/card_provider.dart';
 import '../providers/user_provider.dart';
-import '../widgets/button.dart';
 import '../widgets/card_view.dart';
 
 import 'package:pdf/pdf.dart';
@@ -19,6 +17,7 @@ import 'package:pdf/widgets.dart' as pw;
 import 'package:printing/printing.dart';
 
 import '../widgets/qr_image_gen.dart';
+import '../widgets/small_button.dart';
 import 'editCard.dart';
 
 class UserCardPage extends StatefulWidget {
@@ -61,9 +60,9 @@ class UserCardPageState extends State<UserCardPage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      OutlinedButton(
-                        child: const Text('Save Image'),
-                        onPressed: () async {
+                      SmallButton(
+                        text: 'Save Image',
+                        onClicked: () async {
                           final bytes = await controller.capture();
                           setState(() {
                             this.bytes = bytes;
@@ -82,10 +81,11 @@ class UserCardPageState extends State<UserCardPage> {
                               textColor: Colors.white,
                               fontSize: 16.0);
                         },
+                        icon: const Icon(Icons.camera_alt, size: 25),
                       ),
-                      OutlinedButton(
-                        child: const Text('Print Card'),
-                        onPressed: () async {
+                      SmallButton(
+                        text: 'Print Card',
+                        onClicked: () async {
                           final bytes = await controller.capture();
                           setState(() {
                             this.bytes = bytes;
@@ -111,10 +111,11 @@ class UserCardPageState extends State<UserCardPage> {
                                     doc.save());
                           }
                         },
+                        icon: const Icon(Icons.print_rounded, size: 25),
                       ),
-                      OutlinedButton(
-                        child: const Text('Show QR'),
-                        onPressed: () {
+                      SmallButton(
+                        text: 'Show QR',
+                        onClicked: () {
                           showModalBottomSheet(
                               context: context,
                               shape: const RoundedRectangleBorder(
@@ -125,18 +126,20 @@ class UserCardPageState extends State<UserCardPage> {
                               builder: (context) =>
                                   Center(child: QRImageGen(card: card)));
                         },
+                        icon: const Icon(Icons.qr_code, size: 25),
                       ),
-                      OutlinedButton(
-                        child: const Text('Edit Card'),
-                        onPressed: () => Navigator.push(
+                      SmallButton(
+                        text: 'Edit Card',
+                        onClicked: () => Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (context) => EditCard(card: card)),
                         ),
+                        icon: const Icon(Icons.edit, size: 25),
                       ),
-                      OutlinedButton(
-                        child: const Text('Delete Card'),
-                        onPressed: () async => {
+                      SmallButton(
+                        text: 'Delete Card',
+                        onClicked: () async => {
                           // delete card from db
                           print('1'),
                           await FirebaseFirestore.instance
@@ -171,6 +174,7 @@ class UserCardPageState extends State<UserCardPage> {
                           print('4'),
                           Navigator.pop(context),
                         },
+                        icon: const Icon(Icons.delete, size: 25),
                       ),
                     ],
                   )),
