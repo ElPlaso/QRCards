@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:swen325_assignment_3/data/business_card.dart';
 import 'package:swen325_assignment_3/providers/cardCreator_provider.dart';
@@ -151,7 +152,14 @@ class AddCard extends StatelessWidget {
                               true);
                         });
                       });
-
+                      Fluttertoast.showToast(
+                          msg: "Card uploaded!",
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.CENTER,
+                          timeInSecForIosWeb: 1,
+                          backgroundColor: Colors.blue,
+                          textColor: Colors.white,
+                          fontSize: 16.0);
                       // ! is this how we can exit the create page flutterly?
                       Navigator.pop(context);
                     },

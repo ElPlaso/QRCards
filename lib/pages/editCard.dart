@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:swen325_assignment_3/data/business_card.dart';
 import 'package:swen325_assignment_3/providers/cardCreator_provider.dart';
@@ -125,6 +126,15 @@ class EditCard extends StatelessWidget {
                       //   }).onError((error, stackTrace) =>
                       //           print("$error + $stackTrace ==========="));
                       // ! is this how we can exit the create page flutterly?
+
+                      Fluttertoast.showToast(
+                          msg: "Card updated!",
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.CENTER,
+                          timeInSecForIosWeb: 1,
+                          backgroundColor: Colors.blue,
+                          textColor: Colors.white,
+                          fontSize: 16.0);
                       Navigator.pop(context);
                     },
                     icon: const Icon(Icons.download, size: 40),
