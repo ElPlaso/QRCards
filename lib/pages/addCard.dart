@@ -76,7 +76,7 @@ class AddCard extends StatelessWidget {
                                         .collection('Users')
                                         .doc(
                                             context.read<UserProvider>().userID)
-                                        .update({"card-id": 0, 'wallet': []})
+                                        .set({"card-id": 0, 'wallet': []})
                                   }
                                 else
                                   {
