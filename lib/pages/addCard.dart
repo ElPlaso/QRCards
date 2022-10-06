@@ -34,7 +34,6 @@ class AddCard extends StatelessWidget {
                   const SizedBox(height: 24),
                   CardForm(card: BusinessCard(id: '', name: '')),
                   const ThemeToggle(),
-                  Button(text: 'Clear All', onClicked: () => {}),
                   LogoButton(
                     text: 'Preview',
                     onClicked: () {

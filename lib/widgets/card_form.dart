@@ -54,7 +54,7 @@ class CardFormState extends State<CardForm> {
                     TextFormField(
                       initialValue: card.name,
                       decoration: const InputDecoration(
-                        icon: const Icon(Icons.person),
+                        icon: Icon(Icons.person),
                         hintText: 'Enter your name',
                         labelText: 'Name',
                       ),
@@ -64,7 +64,7 @@ class CardFormState extends State<CardForm> {
                     TextFormField(
                       initialValue: card.position,
                       decoration: const InputDecoration(
-                        icon: const Icon(Icons.work),
+                        icon: Icon(Icons.work),
                         hintText: 'Enter your position',
                         labelText: 'Position',
                       ),
@@ -74,7 +74,7 @@ class CardFormState extends State<CardForm> {
                     TextFormField(
                       initialValue: card.email,
                       decoration: const InputDecoration(
-                        icon: const Icon(Icons.email),
+                        icon: Icon(Icons.email),
                         hintText: 'Enter your email',
                         labelText: 'Email',
                       ),
@@ -84,7 +84,7 @@ class CardFormState extends State<CardForm> {
                     TextFormField(
                       initialValue: card.cellphone,
                       decoration: const InputDecoration(
-                        icon: const Icon(Icons.phone_android),
+                        icon: Icon(Icons.phone_android),
                         hintText: 'Enter your phone number',
                         labelText: 'Cellphone',
                       ),
@@ -94,7 +94,7 @@ class CardFormState extends State<CardForm> {
                     TextFormField(
                       initialValue: card.website,
                       decoration: const InputDecoration(
-                        icon: const Icon(Icons.web),
+                        icon: Icon(Icons.web),
                         hintText: 'Enter your website url',
                         labelText: 'Website',
                       ),
@@ -104,7 +104,7 @@ class CardFormState extends State<CardForm> {
                     TextFormField(
                       initialValue: card.company,
                       decoration: const InputDecoration(
-                        icon: const Icon(Icons.business),
+                        icon: Icon(Icons.business),
                         hintText: 'Enter the name of your company',
                         labelText: 'Company',
                       ),
@@ -114,7 +114,7 @@ class CardFormState extends State<CardForm> {
                     TextFormField(
                       initialValue: card.companyaddress,
                       decoration: const InputDecoration(
-                        icon: const Icon(Icons.home),
+                        icon: Icon(Icons.home),
                         hintText: 'Enter address of company',
                         labelText: 'Address Line 1',
                       ),
@@ -122,7 +122,7 @@ class CardFormState extends State<CardForm> {
                     TextFormField(
                       initialValue: card.companyphone,
                       decoration: const InputDecoration(
-                        icon: const Icon(Icons.phone),
+                        icon: Icon(Icons.phone),
                         hintText: 'Enter phone number of company',
                         labelText: 'Company Phone',
                       ),
