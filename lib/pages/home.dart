@@ -95,6 +95,7 @@ class _HomeState extends State<Home> {
                         .get()
                         .then((doc) {
                       //   print(doc.docs.length);
+                      
                       String uid = context.read<UserProvider>().userID;
                       context.read<Cards>().clear(true, uid);
                       doc.docs.forEach((element) {

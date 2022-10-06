@@ -85,7 +85,7 @@ class _ScanState extends State<Scan> {
         FirebaseFirestore.instance
             .collection('users')
             .doc(context.read<UserProvider>().getUserID)
-            .set({'wallet': FieldValue.arrayUnion(cardMap['card_id'])});
+            .update({'wallet': FieldValue.arrayUnion(cardMap['card_id'])});
 
         context.read<Cards>().add(BusinessCard.fromJson(cardMap), false,
             context.read<UserProvider>().getUserID);

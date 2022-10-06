@@ -41,6 +41,7 @@ class AddCard extends StatelessWidget {
                             ),
                           ),
                           builder: (context) => CardView(
+                                  // * Create the BusinessCard
                                   card: BusinessCard(
                                 id: "preview",
                                 name: context.read<CardCreator>().name,
@@ -74,7 +75,7 @@ class AddCard extends StatelessWidget {
                                         .collection('Users')
                                         .doc(
                                             context.read<UserProvider>().userID)
-                                        .set({"card-id": 0, 'wallet': []})
+                                        .update({"card-id": 0, 'wallet': []})
                                   }
                                 else
                                   {
@@ -118,7 +119,7 @@ class AddCard extends StatelessWidget {
                       await FirebaseFirestore.instance
                           .collection('Cards')
                           .doc(cardId)
-                          .set({
+                          .update({
                         'card_id': cardId,
                         'card': jsonEncode(bCard),
                         'owner': context.read<UserProvider>().userID,
