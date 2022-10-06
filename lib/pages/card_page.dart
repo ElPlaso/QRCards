@@ -40,6 +40,7 @@ class _CardPageState extends State<CardPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+              // display business card
               Container(
                 margin: const EdgeInsets.all(15),
                 child: WidgetsToImage(
@@ -49,6 +50,7 @@ class _CardPageState extends State<CardPage> {
                   ),
                 ),
               ),
+
               Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 50),
                   child: Column(
@@ -56,16 +58,22 @@ class _CardPageState extends State<CardPage> {
                     children: [
                       OutlinedButton(
                         child: const Text('Save Image'),
+
+                        // save widget as image bytes
                         onPressed: () async {
                           final bytes = await controller.capture();
                           setState(() {
                             this.bytes = bytes;
                           });
+
+                          // if widget was succesfully turned into image bytes, save image to phone gallery.
                           if (bytes != null) {
                             ImageGallerySaver.saveImage(bytes,
                                 quality: 60,
                                 name: "file_name${DateTime.now()}");
                           }
+
+                          // Inform user that the image has been saved.
                           Fluttertoast.showToast(
                               msg: "Image saved!",
                               toastLength: Toast.LENGTH_SHORT,
@@ -78,11 +86,15 @@ class _CardPageState extends State<CardPage> {
                       ),
                       OutlinedButton(
                         child: const Text('Print Card'),
+
+                        // save widget as image bytes
                         onPressed: () async {
                           final bytes = await controller.capture();
                           setState(() {
                             this.bytes = bytes;
                           });
+
+                          // if widget was succesfully turned into image bytes, add image bytes to a PDF
                           if (bytes != null) {
                             final doc = pw.Document();
                             doc.addPage(
@@ -99,6 +111,8 @@ class _CardPageState extends State<CardPage> {
                                 },
                               ),
                             );
+
+                            // print PDF
                             await Printing.layoutPdf(
                                 onLayout: (PdfPageFormat format) async =>
                                     doc.save());
