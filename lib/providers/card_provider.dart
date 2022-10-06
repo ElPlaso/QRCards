@@ -51,7 +51,7 @@ class Cards with ChangeNotifier {
   }
 
   // Clear the personal or collected list.
-  void clear(bool personal, String uid) {
+  void clear(bool personal) {
     List<BusinessCard> list = personal ? _personalcards : _collectedcards;
     list.clear();
     notifyListeners();

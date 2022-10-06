@@ -148,7 +148,7 @@ class AddCard extends StatelessWidget {
                           .get()
                           .then((doc) {
                         String uid = context.read<UserProvider>().userID;
-                        context.read<Cards>().clear(true, uid);
+                        context.read<Cards>().clear(true);
                         doc.docs.forEach((element) {
                           // ? Delete cards that wern't downloaded?
                           context.read<Cards>().add(

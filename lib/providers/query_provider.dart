@@ -13,6 +13,9 @@ class QueryProvider with ChangeNotifier {
   /// * Populates the context  _collectedcards
   ///
   Future<void> updateWallet(BuildContext context) async {
+    if (!context.read<Cards>().isEmpty(false)) {
+      context.read<Cards>().clear(false);
+    }
     await FirebaseFirestore.instance
         .collection('Users')
         .doc(context.read<UserProvider>().getUserID)
@@ -37,13 +40,15 @@ class QueryProvider with ChangeNotifier {
   ///
   Future<void> updatePersonalcards(BuildContext context) async {
     // print('downloading cards');
+    if (!context.read<Cards>().isEmpty(true)) {
+      context.read<Cards>().clear(true);
+    }
     await FirebaseFirestore.instance
         .collection('Cards')
         .where('owner', isEqualTo: context.read<UserProvider>().userID)
         .get()
         .then((doc) {
       String uid = context.read<UserProvider>().userID;
-      context.read<Cards>().clear(true, uid);
       doc.docs.forEach((element) {
         print(element.get('card')); // ? Delete cards that wern't downloaded?
         context
