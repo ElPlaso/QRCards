@@ -22,6 +22,8 @@ class Scan extends StatefulWidget {
 }
 
 class _ScanState extends State<Scan> {
+  MobileScannerController controller = MobileScannerController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,6 +36,7 @@ class _ScanState extends State<Scan> {
           Expanded(
             flex: 5,
             child: MobileScanner(
+                controller: controller,
                 allowDuplicates: false,
                 onDetect: (barcode, args) async {
                   if (barcode.rawValue != null) {
@@ -41,19 +44,20 @@ class _ScanState extends State<Scan> {
                     var cardMap = jsonDecode(data);
                     // ! incr scancount
                     await FirebaseFirestore.instance
-                        .collection('cards')
-                        .doc(cardMap['card_id'])
+                        .collection('Cards')
+                        .doc(cardMap['id'])
                         .update({'scancount': FieldValue.increment(1)});
                     // ! append new card to current users' scanned cards
                     await FirebaseFirestore.instance
-                        .collection('users')
+                        .collection('Users')
                         .doc(context.read<UserProvider>().getUserID)
                         .set({
-                      'wallet': FieldValue.arrayUnion(cardMap['card_id'])
+                      'wallet': FieldValue.arrayUnion([cardMap['id']])
                     });
 
                     context.read<Cards>().add(BusinessCard.fromJson(cardMap),
                         false, context.read<UserProvider>().getUserID);
+                    controller.stop();
                     Navigator.pop(context);
                   }
                 }),
