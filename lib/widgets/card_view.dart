@@ -5,15 +5,14 @@ import 'package:auto_size_text/auto_size_text.dart';
 
 class CardView extends StatelessWidget {
   final BusinessCard card;
+  final BoxFit fit;
 
-  const CardView({
-    required this.card,
-    Key? key,
-  }) : super(key: key);
+  const CardView({Key? key, required this.card, this.fit = BoxFit.contain})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) => FittedBox(
-        fit: BoxFit.contain,
+        fit: fit,
         // child: AspectRatio(
         //   aspectRatio: 1.69, //standard aspect ratio for a business card
         child: Container(
