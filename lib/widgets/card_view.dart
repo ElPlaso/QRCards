@@ -11,29 +11,30 @@ class CardView extends StatelessWidget {
       : super(key: key);
 
   @override
+  // fitted box to ensure consistent sizing
   Widget build(BuildContext context) => FittedBox(
         fit: fit,
-        // child: AspectRatio(
-        //   aspectRatio: 1.69, //standard aspect ratio for a business card
         child: Container(
+          // container with set width/height to enforce aspect ratio
           width: 540,
           height: 320,
           alignment: Alignment.centerLeft,
           color: const Color.fromARGB(255, 29, 29, 29),
           padding: const EdgeInsets.fromLTRB(30, 15, 30, 15),
+
+          //Row of columns separated by spacer
           child: Row(
             children: [
+              // First column name/position and QR code
               Expanded(
                 flex: 3,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    // Subcolumn for name/position text
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        // Padding(
-                        //   padding: const EdgeInsets.fromLTRB(0, 2.5, 0, 2.5),
-                        //   child:
                         AutoSizeText(
                           card.name,
                           style: const TextStyle(
@@ -42,10 +43,6 @@ class CardView extends StatelessWidget {
                               fontSize: 24),
                           minFontSize: 17,
                         ),
-                        // ),
-                        // Padding(
-                        //   padding: const EdgeInsets.fromLTRB(0, 2.5, 0, 2.5),
-                        //   child:
                         AutoSizeText(
                           card.position,
                           style: const TextStyle(
@@ -54,12 +51,14 @@ class CardView extends StatelessWidget {
                           ),
                           minFontSize: 9,
                         ),
-                        // ),
                       ],
                     ),
+
                     const Spacer(),
+
+                    // QR code wrapped in 1:1 aspect ratio
                     Container(
-                      margin: EdgeInsets.fromLTRB(0, 0, 25, 0),
+                      margin: const EdgeInsets.fromLTRB(0, 0, 25, 0),
                       child: AspectRatio(
                         aspectRatio: 1,
                         child: Container(
@@ -74,18 +73,20 @@ class CardView extends StatelessWidget {
                   ],
                 ),
               ),
+
+              // Spacer between main columns.
               const Spacer(),
+
+              // Second column personal info and company info
               Expanded(
                 flex: 3,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
+                    // Subcolumn for personal info
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
-                        // Padding(
-                        //   padding: const EdgeInsets.fromLTRB(0, 2.5, 0, 2.5),
-                        // child:
                         AutoSizeText(
                           'E-mail: ${card.email}',
                           textAlign: TextAlign.right,
@@ -94,10 +95,6 @@ class CardView extends StatelessWidget {
                               fontSize: 12),
                           minFontSize: 5,
                         ),
-                        // ),
-                        // Padding(
-                        //   padding: const EdgeInsets.fromLTRB(0, 2.5, 0, 2.5),
-                        //   child:
                         AutoSizeText(
                           'Cellphone: ${card.cellphone}',
                           textAlign: TextAlign.right,
@@ -106,10 +103,6 @@ class CardView extends StatelessWidget {
                               fontSize: 12),
                           minFontSize: 5,
                         ),
-                        // ),
-                        // Padding(
-                        //   padding: const EdgeInsets.fromLTRB(0, 2.5, 0, 2.5),
-                        //   child:
                         AutoSizeText(
                           'Website: ${card.website}',
                           textAlign: TextAlign.right,
@@ -118,16 +111,15 @@ class CardView extends StatelessWidget {
                               fontSize: 12),
                           minFontSize: 5,
                         ),
-                        // ),
                       ],
                     ),
+
                     const Spacer(),
+
+                    //Subcolumn for company info
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
-                        // Padding(
-                        //   padding: const EdgeInsets.fromLTRB(0, 2.5, 0, 2.5),
-                        //   child:
                         AutoSizeText(
                           card.company,
                           textAlign: TextAlign.right,
@@ -138,10 +130,6 @@ class CardView extends StatelessWidget {
                           ),
                           minFontSize: 11,
                         ),
-                        // ),
-                        // Padding(
-                        //   padding: const EdgeInsets.fromLTRB(0, 2.5, 0, 2.5),
-                        //   child:
                         AutoSizeText(
                           'Address: ${card.companyaddress}',
                           textAlign: TextAlign.right,
@@ -152,10 +140,6 @@ class CardView extends StatelessWidget {
                           ),
                           minFontSize: 5,
                         ),
-                        // ),
-                        // Padding(
-                        //   padding: const EdgeInsets.fromLTRB(0, 2.5, 0, 2.5),
-                        //   child:
                         AutoSizeText(
                           'Phone: ${card.companyphone}',
                           textAlign: TextAlign.right,
@@ -165,7 +149,6 @@ class CardView extends StatelessWidget {
                               fontSize: 12),
                           minFontSize: 5,
                         ),
-                        // ),
                       ],
                     ),
                   ],
@@ -174,6 +157,5 @@ class CardView extends StatelessWidget {
             ],
           ),
         ),
-        // ),
       );
 }
