@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:swen325_assignment_3/data/business_card.dart';
 import 'package:swen325_assignment_3/providers/cardCreator_provider.dart';
@@ -89,6 +90,12 @@ class AddCard extends StatelessWidget {
                                     })
                                   }
                               });
+
+                      FirebaseFirestore.instance
+                          .collection('Users')
+                          .doc(context.read<UserProvider>().userID)
+                          .update({'card-id': FieldValue.increment(1)});
+
                       // * get the current id of the users' card
                       String cardId = '';
                       await FirebaseFirestore.instance
@@ -139,11 +146,9 @@ class AddCard extends StatelessWidget {
                               isEqualTo: context.read<UserProvider>().userID)
                           .get()
                           .then((doc) {
-                        //   print(doc.docs.length);
                         String uid = context.read<UserProvider>().userID;
                         context.read<Cards>().clear(true, uid);
                         doc.docs.forEach((element) {
-                          print(element.get('card'));
                           // ? Delete cards that wern't downloaded?
                           context.read<Cards>().add(
                               BusinessCard.fromJson(
@@ -151,7 +156,14 @@ class AddCard extends StatelessWidget {
                               true);
                         });
                       });
-
+                      Fluttertoast.showToast(
+                          msg: "Card uploaded!",
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.CENTER,
+                          timeInSecForIosWeb: 1,
+                          backgroundColor: Colors.blue,
+                          textColor: Colors.white,
+                          fontSize: 16.0);
                       // ! is this how we can exit the create page flutterly?
                       Navigator.pop(context);
                     },

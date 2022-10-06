@@ -9,6 +9,7 @@ import 'package:swen325_assignment_3/providers/card_provider.dart';
 import 'package:swen325_assignment_3/providers/user_provider.dart';
 import 'package:swen325_assignment_3/widgets/logo_button.dart';
 import 'package:swen325_assignment_3/data/business_card.dart';
+import '../providers/query_provider.dart';
 import '../widgets/wallet_wheel.dart';
 import 'card_page.dart';
 
@@ -29,24 +30,7 @@ class Wallet extends StatelessWidget {
               LogoButton(
                   text: 'Refresh',
                   onClicked: () async {
-                    print('downloading cards');
-                    await FirebaseFirestore.instance
-                        .collection('Cards')
-                        .where('owner',
-                            isEqualTo: context.read<UserProvider>().userID)
-                        .get()
-                        .then((doc) {
-                      // print(doc.docs.length);
-                      doc.docs.forEach((element) {
-                        print(element.get('card'));
-                        // ? Delete cards that wern't downloaded?
-                        context.read<Cards>().add(
-                            BusinessCard.fromJson(
-                                jsonDecode(element.get('card'))),
-                            false);
-                      });
-                    });
-                    print('dowloaded');
+                    context.read<QueryProvider>().updateWallet(context);
                   },
                   icon: const Icon(Icons.refresh, size: 25)),
             ],

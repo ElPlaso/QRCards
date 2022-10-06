@@ -3,7 +3,6 @@ import 'package:clickable_list_wheel_view/clickable_list_wheel_widget.dart';
 import 'package:provider/provider.dart';
 import 'package:swen325_assignment_3/pages/card_page.dart';
 import 'card_view.dart';
-import '../data/business_card.dart';
 import '../providers/card_provider.dart';
 
 class WalletWheel extends StatefulWidget {

@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:swen325_assignment_3/data/business_card.dart';
+import 'package:swen325_assignment_3/providers/cardCreator_provider.dart';
 import 'package:widgets_to_image/widgets_to_image.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -130,18 +131,33 @@ class UserCardPageState extends State<UserCardPage> {
                       ),
                       SmallButton(
                         text: 'Edit Card',
-                        onClicked: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => EditCard(card: card)),
-                        ),
+                        onClicked: () => {
+                          context.read<CardCreator>().setName(card.name),
+                          context.read<CardCreator>().setPostion(card.position),
+                          context.read<CardCreator>().setEmail(card.email),
+                          context
+                              .read<CardCreator>()
+                              .setCellphone(card.cellphone),
+                          context.read<CardCreator>().setWebsite(card.website),
+                          context.read<CardCreator>().setCompany(card.company),
+                          context
+                              .read<CardCreator>()
+                              .setCompanyAddress(card.companyaddress),
+                          context
+                              .read<CardCreator>()
+                              .setCompanyPhone(card.companyphone),
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => EditCard(card: card)),
+                          )
+                        },
                         icon: const Icon(Icons.edit, size: 25),
                       ),
                       SmallButton(
                         text: 'Delete Card',
                         onClicked: () async => {
                           // delete card from db
-                          print('1'),
                           await FirebaseFirestore.instance
                               .collection('Cards')
                               .doc(card.id)
@@ -154,24 +170,23 @@ class UserCardPageState extends State<UserCardPage> {
                             'personalcards': FieldValue.arrayRemove([card.id])
                           }),
 
-                          // delete every other reference to the card
-                          print('2'),
+                          // ! delete every other reference to the card
+                          // TODO implement this
                           await FirebaseFirestore.instance
                               .collection('Users')
                               .where('wallet', arrayContains: card.id)
                               .get()
                               .then((value) {
                             value.docs.forEach((element) {
-                              print('======');
-                              print(element);
+                              element.reference.update({
+                                'wallet': FieldValue.arrayRemove([card.id])
+                              });
                             });
                           }),
                           // .update({
                           //   'personalcards': FieldValue.arrayRemove([card.id])
                           // })
-                          print('3'),
                           context.read<Cards>().delete(card, true),
-                          print('4'),
                           Navigator.pop(context),
                         },
                         icon: const Icon(Icons.delete, size: 25),

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:swen325_assignment_3/providers/card_provider.dart';
+import 'package:swen325_assignment_3/providers/query_provider.dart';
 import '../data/business_card.dart';
 import '../main.dart';
 import '../providers/user_provider.dart';
@@ -24,6 +25,13 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<QueryProvider>().updatePersonalcards(context);
+    context.read<QueryProvider>().updateWallet(context);
+  }
+
   final scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -82,46 +90,13 @@ class _HomeState extends State<Home> {
               ),
               LogoButton(
                 text: 'Refresh',
-                onClicked: () async {
+                onClicked: () {
+                  // * download the users' personal cards
                   print('downloading cards');
-                  await FirebaseFirestore.instance
-                      .collection('Cards')
-                      .where('owner',
-                          isEqualTo: context.read<UserProvider>().userID)
-                      .get()
-                      .then((doc) {
-                    String uid = context.read<UserProvider>().userID;
-                    context.read<Cards>().clear(true, uid);
-                    doc.docs.forEach((element) {
-                      print(element.get(
-                          'card')); // ? Delete cards that wern't downloaded?
-                      context.read<Cards>().add(
-                          BusinessCard.fromJson(
-                              jsonDecode(element.get('card'))),
-                          true);
-                    });
-                  });
-                  // * from the users' wallet, get the card references
-                  List<dynamic> pp;
+                  context.read<QueryProvider>().updatePersonalcards(context);
 
-                  await FirebaseFirestore.instance
-                      .collection('Users')
-                      .doc(context.read<UserProvider>().getUserID)
-                      .get()
-                      .then((DocumentSnapshot value) {
-                    value.get('wallet').forEach((element) async => {
-                          await FirebaseFirestore.instance
-                              .collection('Cards')
-                              .doc(element)
-                              .get()
-                              .then((value) {
-                            context.read<Cards>().add(
-                                BusinessCard.fromJson(
-                                    jsonDecode(value.get('card'))),
-                                false);
-                          })
-                        });
-                  });
+                  // * from the users' wallet, get the card references
+                  context.read<QueryProvider>().updateWallet(context);
                   print('dowloaded');
                 },
                 icon: const Icon(Icons.refresh, size: 40),
