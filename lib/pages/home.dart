@@ -25,6 +25,13 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<QueryProvider>().updatePersonalcards(context);
+    context.read<QueryProvider>().updateWallet(context);
+  }
+
   final scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) => Scaffold(
