@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../pages/cardPage.dart';
+import '../pages/editCard.dart';
 import '../providers/card_provider.dart';
 import 'card_view.dart';
 import '../data/business_card.dart';
@@ -36,7 +37,11 @@ class CardStackState extends State<CardStack> {
                   heightFactor: 0.5,
                   alignment: Alignment.topCenter,
                   child: GestureDetector(
-                    onTap: () => {},
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => EditCard(card: card)),
+                    ),
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),

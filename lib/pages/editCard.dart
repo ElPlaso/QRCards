@@ -35,7 +35,6 @@ class EditCard extends StatelessWidget {
                   const SizedBox(height: 24),
                   CardForm(card: card),
                   const ThemeToggle(),
-                  Button(text: 'Clear All', onClicked: () => {}),
                   LogoButton(
                     text: 'Preview',
                     onClicked: () {
@@ -46,9 +45,7 @@ class EditCard extends StatelessWidget {
                               top: Radius.circular(20),
                             ),
                           ),
-                          builder: (context) => CardView(
-                              card: BusinessCard(
-                                  id: "preview", name: "Preview")));
+                          builder: (context) => CardView(card: card));
                     },
                     icon: const Icon(Icons.remove_red_eye, size: 40),
                   ),
@@ -57,7 +54,7 @@ class EditCard extends StatelessWidget {
                     onClicked: () {},
                     icon: const Icon(Icons.download, size: 40),
                   ),
-                  Button(
+                  LogoButton(
                       text: 'Remove Card',
                       onClicked: () => {
                             // delete card from db
@@ -77,7 +74,8 @@ class EditCard extends StatelessWidget {
                             FirebaseFirestore.instance.doc('User').update({
                               'personalcards': FieldValue.arrayRemove([card.id])
                             })
-                          }),
+                          },
+                      icon: const Icon(Icons.delete, size: 40)),
                 ],
               ),
             ),
