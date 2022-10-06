@@ -70,12 +70,12 @@ class EditCard extends StatelessWidget {
                                 .collection('Users')
                                 .doc(context.read<UserProvider>().getUserID)
                                 .update({
-                              'personalcard': FieldValue.arrayRemove([card.id])
+                              'personalcards': FieldValue.arrayRemove([card.id])
                             }),
                             // delete every other reference to the card
 
                             FirebaseFirestore.instance.doc('User').update({
-                              'personalcard': FieldValue.arrayRemove([card.id])
+                              'personalcards': FieldValue.arrayRemove([card.id])
                             })
                           }),
                 ],
