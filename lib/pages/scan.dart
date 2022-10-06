@@ -55,8 +55,9 @@ class _ScanState extends State<Scan> {
                       'wallet': FieldValue.arrayUnion([cardMap['id']])
                     });
 
-                    context.read<Cards>().add(BusinessCard.fromJson(cardMap),
-                        false, context.read<UserProvider>().getUserID);
+                    context
+                        .read<Cards>()
+                        .add(BusinessCard.fromJson(cardMap), false);
                     controller.stop();
                     Navigator.pop(context);
                   }

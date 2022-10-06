@@ -9,6 +9,7 @@ import 'package:swen325_assignment_3/providers/card_provider.dart';
 import '../data/business_card.dart';
 import '../main.dart';
 import '../providers/user_provider.dart';
+import '../widgets/banner.dart';
 import 'scan.dart';
 import 'userCards.dart';
 import 'wallet.dart';
@@ -36,13 +37,7 @@ class _HomeState extends State<Home> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               context.read<Cards>().isEmpty(true)
-                  ? Column(children: const [
-                      Text(
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 24),
-                          "No Cards"),
-                      SizedBox(height: 125)
-                    ])
+                  ? const HomeBanner(subheading: 'Add a card to get started :)')
                   : Carousel(),
               LogoButton(
                 text: 'Scan',
@@ -105,9 +100,19 @@ class _HomeState extends State<Home> {
                         context.read<Cards>().add(
                             BusinessCard.fromJson(
                                 jsonDecode(element.get('card'))),
-                            true,
-                            uid);
+                            true);
                       });
+                    });
+                    // * from the users' wallet, get the card references
+                    List<dynamic> pp;
+
+                    await FirebaseFirestore.instance
+                        .collection('Users')
+                        .doc(context.read<UserProvider>().getUserID)
+                        .get()
+                        .then((DocumentSnapshot value) {
+                      pp = value.get('wallet');
+                      pp.forEach((element) => {});
                     });
                     // * from the users' wallet, get the card references
                     List<dynamic> pp;

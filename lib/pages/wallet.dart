@@ -51,8 +51,7 @@ class Wallet extends StatelessWidget {
                         context.read<Cards>().add(
                             BusinessCard.fromJson(
                                 jsonDecode(element.get('card'))),
-                            false,
-                            context.read<UserProvider>().userID);
+                            false);
                       });
                     });
                     print('dowloaded');

@@ -1,5 +1,6 @@
 import 'dart:collection';
 
+// Class representing a Business Card.
 class BusinessCard {
   String id;
   String cellphone;
@@ -11,6 +12,7 @@ class BusinessCard {
   String position;
   String website;
 
+  // Has a unique ID and other fields for useful information.
   BusinessCard({
     required this.id,
     this.cellphone = '',
@@ -23,6 +25,10 @@ class BusinessCard {
     this.website = '',
   });
 
+  // Create a BusinessCard instance from a Map for serialisation.
+  // This Map is returned by jsonDecode() when decoding an encoded
+  // card. Usage:
+  // BusinessCard card = BusinessCard.fromJson(jsonDecode(JSON_String));
   BusinessCard.fromJson(Map<String, dynamic> json)
       : id = json['id'],
         cellphone = json["cellphone"],
@@ -34,6 +40,8 @@ class BusinessCard {
         position = json["position"],
         website = json["website"];
 
+  // Used to encode a BusinessCard for serialisation. Called by jsonEncode
+  // to return an encoded JSON string.
   Map<String, dynamic> toJson() => {
         "id": id,
         "cellphone": cellphone,
