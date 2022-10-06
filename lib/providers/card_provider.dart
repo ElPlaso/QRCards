@@ -20,40 +20,48 @@ class Cards with ChangeNotifier {
   /// * this adds a decoded card from a JSON query
   /// * to the personalcards array
   /// /
-  void add(BusinessCard b, List<BusinessCard> list) {
-    if (list.contains(b)) {
-      return;
+  void add(BusinessCard b, bool personal, String uid) async {
+    List<BusinessCard> list = personal ? _personalcards : _collectedcards;
+    if (list.remove(b)) {
+      await delete(b, personal, uid);
     }
     list.add(b);
-    storage.writeCard(b);
+    storage.writeCard(b, personal, uid);
     notifyListeners();
   }
 
-  void delete(BusinessCard b, List<BusinessCard> list) {
+  Future<void> delete(BusinessCard b, bool personal, String uid) async {
+    List<BusinessCard> list = personal ? _personalcards : _collectedcards;
     list.remove(b);
-    storage.deleteCard(b.id);
+    storage.deleteCard(b.id, personal, uid);
     notifyListeners();
   }
 
-  void deleteAll(List<BusinessCard> del, List<BusinessCard> list) {
+  void deleteAll(List<BusinessCard> del, bool personal, String uid) async {
+    List<BusinessCard> list = personal ? _personalcards : _collectedcards;
     del.forEach((element) {
-      storage.deleteCard(element.id);
+      storage.deleteCard(element.id, personal, uid);
       list.remove(element);
     });
     notifyListeners();
   }
 
-  void clear() {
-    _collectedcards.clear();
-    _personalcards.clear();
-    storage.clear();
+  void clear(bool personal, String uid) async {
+    List<BusinessCard> list = personal ? _personalcards : _collectedcards;
+    list.clear();
+    storage.clear(personal, uid);
     notifyListeners();
   }
 
-  void loadFromStorage() async {
-    _personalcards = await storage.readCards();
-    // TODO load  _collectedcards = await storage.readCards();
+  void loadFromStorage(bool personal, String uid) async {
+    List<BusinessCard> list = personal ? _personalcards : _collectedcards;
+    list = await storage.readCards(personal, uid);
     notifyListeners();
+  }
+
+  bool isEmpty(bool personal) {
+    List<BusinessCard> list = personal ? _personalcards : _collectedcards;
+    return list.isEmpty;
   }
 
   //read list with context.watch<Cards>().cards

@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:swen325_assignment_3/providers/card_provider.dart';
@@ -51,7 +52,8 @@ class Wallet extends StatelessWidget {
                         context.read<Cards>().add(
                             BusinessCard.fromJson(
                                 jsonDecode(element.get('card'))),
-                            context.read<Cards>().personalcards);
+                            true,
+                            context.read<UserProvider>().userID);
                       });
                     });
                     print('dowloaded');
