@@ -45,6 +45,7 @@ dependencies:
   widgets_to_image: any
   image_gallery_saver: "^1.7.1"
   fluttertoast: ^8.0.9
+  cloud_firestore: ^3.5.0
   carousel_slider: ^4.1.1
   auto_size_text: ^3.0.0
   printing: ^5.6.5

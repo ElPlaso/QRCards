@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "568088724686",
+    "firebase_url": "https://assignment-3-32093-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "assignment-3-32093",
     "storage_bucket": "assignment-3-32093.appspot.com"
   },
@@ -13,6 +14,30 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "568088724686-7aak0h56mqf7t97m79j5v6ql2oo7s9fi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.swen325_assignment_3",
+            "certificate_hash": "86ee4b1387e03040f23d03ebb9f087598cf80283"
+          }
+        },
+        {
+          "client_id": "568088724686-j116n7mum2op0g83bhscj9d3qv2r8nn8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.swen325_assignment_3",
+            "certificate_hash": "8f0f55192d472d2aa34bdb9486b49636c832e7d9"
+          }
+        },
+        {
+          "client_id": "568088724686-o3secih32ifgv8eeeo7jllf65prbqcim.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.swen325_assignment_3",
+            "certificate_hash": "585a4c45c3fae424311f9bdc2e7c2bca913c10f6"
+          }
+        },
         {
           "client_id": "568088724686-raek7hdmpv8006ajhsev56aklujdu72u.apps.googleusercontent.com",
           "client_type": 1,

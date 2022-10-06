@@ -1,4 +1,11 @@
+import 'dart:convert';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:swen325_assignment_3/providers/card_provider.dart';
+
+import 'package:swen325_assignment_3/providers/user_provider.dart';
 import 'package:swen325_assignment_3/widgets/logo_button.dart';
 import '../main.dart';
 import 'package:swen325_assignment_3/data/business_card.dart';
@@ -25,24 +32,42 @@ class Wallet extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                           builder: (context) => CardPage(
-                              card: BusinessCard(
-                                  id: "testID",
-                                  name: "TestName",
-                                  company: "TestCompany",
-                                  position: "TestPosition",
-                                  companyaddress: {
-                                    'city': 'TestCity',
-                                    'country': 'TestCountry',
-                                    'streetname': 'TestStreet',
-                                    'streetnumber': '42'
-                                  },
-                                  companyphone: '123 456 7890',
-                                  email: 'test@testing.com',
-                                  website: 'www.testtesting.net',
-                                  cellphone: '098 765 4321')))),
-                  icon: const Icon(Icons.east, size: 25))
+                              card: BusinessCard(id: 's', name: 'name')))),
+                  icon: Icon(Icons.east, size: 25)),
+              LogoButton(
+                  text: 'Refresh',
+                  onClicked: () async {
+                    print('downloading cards');
+                    await FirebaseFirestore.instance
+                        .collection('Cards')
+                        .where('owner',
+                            isEqualTo: context.read<UserProvider>().userID)
+                        .get()
+                        .then((doc) {
+                      //   print(doc.docs.length);
+                      doc.docs.forEach((element) {
+                        print(element.get('card'));
+                        // ? Delete cards that wern't downloaded?
+                        context.read<Cards>().add(
+                            BusinessCard.fromJson(
+                                jsonDecode(element.get('card'))),
+                            context.read<Cards>().personalcards);
+                      });
+                    });
+                    print('dowloaded');
+                  },
+                  icon: Icon(Icons.refresh, size: 25)),
             ],
           ),
         ),
       );
 }
+// // // ! returns an array of cards the user owns
+// String[] ret_arry;
+// await FirebaseFirestore.instance
+//                           .collection('Cards')
+//                           .where('owner', isEqualTo: context.read<UserProvider>().userID).get().then((doc){
+//                             ret = doc.get('card');
+//                           });
+
+

@@ -4,7 +4,7 @@ class BusinessCard {
   String id;
   String cellphone;
   String company;
-  Map companyaddress;
+  String companyaddress;
   String companyphone;
   String email;
   String name;
@@ -15,12 +15,7 @@ class BusinessCard {
     required this.id,
     this.cellphone = '',
     this.company = '',
-    this.companyaddress = const {
-      'city': '',
-      'country': '',
-      'streetname': '',
-      'streetnumber': ''
-    },
+    this.companyaddress = '',
     this.companyphone = '',
     this.email = '',
     required this.name,
@@ -29,7 +24,7 @@ class BusinessCard {
   });
 
   BusinessCard.fromJson(Map<String, dynamic> json)
-      : id = json["id"],
+      : id = json['id'],
         cellphone = json["cellphone"],
         company = json["company"],
         companyaddress = json["companyaddress"],

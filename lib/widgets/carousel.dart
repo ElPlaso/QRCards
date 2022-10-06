@@ -61,12 +61,7 @@ class Item1 extends StatelessWidget {
             name: "TestName",
             company: "TestCompany",
             position: "TestPosition",
-            companyaddress: {
-              'city': 'TestCity',
-              'country': 'TestCountry',
-              'streetname': 'TestStreet',
-              'streetnumber': '42'
-            },
+            companyaddress: 'aa',
             companyphone: '123 456 7890',
             email: 'test@testing.com',
             website: 'www.testtesting.net',
