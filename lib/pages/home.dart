@@ -44,7 +44,7 @@ class _HomeState extends State<Home> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              context.read<Cards>().isEmpty(true)
+              context.watch<Cards>().isEmpty(true)
                   ? const HomeBanner(subheading: 'Add a card to get started :)')
                   : Carousel(),
               LogoButton(

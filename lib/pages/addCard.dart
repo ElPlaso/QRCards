@@ -9,6 +9,7 @@ import 'package:swen325_assignment_3/providers/cardCreator_provider.dart';
 import 'package:swen325_assignment_3/providers/user_provider.dart';
 import '../main.dart';
 import '../providers/card_provider.dart';
+import '../providers/query_provider.dart';
 import '../widgets/card_view.dart';
 import '../widgets/logo_button.dart';
 import '../widgets/theme_toggle.dart';
@@ -156,6 +157,12 @@ class AddCard extends StatelessWidget {
                               true);
                         });
                       });
+
+                      print('downloading cards');
+                      context
+                          .read<QueryProvider>()
+                          .updatePersonalcards(context);
+
                       Fluttertoast.showToast(
                           msg: "Card uploaded!",
                           toastLength: Toast.LENGTH_SHORT,
@@ -165,6 +172,7 @@ class AddCard extends StatelessWidget {
                           textColor: Colors.white,
                           fontSize: 16.0);
                       // ! is this how we can exit the create page flutterly?
+
                       Navigator.pop(context);
                     },
                     icon: const Icon(Icons.upload, size: 40),
