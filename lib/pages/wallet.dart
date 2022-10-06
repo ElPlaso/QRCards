@@ -10,7 +10,7 @@ import 'package:swen325_assignment_3/providers/user_provider.dart';
 import 'package:swen325_assignment_3/widgets/logo_button.dart';
 import 'package:swen325_assignment_3/data/business_card.dart';
 import '../widgets/wallet_wheel.dart';
-import 'cardPage.dart';
+import 'card_page.dart';
 
 class Wallet extends StatelessWidget {
   const Wallet({super.key});
