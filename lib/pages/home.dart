@@ -112,10 +112,11 @@ class _HomeState extends State<Home> {
                         .get()
                         .then((DocumentSnapshot value) {
                       pp = value.get('wallet');
-                      pp.forEach((element) => {});
+                      pp.forEach((element) => {
+                        context.read<Cards>().add(b, personal)
+                      });
                     });
                     // * from the users' wallet, get the card references
-                    List<dynamic> pp;
 
                     await FirebaseFirestore.instance
                         .collection('Users')
