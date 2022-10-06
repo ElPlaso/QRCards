@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'card_view.dart';
 import '../data/business_card.dart';
+import '../providers/card_provider.dart';
 
 class WalletWheel extends StatefulWidget {
   const WalletWheel({super.key});
@@ -12,7 +14,13 @@ class WalletWheel extends StatefulWidget {
 }
 
 class WalletWheelState extends State<WalletWheel> {
-  List<Widget> cardList = [const Item1(), const Item2(), const Item3()];
+  List<T> map<T>(List list, Function handler) {
+    List<T> result = [];
+    for (var i = 0; i < list.length; i++) {
+      result.add(handler(i, list[i]));
+    }
+    return result;
+  }
 
   @override
   Widget build(BuildContext context) => SizedBox(
@@ -21,8 +29,23 @@ class WalletWheelState extends State<WalletWheel> {
           itemExtent: 200,
           physics: const FixedExtentScrollPhysics(),
           onSelectedItemChanged: (index) => {},
-          childDelegate:
-              ListWheelChildLoopingListDelegate(children: cardList)));
+          childDelegate: ListWheelChildLoopingListDelegate(
+            children: context.watch<Cards>().cards.map(
+              (card) {
+                return Builder(
+                  builder: (BuildContext context) {
+                    return ClipRRect(
+                        borderRadius: BorderRadius.circular(30.0),
+                        child: SizedBox(
+                          height: 100,
+                          width: 300,
+                          child: CardView(card: card),
+                        ));
+                  },
+                );
+              },
+            ).toList(),
+          )));
 }
 
 class Item1 extends StatelessWidget {
@@ -39,48 +62,6 @@ class Item1 extends StatelessWidget {
           card: BusinessCard(
             id: "testID1",
             name: "Lei",
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class Item2 extends StatelessWidget {
-  const Item2({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(30.0),
-      child: SizedBox(
-        height: 100,
-        width: 300,
-        child: CardView(
-          card: BusinessCard(
-            id: "testID2",
-            name: "John",
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class Item3 extends StatelessWidget {
-  const Item3({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(30.0),
-      child: SizedBox(
-        height: 100,
-        width: 300,
-        child: CardView(
-          card: BusinessCard(
-            id: "testID3",
-            name: "Alice",
           ),
         ),
       ),
