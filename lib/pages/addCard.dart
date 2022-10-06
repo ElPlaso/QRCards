@@ -89,7 +89,7 @@ class AddCard extends StatelessWidget {
                                     })
                                   }
                               });
-                      // ! get the current id of the users' card
+                      // * get the current id of the users' card
                       String cardId = '';
                       await FirebaseFirestore.instance
                           .collection('Users')
@@ -99,6 +99,8 @@ class AddCard extends StatelessWidget {
                         int val = doc.get('card-id');
                         cardId = "${context.read<UserProvider>().userID}-$val";
                       });
+
+                      // * create the businesscard obj
                       var bCard = BusinessCard(
                         id: cardId,
                         name: context.read<CardCreator>().name,
@@ -111,16 +113,11 @@ class AddCard extends StatelessWidget {
                             context.read<CardCreator>().companyAddress,
                         companyphone: context.read<CardCreator>().companyPhone,
                       );
-                      print(jsonEncode(bCard));
                       // past the bussiness card to the DB
-                      //   await FirebaseFirestore.instance
-                      //       .collection('Cards')
-                      //       .doc(cardId)
-                      //       .set({'card-sheesh': 'yess'});
                       await FirebaseFirestore.instance
                           .collection('Cards')
                           .doc(cardId)
-                          .update({
+                          .set({
                         'card_id': cardId,
                         'card': jsonEncode(bCard),
                         'owner': context.read<UserProvider>().userID,
