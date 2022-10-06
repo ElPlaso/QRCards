@@ -23,6 +23,8 @@ class WalletWheelState extends State<WalletWheel> {
       height: 400,
       child: ClickableListWheelScrollView(
           itemCount: context.read<Cards>().collectedcards.length,
+
+          // When a card in the list is tapped, go to CardPage for that card.
           onItemTapCallback: (index) {
             Navigator.push(
               context,
@@ -38,6 +40,8 @@ class WalletWheelState extends State<WalletWheel> {
             itemExtent: 200,
             physics: const FixedExtentScrollPhysics(),
             onSelectedItemChanged: (index) => {},
+
+            // Get scanned cards and create a list of CardViews to be displayed.
             children: context.watch<Cards>().collectedcards.map(
               (card) {
                 return Builder(
