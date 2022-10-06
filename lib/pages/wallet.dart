@@ -27,14 +27,6 @@ class Wallet extends StatelessWidget {
             children: <Widget>[
               const WalletWheel(),
               LogoButton(
-                  text: 'Select Card',
-                  onClicked: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => CardPage(
-                              card: BusinessCard(id: 's', name: 'name')))),
-                  icon: Icon(Icons.east, size: 25)),
-              LogoButton(
                   text: 'Refresh',
                   onClicked: () async {
                     print('downloading cards');
@@ -44,7 +36,7 @@ class Wallet extends StatelessWidget {
                             isEqualTo: context.read<UserProvider>().userID)
                         .get()
                         .then((doc) {
-                      //   print(doc.docs.length);
+                      // print(doc.docs.length);
                       doc.docs.forEach((element) {
                         print(element.get('card'));
                         // ? Delete cards that wern't downloaded?
@@ -56,7 +48,7 @@ class Wallet extends StatelessWidget {
                     });
                     print('dowloaded');
                   },
-                  icon: Icon(Icons.refresh, size: 25)),
+                  icon: const Icon(Icons.refresh, size: 25)),
             ],
           ),
         ),
