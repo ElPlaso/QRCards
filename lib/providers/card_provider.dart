@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:swen325_assignment_3/data/business_card.dart';
-import 'package:swen325_assignment_3/services/secure_storage.dart';
 
+// Provider for the list of person and collected cards.
 class Cards with ChangeNotifier {
-  final SecureStorage storage = SecureStorage();
+  // Personal Card List
   List<BusinessCard> _personalcards = [];
+  // Collected Card List
   List<BusinessCard> _collectedcards = [];
+  // Personal Card Getter
   List<BusinessCard> get personalcards => _personalcards;
+  // Collected Card Getter
   List<BusinessCard> get collectedcards => _collectedcards;
 
   /// adds only new cards to the provided list
@@ -20,45 +23,41 @@ class Cards with ChangeNotifier {
   /// * this adds a decoded card from a JSON query
   /// * to the personalcards array
   /// /
-  void add(BusinessCard b, bool personal, String uid) async {
+
+  // Add a given business card to the personal or collected list.
+  void add(BusinessCard b, bool personal) {
     List<BusinessCard> list = personal ? _personalcards : _collectedcards;
-    if (list.remove(b)) {
-      await delete(b, personal, uid);
+    if (list.contains(b)) {
+      return;
     }
     list.add(b);
-    storage.writeCard(b, personal, uid);
     notifyListeners();
   }
 
-  Future<void> delete(BusinessCard b, bool personal, String uid) async {
+  // Delete a given business card from the personal or collected list.
+  void delete(BusinessCard b, bool personal) {
     List<BusinessCard> list = personal ? _personalcards : _collectedcards;
     list.remove(b);
-    storage.deleteCard(b.id, personal, uid);
     notifyListeners();
   }
 
-  void deleteAll(List<BusinessCard> del, bool personal, String uid) async {
+  // Delete multiple business cards from the personal or collected list.
+  void deleteAll(List<BusinessCard> del, bool personal, String uid) {
     List<BusinessCard> list = personal ? _personalcards : _collectedcards;
     del.forEach((element) {
-      storage.deleteCard(element.id, personal, uid);
       list.remove(element);
     });
     notifyListeners();
   }
 
-  void clear(bool personal, String uid) async {
+  // Clear the personal or collected list.
+  void clear(bool personal, String uid) {
     List<BusinessCard> list = personal ? _personalcards : _collectedcards;
     list.clear();
-    storage.clear(personal, uid);
     notifyListeners();
   }
 
-  void loadFromStorage(String uid) async {
-    _personalcards = await storage.readCards(true, uid);
-    _collectedcards = await storage.readCards(false, uid);
-    notifyListeners();
-  }
-
+  // Check if the personal or collected list are empty.
   bool isEmpty(bool personal) {
     List<BusinessCard> list = personal ? _personalcards : _collectedcards;
     return list.isEmpty;

@@ -167,8 +167,7 @@ class UserCardPageState extends State<UserCardPage> {
                           //   'personalcards': FieldValue.arrayRemove([card.id])
                           // })
                           print('3'),
-                          context.read<Cards>().delete(card, true,
-                              context.read<UserProvider>().getUserID),
+                          context.read<Cards>().delete(card, true),
                           print('4'),
                           Navigator.pop(context),
                         },
