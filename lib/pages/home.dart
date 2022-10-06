@@ -124,7 +124,7 @@ class _HomeState extends State<Home> {
                   });
                   print('dowloaded');
                 },
-                icon: const Icon(Icons.refresh, size: 25),
+                icon: const Icon(Icons.refresh, size: 40),
               )
             ],
           ),
