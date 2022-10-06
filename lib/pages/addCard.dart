@@ -7,6 +7,7 @@ import 'package:swen325_assignment_3/data/business_card.dart';
 import 'package:swen325_assignment_3/providers/cardCreator_provider.dart';
 import 'package:swen325_assignment_3/providers/user_provider.dart';
 import '../main.dart';
+import '../providers/card_provider.dart';
 import '../widgets/card_view.dart';
 import '../widgets/logo_button.dart';
 import '../widgets/theme_toggle.dart';
@@ -134,6 +135,27 @@ class AddCard extends StatelessWidget {
                         'personalcards': FieldValue.arrayUnion([cardId])
                       }).onError((error, stackTrace) =>
                               print("$error + $stackTrace ==========="));
+
+                      await FirebaseFirestore.instance
+                          .collection('Cards')
+                          .where('owner',
+                              isEqualTo: context.read<UserProvider>().userID)
+                          .get()
+                          .then((doc) {
+                        //   print(doc.docs.length);
+                        String uid = context.read<UserProvider>().userID;
+                        context.read<Cards>().clear(true, uid);
+                        doc.docs.forEach((element) {
+                          print(element.get('card'));
+                          // ? Delete cards that wern't downloaded?
+                          context.read<Cards>().add(
+                              BusinessCard.fromJson(
+                                  jsonDecode(element.get('card'))),
+                              true,
+                              uid);
+                        });
+                      });
+
                       // ! is this how we can exit the create page flutterly?
                       Navigator.pop(context);
                     },
