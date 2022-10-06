@@ -37,7 +37,7 @@ class CarouselState extends State<Carousel> {
                   color: Colors.transparent,
                   child: Center(
                       child: ClipRRect(
-                    borderRadius: BorderRadius.circular(30.0),
+                    borderRadius: BorderRadius.circular(15.0),
                     child: CardView(card: card),
                   )),
                 );
@@ -46,44 +46,4 @@ class CarouselState extends State<Carousel> {
           },
         ).toList(),
       );
-}
-
-class Item1 extends StatelessWidget {
-  const Item1({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(30.0),
-      child: CardView(
-        card: BusinessCard(
-            id: "testID",
-            name: "TestName",
-            company: "TestCompany",
-            position: "TestPosition",
-            companyaddress: 'aa',
-            companyphone: '123 456 7890',
-            email: 'test@testing.com',
-            website: 'www.testtesting.net',
-            cellphone: '098 765 4321'),
-      ),
-    );
-  }
-}
-
-class Item2 extends StatelessWidget {
-  const Item2({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(30.0),
-      child: CardView(
-        card: BusinessCard(
-          id: "testID2",
-          name: "John",
-        ),
-      ),
-    );
-  }
 }
