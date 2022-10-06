@@ -62,9 +62,15 @@ class Item1 extends StatelessWidget {
       borderRadius: BorderRadius.circular(30.0),
       child: CardView(
         card: BusinessCard(
-          id: "testID1",
-          name: "Bob",
-        ),
+            id: "testID",
+            name: "TestName",
+            company: "TestCompany",
+            position: "TestPosition",
+            companyaddress: 'aa',
+            companyphone: '123 456 7890',
+            email: 'test@testing.com',
+            website: 'www.testtesting.net',
+            cellphone: '098 765 4321'),
       ),
     );
   }
