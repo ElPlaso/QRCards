@@ -84,32 +84,6 @@ class _HomeState extends State<Home> {
                 },
                 icon: const Icon(Icons.wallet, size: 40),
               ),
-              LogoButton(
-                  text: 'Refresh',
-                  onClicked: () async {
-                    print('downloading cards');
-                    await FirebaseFirestore.instance
-                        .collection('Cards')
-                        .where('owner',
-                            isEqualTo: context.read<UserProvider>().userID)
-                        .get()
-                        .then((doc) {
-                      //   print(doc.docs.length);
-                      String uid = context.read<UserProvider>().userID;
-                      context.read<Cards>().clear(true, uid);
-                      doc.docs.forEach((element) {
-                        print(element.get('card'));
-                        // ? Delete cards that wern't downloaded?
-                        context.read<Cards>().add(
-                            BusinessCard.fromJson(
-                                jsonDecode(element.get('card'))),
-                            true,
-                            uid);
-                      });
-                    });
-                    print('dowloaded');
-                  },
-                  icon: const Icon(Icons.refresh, size: 25)),
             ],
           ),
         ),
