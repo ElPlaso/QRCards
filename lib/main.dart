@@ -5,6 +5,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:provider/provider.dart';
 import 'package:swen325_assignment_3/providers/cardCreator_provider.dart';
+import 'package:swen325_assignment_3/providers/query_provider.dart';
 import 'package:swen325_assignment_3/widgets/google_sign_in.dart';
 import 'package:swen325_assignment_3/widgets/navigate.dart';
 import 'firebase_options.dart';
@@ -18,13 +19,13 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  FirebaseAuth.instance.authStateChanges().listen((User? user) {
-    if (user == null) {
-      print('User is currently signed out!');
-    } else {
-      print('User is signed in!');
-    }
-  });
+//   FirebaseAuth.instance.authStateChanges().listen((User? user) {
+//     if (user == null) {
+//       print('User is currently signed out!');
+//     } else {
+//       print('User is signed in!');
+//     }
+//   });
 
   // ! idk just following tut
   FirebaseDatabase db = FirebaseDatabase.instance;
@@ -35,6 +36,7 @@ void main() async {
   ]);
 
   runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(create: (_) => QueryProvider()),
     ChangeNotifierProvider(create: (_) => CardCreator()),
     ChangeNotifierProvider(create: (_) => UserProvider()),
     ChangeNotifierProvider(create: (_) => Cards()),

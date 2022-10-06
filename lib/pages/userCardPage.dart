@@ -138,7 +138,6 @@ class UserCardPageState extends State<UserCardPage> {
                         child: const Text('Delete Card'),
                         onPressed: () async => {
                           // delete card from db
-                          print('1'),
                           await FirebaseFirestore.instance
                               .collection('Cards')
                               .doc(card.id)
@@ -151,8 +150,8 @@ class UserCardPageState extends State<UserCardPage> {
                             'personalcards': FieldValue.arrayRemove([card.id])
                           }),
 
-                          // delete every other reference to the card
-                          print('2'),
+                          // ! delete every other reference to the card
+                          // TODO implement this
                           await FirebaseFirestore.instance
                               .collection('Users')
                               .where('wallet', arrayContains: card.id)
@@ -166,9 +165,7 @@ class UserCardPageState extends State<UserCardPage> {
                           // .update({
                           //   'personalcards': FieldValue.arrayRemove([card.id])
                           // })
-                          print('3'),
                           context.read<Cards>().delete(card, true),
-                          print('4'),
                           Navigator.pop(context),
                         },
                       ),

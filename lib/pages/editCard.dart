@@ -100,8 +100,8 @@ class EditCard extends StatelessWidget {
                             context.read<CardCreator>().companyAddress,
                         companyphone: context.read<CardCreator>().companyPhone,
                       );
-                      print(jsonEncode(bCard));
-                      print('here');
+                    //   print(jsonEncode(bCard));
+                    //   print('here');
                       // past the bussiness card to the DB
                       //   await FirebaseFirestore.instance
                       //       .collection('Cards')
