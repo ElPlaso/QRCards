@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../pages/editCard.dart';
+import '../pages/userCardPage.dart';
 import '../providers/card_provider.dart';
 import 'card_view.dart';
 
@@ -38,7 +39,7 @@ class CardStackState extends State<CardStack> {
                     onTap: () => Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => EditCard(card: card)),
+                          builder: (context) => UserCardPage(card: card)),
                     ),
                     child: Container(
                       decoration: BoxDecoration(
