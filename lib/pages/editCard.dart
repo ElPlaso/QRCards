@@ -55,30 +55,6 @@ class EditCard extends StatelessWidget {
                     onClicked: () async {
                       WidgetsFlutterBinding.ensureInitialized();
                       // ! get UID
-                      //   await FirebaseFirestore.instance
-                      //       .collection('Users')
-                      //       .doc(context.read<UserProvider>().userID)
-                      //       .get()
-                      //       .then((document) => {
-                      //             if (!document.exists)
-                      //               {
-                      //                 FirebaseFirestore.instance
-                      //                     .collection('Users')
-                      //                     .doc(
-                      //                         context.read<UserProvider>().userID)
-                      //                     .set({"card-id": 0, 'wallet': []})
-                      //               }
-                      //             else
-                      //               {
-                      //                 FirebaseFirestore.instance
-                      //                     .collection('Users')
-                      //                     .doc(
-                      //                         context.read<UserProvider>().userID)
-                      //                     .update({
-                      //                   'card-id': FieldValue.increment(1)
-                      //                 })
-                      //               }
-                      //           });
                       // ! get the current id of the users' card
                       String cardId = card.id;
                       await FirebaseFirestore.instance
@@ -88,6 +64,7 @@ class EditCard extends StatelessWidget {
                           .then((doc) {
                         cardId = cardId;
                       });
+
                       var bCard = BusinessCard(
                         id: cardId,
                         name: context.read<CardCreator>().name,
@@ -100,13 +77,6 @@ class EditCard extends StatelessWidget {
                             context.read<CardCreator>().companyAddress,
                         companyphone: context.read<CardCreator>().companyPhone,
                       );
-                    //   print(jsonEncode(bCard));
-                    //   print('here');
-                      // past the bussiness card to the DB
-                      //   await FirebaseFirestore.instance
-                      //       .collection('Cards')
-                      //       .doc(cardId)
-                      //       .set({'card-sheesh': 'yess'});
                       await FirebaseFirestore.instance
                           .collection('Cards')
                           .doc(cardId)
@@ -116,14 +86,6 @@ class EditCard extends StatelessWidget {
                         'owner': context.read<UserProvider>().userID,
                       }).onError((error, stackTrace) =>
                               print("${error} + ${stackTrace} =========== "));
-                      // Update the user profile with the ownership of the new card
-                      //   await FirebaseFirestore.instance
-                      //       .collection('Users')
-                      //       .doc(context.read<UserProvider>().userID)
-                      //       .update({
-                      //     'personalcards': FieldValue.arrayUnion([cardId])
-                      //   }).onError((error, stackTrace) =>
-                      //           print("$error + $stackTrace ==========="));
                       // ! is this how we can exit the create page flutterly?
                       Navigator.pop(context);
                     },

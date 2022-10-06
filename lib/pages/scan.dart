@@ -50,6 +50,19 @@ class _ScanState extends State<Scan> {
                     // ! append new card to current users' scanned cards
                     await FirebaseFirestore.instance
                         .collection('Users')
+                        .doc(context.read<UserProvider>().userID)
+                        .get()
+                        .then((document) => {
+                              if (!document.exists)
+                                {
+                                  FirebaseFirestore.instance
+                                      .collection('Users')
+                                      .doc(context.read<UserProvider>().userID)
+                                      .set({"card-id": 0, 'wallet': []})
+                                }
+                            });
+                    await FirebaseFirestore.instance
+                        .collection('Users')
                         .doc(context.read<UserProvider>().getUserID)
                         .update({
                       'wallet': FieldValue.arrayUnion([cardMap['id']])

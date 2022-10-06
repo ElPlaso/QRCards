@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:swen325_assignment_3/data/business_card.dart';
+import 'package:swen325_assignment_3/providers/cardCreator_provider.dart';
 import 'package:widgets_to_image/widgets_to_image.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -128,11 +129,27 @@ class UserCardPageState extends State<UserCardPage> {
                       ),
                       OutlinedButton(
                         child: const Text('Edit Card'),
-                        onPressed: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => EditCard(card: card)),
-                        ),
+                        onPressed: () => {
+                          context.read<CardCreator>().setName(card.name),
+                          context.read<CardCreator>().setPostion(card.position),
+                          context.read<CardCreator>().setEmail(card.email),
+                          context
+                              .read<CardCreator>()
+                              .setCellphone(card.cellphone),
+                          context.read<CardCreator>().setWebsite(card.website),
+                          context.read<CardCreator>().setCompany(card.company),
+                          context
+                              .read<CardCreator>()
+                              .setCompanyAddress(card.companyaddress),
+                          context
+                              .read<CardCreator>()
+                              .setCompanyPhone(card.companyphone),
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => EditCard(card: card)),
+                          )
+                        },
                       ),
                       OutlinedButton(
                         child: const Text('Delete Card'),

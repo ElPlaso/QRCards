@@ -38,26 +38,6 @@ class _EvalState extends State<Eval> {
               );
             } else if (snapshot.hasData) {
               print('user ${snapshot.data?.uid}');
-              FirebaseFirestore.instance
-                  .collection('Users')
-                  .doc(context.read<UserProvider>().userID)
-                  .get()
-                  .then((document) => {
-                        if (!document.exists)
-                          {
-                            FirebaseFirestore.instance
-                                .collection('Users')
-                                .doc(context.read<UserProvider>().userID)
-                                .set({"card-id": 0, 'wallet': []})
-                          }
-                        else
-                          {
-                            FirebaseFirestore.instance
-                                .collection('Users')
-                                .doc(context.read<UserProvider>().userID)
-                                .update({'card-id': FieldValue.increment(1)})
-                          }
-                      });
               context.read<UserProvider>().setUserId(snapshot.data!.uid);
               return Home();
             } else {

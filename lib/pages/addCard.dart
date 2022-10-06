@@ -65,6 +65,30 @@ class AddCard extends StatelessWidget {
                     onClicked: () async {
                       WidgetsFlutterBinding.ensureInitialized();
                       // ! get UID
+                      await FirebaseFirestore.instance
+                          .collection('Users')
+                          .doc(context.read<UserProvider>().userID)
+                          .get()
+                          .then((document) => {
+                                if (!document.exists)
+                                  {
+                                    FirebaseFirestore.instance
+                                        .collection('Users')
+                                        .doc(
+                                            context.read<UserProvider>().userID)
+                                        .set({"card-id": 0, 'wallet': []})
+                                  }
+                                else
+                                  {
+                                    FirebaseFirestore.instance
+                                        .collection('Users')
+                                        .doc(
+                                            context.read<UserProvider>().userID)
+                                        .update({
+                                      'card-id': FieldValue.increment(1)
+                                    })
+                                  }
+                              });
 
                       FirebaseFirestore.instance
                           .collection('Users')
