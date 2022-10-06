@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../pages/cardPage.dart';
 import '../pages/editCard.dart';
 import '../pages/userCardPage.dart';
 import '../providers/card_provider.dart';
 import 'card_view.dart';
-import '../data/business_card.dart';
 
 class CardStack extends StatefulWidget {
   const CardStack({super.key});
@@ -57,7 +55,7 @@ class CardStackState extends State<CardStack> {
                         ],
                       ),
                       child: ClipRRect(
-                        borderRadius: BorderRadius.circular(30.0),
+                        borderRadius: BorderRadius.circular(15.0),
                         child: CardView(card: card),
                       ),
                     ),
