@@ -89,9 +89,8 @@ class EditCard extends StatelessWidget {
                             //   'personalcards': FieldValue.arrayRemove([card.id])
                             // })
                             print('3'),
-                            await context
-                                .read<Cards>()
-                                .delete(card, true, context.read<User>().uid),
+                            context.read<Cards>().delete(card, true,
+                                context.read<UserProvider>().getUserID),
                             print('4'),
                             Navigator.pop(context),
                           },
