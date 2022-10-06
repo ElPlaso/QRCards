@@ -115,8 +115,7 @@ class AddCard extends StatelessWidget {
                       }).onError((error, stackTrace) =>
                               print("$error + $stackTrace ==========="));
                       // ! is this how we can exit the create page flutterly?
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Home()));
+                      Navigator.pop(context);
                     },
                     icon: const Icon(Icons.download, size: 40),
                   ),
