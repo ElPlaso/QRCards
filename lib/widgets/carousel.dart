@@ -28,7 +28,7 @@ class CarouselState extends State<Carousel> {
           autoPlayCurve: Curves.fastOutSlowIn,
           pauseAutoPlayOnTouch: true,
         ),
-        items: context.watch<Cards>().cards.map(
+        items: context.watch<Cards>().personalcards.map(
           (card) {
             return Builder(
               builder: (BuildContext context) {

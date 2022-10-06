@@ -30,7 +30,7 @@ class WalletWheelState extends State<WalletWheel> {
           physics: const FixedExtentScrollPhysics(),
           onSelectedItemChanged: (index) => {},
           childDelegate: ListWheelChildLoopingListDelegate(
-            children: context.watch<Cards>().cards.map(
+            children: context.watch<Cards>().collectedcards.map(
               (card) {
                 return Builder(
                   builder: (BuildContext context) {

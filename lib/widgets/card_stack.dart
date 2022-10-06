@@ -28,7 +28,7 @@ class CardStackState extends State<CardStack> {
       height: 400,
       width: 300,
       child: ListView(
-        children: context.watch<Cards>().cards.map(
+        children: context.watch<Cards>().personalcards.map(
           (card) {
             return Builder(
               builder: (BuildContext context) {
