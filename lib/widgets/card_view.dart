@@ -5,16 +5,19 @@ import 'package:auto_size_text/auto_size_text.dart';
 
 class CardView extends StatelessWidget {
   final BusinessCard card;
+  final BoxFit fit;
 
-  const CardView({
-    required this.card,
-    Key? key,
-  }) : super(key: key);
+  const CardView({Key? key, required this.card, this.fit = BoxFit.contain})
+      : super(key: key);
 
   @override
-  Widget build(BuildContext context) => AspectRatio(
-        aspectRatio: 1.69, //standard aspect ratio for a business card
+  Widget build(BuildContext context) => FittedBox(
+        fit: fit,
+        // child: AspectRatio(
+        //   aspectRatio: 1.69, //standard aspect ratio for a business card
         child: Container(
+          width: 540,
+          height: 320,
           alignment: Alignment.centerLeft,
           color: const Color.fromARGB(255, 29, 29, 29),
           padding: const EdgeInsets.fromLTRB(30, 15, 30, 15),
@@ -55,13 +58,16 @@ class CardView extends StatelessWidget {
                       ],
                     ),
                     const Spacer(),
-                    AspectRatio(
-                      aspectRatio: 1,
-                      child: Container(
-                        alignment: Alignment.center,
-                        color: Colors.white,
-                        child: QRImageGen(
-                          card: card,
+                    Container(
+                      margin: EdgeInsets.fromLTRB(0, 0, 25, 0),
+                      child: AspectRatio(
+                        aspectRatio: 1,
+                        child: Container(
+                          alignment: Alignment.center,
+                          color: Colors.white,
+                          child: QRImageGen(
+                            card: card,
+                          ),
                         ),
                       ),
                     )
@@ -168,5 +174,6 @@ class CardView extends StatelessWidget {
             ],
           ),
         ),
+        // ),
       );
 }

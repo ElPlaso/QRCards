@@ -14,27 +14,28 @@ class LogoButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Container(
-      margin: const EdgeInsets.only(top: 15.0),
-      child: SizedBox(
-        width: 300,
-        height: 70,
-        child: Directionality(
-          textDirection: TextDirection.rtl,
-          child: OutlinedButton.icon(
-            onPressed: onClicked,
-            label: Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                text,
-                style: const TextStyle(
-                  fontSize: 25,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.blue,
+        margin: const EdgeInsets.only(top: 15.0),
+        child: SizedBox(
+          width: 300,
+          height: 70,
+          child: Directionality(
+            textDirection: TextDirection.rtl,
+            child: OutlinedButton.icon(
+              onPressed: onClicked,
+              label: Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  text,
+                  style: const TextStyle(
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.blue,
+                  ),
                 ),
               ),
+              icon: icon,
             ),
-            icon: icon,
           ),
         ),
-      ));
+      );
 }

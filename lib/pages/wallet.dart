@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:swen325_assignment_3/widgets/logo_button.dart';
 import '../main.dart';
-import '../widgets/button.dart';
-import '../widgets/header.dart';
-import '../widgets/card_view.dart';
 import 'package:swen325_assignment_3/data/business_card.dart';
-import '../data/business_card.dart';
 import '../widgets/wallet_wheel.dart';
-import '../widgets/card_stack.dart';
 import 'cardPage.dart';
 
 class Wallet extends StatelessWidget {
@@ -29,8 +24,23 @@ class Wallet extends StatelessWidget {
                   onClicked: () => Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const CardPage())),
-                  icon: Icon(Icons.east, size: 25))
+                          builder: (context) => CardPage(
+                              card: BusinessCard(
+                                  id: "testID",
+                                  name: "TestName",
+                                  company: "TestCompany",
+                                  position: "TestPosition",
+                                  companyaddress: {
+                                    'city': 'TestCity',
+                                    'country': 'TestCountry',
+                                    'streetname': 'TestStreet',
+                                    'streetnumber': '42'
+                                  },
+                                  companyphone: '123 456 7890',
+                                  email: 'test@testing.com',
+                                  website: 'www.testtesting.net',
+                                  cellphone: '098 765 4321')))),
+                  icon: const Icon(Icons.east, size: 25))
             ],
           ),
         ),

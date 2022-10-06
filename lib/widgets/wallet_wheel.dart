@@ -32,14 +32,10 @@ class Item1 extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(30.0),
-      child: SizedBox(
-        height: 100,
-        width: 300,
-        child: CardView(
-          card: BusinessCard(
-            id: "testID1",
-            name: "Lei",
-          ),
+      child: CardView(
+        card: BusinessCard(
+          id: "testID1",
+          name: "Lei",
         ),
       ),
     );
@@ -53,15 +49,22 @@ class Item2 extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(30.0),
-      child: SizedBox(
-        height: 100,
-        width: 300,
-        child: CardView(
-          card: BusinessCard(
-            id: "testID2",
-            name: "John",
-          ),
-        ),
+      child: CardView(
+        card: BusinessCard(
+            id: "testID",
+            name: "TestName",
+            company: "TestCompany",
+            position: "TestPosition",
+            companyaddress: {
+              'city': 'TestCity',
+              'country': 'TestCountry',
+              'streetname': 'TestStreet',
+              'streetnumber': '42'
+            },
+            companyphone: '123 456 7890',
+            email: 'test@testing.com',
+            website: 'www.testtesting.net',
+            cellphone: '098 765 4321'),
       ),
     );
   }
@@ -74,14 +77,10 @@ class Item3 extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(30.0),
-      child: SizedBox(
-        height: 100,
-        width: 300,
-        child: CardView(
-          card: BusinessCard(
-            id: "testID3",
-            name: "Alice",
-          ),
+      child: CardView(
+        card: BusinessCard(
+          id: "testID3",
+          name: "Alice",
         ),
       ),
     );
