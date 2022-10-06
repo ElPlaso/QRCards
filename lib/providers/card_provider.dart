@@ -22,11 +22,8 @@ class Cards with ChangeNotifier {
   /// /
   void add(BusinessCard b, bool personal, String uid) async {
     List<BusinessCard> list = personal ? _personalcards : _collectedcards;
-    // if (list.remove(b)) {
-    //   await delete(b, personal, uid);
-    // }
-    if (list.contains(b)) {
-      return;
+    if (list.remove(b)) {
+      await delete(b, personal, uid);
     }
     list.add(b);
     storage.writeCard(b, personal, uid);
