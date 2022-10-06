@@ -120,8 +120,8 @@ class CardFormState extends State<CardForm> {
                       initialValue: card.companyaddress,
                       decoration: const InputDecoration(
                         icon: Icon(Icons.home),
-                        hintText: 'Enter address of company',
-                        labelText: 'Address Line 1',
+                        hintText: 'Enter the address of your company',
+                        labelText: 'Address',
                       ),
                     ),
                     TextFormField(
@@ -132,7 +132,7 @@ class CardFormState extends State<CardForm> {
                       ],
                       decoration: const InputDecoration(
                         icon: Icon(Icons.phone),
-                        hintText: 'Enter phone number of company',
+                        hintText: 'Enter the phone number of your company',
                         labelText: 'Company Phone',
                       ),
                       onChanged: (value) =>
