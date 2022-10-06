@@ -57,7 +57,27 @@ class EditCard extends StatelessWidget {
                     onClicked: () {},
                     icon: const Icon(Icons.download, size: 40),
                   ),
-                  Button(text: 'Remove Card', onClicked: () => {}),
+                  Button(
+                      text: 'Remove Card',
+                      onClicked: () => {
+                            // delete card from db
+                            FirebaseFirestore.instance
+                                .collection('Cards')
+                                .doc(card.id)
+                                .delete(),
+                            // delete card from owners' personal collection
+                            FirebaseFirestore.instance
+                                .collection('Users')
+                                .doc(context.read<UserProvider>().getUserID)
+                                .update({
+                              'personalcard': FieldValue.arrayRemove([card.id])
+                            }),
+                            // delete every other reference to the card
+
+                            FirebaseFirestore.instance.doc('User').update({
+                              'personalcard': FieldValue.arrayRemove([card.id])
+                            })
+                          }),
                 ],
               ),
             ),
