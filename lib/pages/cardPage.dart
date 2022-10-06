@@ -8,14 +8,14 @@ import 'package:fluttertoast/fluttertoast.dart';
 import '../main.dart';
 import '../widgets/button.dart';
 import '../widgets/card_view.dart';
-import '../widgets/header.dart';
 
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:printing/printing.dart';
 
 class CardPage extends StatefulWidget {
-  const CardPage({super.key});
+  final BusinessCard card;
+  const CardPage({Key? key, required this.card}) : super(key: key);
 
   @override
   State<CardPage> createState() => _CardPageState();
@@ -35,75 +35,73 @@ class _CardPageState extends State<CardPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              WidgetsToImage(
-                controller: controller,
-                child: CardView(
-                  card: BusinessCard(
-                      id: "testID",
-                      name: "TestName",
-                      company: "TestCompany",
-                      position: "TestPosition",
-                      companyaddress: {
-                        'city': 'TestCity',
-                        'country': 'TestCountry',
-                        'streetname': 'TestStreet',
-                        'streetnumber': '42'
-                      },
-                      companyphone: '123 456 7890',
-                      email: 'test@testing.com',
-                      website: 'www.testtesting.net',
-                      cellphone: '098 765 4321'),
+              Container(
+                margin: const EdgeInsets.all(15),
+                child: WidgetsToImage(
+                  controller: controller,
+                  child: CardView(
+                    card: widget.card,
+                  ),
                 ),
               ),
-              Button(
-                text: 'Save Image',
-                onClicked: () async {
-                  final bytes = await controller.capture();
-                  setState(() {
-                    this.bytes = bytes;
-                  });
-                  if (bytes != null) {
-                    ImageGallerySaver.saveImage(bytes,
-                        quality: 60, name: "file_name${DateTime.now()}");
-                  }
-                  Fluttertoast.showToast(
-                      msg: "Image saved!",
-                      toastLength: Toast.LENGTH_SHORT,
-                      gravity: ToastGravity.CENTER,
-                      timeInSecForIosWeb: 1,
-                      backgroundColor: Colors.blue,
-                      textColor: Colors.white,
-                      fontSize: 16.0);
-                },
-              ),
-              Button(
-                text: 'Print Card',
-                onClicked: () async {
-                  final bytes = await controller.capture();
-                  setState(() {
-                    this.bytes = bytes;
-                  });
-                  if (bytes != null) {
-                    final doc = pw.Document();
-                    doc.addPage(
-                      pw.Page(
-                        pageFormat: const PdfPageFormat(
-                            9.3 * (72 / 2.54), 5.5 * (72 / 2.54),
-                            marginAll: 1.0 * (72 / 2.54)),
-                        build: (pw.Context context) {
-                          return pw.Center(
-                            child: pw.Transform.scale(
-                                scale: 0.65,
-                                child: pw.Image(pw.MemoryImage(bytes))),
-                          ); // Center
+              Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 50),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      OutlinedButton(
+                        child: const Text('Save Image'),
+                        onPressed: () async {
+                          final bytes = await controller.capture();
+                          setState(() {
+                            this.bytes = bytes;
+                          });
+                          if (bytes != null) {
+                            ImageGallerySaver.saveImage(bytes,
+                                quality: 60,
+                                name: "file_name${DateTime.now()}");
+                          }
+                          Fluttertoast.showToast(
+                              msg: "Image saved!",
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.CENTER,
+                              timeInSecForIosWeb: 1,
+                              backgroundColor: Colors.blue,
+                              textColor: Colors.white,
+                              fontSize: 16.0);
                         },
                       ),
-                    );
-                    await Printing.layoutPdf(
-                        onLayout: (PdfPageFormat format) async => doc.save());
-                  }
-                },
-              ),
+                      OutlinedButton(
+                        child: const Text('Print Card'),
+                        onPressed: () async {
+                          final bytes = await controller.capture();
+                          setState(() {
+                            this.bytes = bytes;
+                          });
+                          if (bytes != null) {
+                            final doc = pw.Document();
+                            doc.addPage(
+                              pw.Page(
+                                pageFormat: const PdfPageFormat(
+                                    9.3 * (72 / 2.54), 5.5 * (72 / 2.54),
+                                    marginAll: 1.0 * (72 / 2.54)),
+                                build: (pw.Context context) {
+                                  return pw.Center(
+                                    child: pw.Transform.scale(
+                                        scale: 0.65,
+                                        child: pw.Image(pw.MemoryImage(bytes))),
+                                  ); // Center
+                                },
+                              ),
+                            );
+                            await Printing.layoutPdf(
+                                onLayout: (PdfPageFormat format) async =>
+                                    doc.save());
+                          }
+                        },
+                      )
+                    ],
+                  )),
             ],
           ),
         ),
