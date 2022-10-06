@@ -1,8 +1,13 @@
+import 'dart:convert';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:swen325_assignment_3/providers/card_provider.dart';
+import '../data/business_card.dart';
 import '../main.dart';
+import '../providers/user_provider.dart';
 import 'scan.dart';
 import 'userCards.dart';
 import 'wallet.dart';
@@ -30,7 +35,7 @@ class _HomeState extends State<Home> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              context.read<Cards>().isEmpty(false)
+              context.read<Cards>().isEmpty(true)
                   ? Column(children: const [
                       Text(
                           style: TextStyle(
@@ -80,6 +85,30 @@ class _HomeState extends State<Home> {
                 },
                 icon: const Icon(Icons.wallet, size: 40),
               ),
+              LogoButton(
+                  text: 'Refresh',
+                  onClicked: () async {
+                    print('downloading cards');
+                    await FirebaseFirestore.instance
+                        .collection('Cards')
+                        .where('owner',
+                            isEqualTo: context.read<UserProvider>().userID)
+                        .get()
+                        .then((doc) {
+                      //   print(doc.docs.length);
+                      doc.docs.forEach((element) {
+                        print(element.get('card'));
+                        // ? Delete cards that wern't downloaded?
+                        context.read<Cards>().add(
+                            BusinessCard.fromJson(
+                                jsonDecode(element.get('card'))),
+                            true,
+                            context.read<UserProvider>().userID);
+                      });
+                    });
+                    print('dowloaded');
+                  },
+                  icon: Icon(Icons.refresh, size: 25)),
             ],
           ),
         ),
