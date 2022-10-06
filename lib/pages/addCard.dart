@@ -18,7 +18,6 @@ import '../widgets/card_form.dart';
 
 class AddCard extends StatelessWidget {
   const AddCard({super.key});
-  static const CardForm cf = CardForm();
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
@@ -33,7 +32,7 @@ class AddCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   const SizedBox(height: 24),
-                  cf,
+                  CardForm(card: BusinessCard(id: '', name: '')),
                   const ThemeToggle(),
                   Button(text: 'Clear All', onClicked: () => {}),
                   LogoButton(

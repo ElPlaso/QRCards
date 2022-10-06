@@ -16,8 +16,9 @@ import '../widgets/theme_toggle.dart';
 import '../widgets/card_form.dart';
 
 class EditCard extends StatelessWidget {
-  const EditCard({super.key});
-  static const CardForm cf = CardForm();
+  final BusinessCard card;
+
+  const EditCard({super.key, required this.card});
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
@@ -32,7 +33,7 @@ class EditCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   const SizedBox(height: 24),
-                  cf,
+                  CardForm(card: card),
                   const ThemeToggle(),
                   Button(text: 'Clear All', onClicked: () => {}),
                   LogoButton(

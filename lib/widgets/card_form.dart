@@ -4,12 +4,16 @@ import 'package:provider/provider.dart';
 import 'package:swen325_assignment_3/widgets/button.dart';
 import 'package:swen325_assignment_3/providers/cardCreator_provider.dart';
 
+import '../data/business_card.dart';
+
 class CardForm extends StatefulWidget {
-  const CardForm({super.key});
+  final BusinessCard card;
+
+  const CardForm({super.key, required this.card});
 
   @override
   CardFormState createState() {
-    return CardFormState();
+    return CardFormState(card: this.card);
   }
 }
 
@@ -22,6 +26,10 @@ class CardFormState extends State<CardForm> {
   final _formKey = GlobalKey<FormState>();
 
   final ScrollController controller = ScrollController();
+
+  final BusinessCard card;
+
+  CardFormState({required this.card});
 
   @override
   Widget build(BuildContext context) => Container(
@@ -44,6 +52,7 @@ class CardFormState extends State<CardForm> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     TextFormField(
+                      initialValue: card.name,
                       decoration: const InputDecoration(
                         icon: const Icon(Icons.person),
                         hintText: 'Enter your name',
@@ -53,6 +62,7 @@ class CardFormState extends State<CardForm> {
                           context.read<CardCreator>().setName(value),
                     ),
                     TextFormField(
+                      initialValue: card.position,
                       decoration: const InputDecoration(
                         icon: const Icon(Icons.work),
                         hintText: 'Enter your position',
@@ -62,6 +72,7 @@ class CardFormState extends State<CardForm> {
                           context.read<CardCreator>().setPostion(value),
                     ),
                     TextFormField(
+                      initialValue: card.email,
                       decoration: const InputDecoration(
                         icon: const Icon(Icons.email),
                         hintText: 'Enter your email',
@@ -71,6 +82,7 @@ class CardFormState extends State<CardForm> {
                           context.read<CardCreator>().setEmail(value),
                     ),
                     TextFormField(
+                      initialValue: card.cellphone,
                       decoration: const InputDecoration(
                         icon: const Icon(Icons.phone_android),
                         hintText: 'Enter your phone number',
@@ -80,6 +92,7 @@ class CardFormState extends State<CardForm> {
                           context.read<CardCreator>().setCellphone(value),
                     ),
                     TextFormField(
+                      initialValue: card.website,
                       decoration: const InputDecoration(
                         icon: const Icon(Icons.web),
                         hintText: 'Enter your website url',
@@ -89,6 +102,7 @@ class CardFormState extends State<CardForm> {
                           context.read<CardCreator>().setWebsite(value),
                     ),
                     TextFormField(
+                      initialValue: card.company,
                       decoration: const InputDecoration(
                         icon: const Icon(Icons.business),
                         hintText: 'Enter the name of your company',
@@ -98,6 +112,7 @@ class CardFormState extends State<CardForm> {
                           context.read<CardCreator>().setCompany(value),
                     ),
                     TextFormField(
+                      initialValue: card.companyaddress,
                       decoration: const InputDecoration(
                         icon: const Icon(Icons.home),
                         hintText: 'Enter address of company',
@@ -105,15 +120,7 @@ class CardFormState extends State<CardForm> {
                       ),
                     ),
                     TextFormField(
-                      decoration: const InputDecoration(
-                        icon: const Icon(Icons.home),
-                        hintText: 'Enter address of company',
-                        labelText: 'Address Line 2',
-                      ),
-                      onChanged: (value) =>
-                          context.read<CardCreator>().setCompanyAddress(value),
-                    ),
-                    TextFormField(
+                      initialValue: card.companyphone,
                       decoration: const InputDecoration(
                         icon: const Icon(Icons.phone),
                         hintText: 'Enter phone number of company',
