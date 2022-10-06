@@ -81,74 +81,51 @@ class _HomeState extends State<Home> {
                 icon: const Icon(Icons.wallet, size: 40),
               ),
               LogoButton(
-                  text: 'Refresh',
-                  onClicked: () async {
-                    print('downloading cards');
-                    await FirebaseFirestore.instance
-                        .collection('Cards')
-                        .where('owner',
-                            isEqualTo: context.read<UserProvider>().userID)
-                        .get()
-                        .then((doc) {
-                      String uid = context.read<UserProvider>().userID;
-
-                      context.read<Cards>().clear(true, uid);
-
-                      doc.docs.forEach((element) {
-                        print(element.get('card'));
-                        // ? Delete cards that wern't downloaded?
-                        context.read<Cards>().add(
-                            BusinessCard.fromJson(
-                                jsonDecode(element.get('card'))),
-                            true);
-                      });
+                text: 'Refresh',
+                onClicked: () async {
+                  print('downloading cards');
+                  await FirebaseFirestore.instance
+                      .collection('Cards')
+                      .where('owner',
+                          isEqualTo: context.read<UserProvider>().userID)
+                      .get()
+                      .then((doc) {
+                    String uid = context.read<UserProvider>().userID;
+                    context.read<Cards>().clear(true, uid);
+                    doc.docs.forEach((element) {
+                      print(element.get(
+                          'card')); // ? Delete cards that wern't downloaded?
+                      context.read<Cards>().add(
+                          BusinessCard.fromJson(
+                              jsonDecode(element.get('card'))),
+                          true);
                     });
-                    // * from the users' wallet, get the card references
-                    List<dynamic> pp;
+                  });
+                  // * from the users' wallet, get the card references
+                  List<dynamic> pp;
 
-                    await FirebaseFirestore.instance
-                        .collection('Users')
-                        .doc(context.read<UserProvider>().getUserID)
-                        .get()
-                        .then((DocumentSnapshot value) {
-                      pp = value.get('wallet');
-                      pp.forEach((element) => {
-                        context.read<Cards>().add(b, personal)
-                      });
-                    });
-                    // * from the users' wallet, get the card references
-
-                    await FirebaseFirestore.instance
-                        .collection('Users')
-                        .doc(context.read<UserProvider>().getUserID)
-                        .get()
-                        .then((DocumentSnapshot value) {
-                      pp = value.get('wallet');
-                      pp.forEach((element) => {});
-                    });
-
-                    // if (pp != null) {
-                    //   print(pp.toString());
-                    //   print('printed');
-
-                    //   context
-                    //       .read<Cards>()
-                    //       .clear(true, context.read<UserProvider>().userID);
-                    //   pp;
-
-                    // doc.docs.forEach((element) {
-                    //   print(element.get('card'));
-                    //   // ? Delete cards that wern't downloaded?
-                    //   context.read<Cards>().add(
-                    //       BusinessCard.fromJson(
-                    //           jsonDecode(element.get('card'))),
-                    //       true,
-                    //       context.read<UserProvider>().userID);
-                    // });
-
-                    print('dowloaded');
-                  },
-                  icon: const Icon(Icons.refresh, size: 25)),
+                  await FirebaseFirestore.instance
+                      .collection('Users')
+                      .doc(context.read<UserProvider>().getUserID)
+                      .get()
+                      .then((DocumentSnapshot value) {
+                    value.get('wallet').forEach((element) async => {
+                          await FirebaseFirestore.instance
+                              .collection('Cards')
+                              .doc(element)
+                              .get()
+                              .then((value) {
+                            context.read<Cards>().add(
+                                BusinessCard.fromJson(
+                                    jsonDecode(value.get('card'))),
+                                false);
+                          })
+                        });
+                  });
+                  print('dowloaded');
+                },
+                icon: const Icon(Icons.refresh, size: 25),
+              )
             ],
           ),
         ),
