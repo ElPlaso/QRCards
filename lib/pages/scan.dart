@@ -43,36 +43,54 @@ class _ScanState extends State<Scan> {
                     var data = barcode.rawValue!;
                     var cardMap = jsonDecode(data);
                     // ! incr scancount
-                    await FirebaseFirestore.instance
-                        .collection('Cards')
-                        .doc(cardMap['id'])
-                        .update({'scancount': FieldValue.increment(1)});
-                    // ! append new card to current users' scanned cards
-                    await FirebaseFirestore.instance
-                        .collection('Users')
-                        .doc(context.read<UserProvider>().userID)
-                        .get()
-                        .then((document) => {
-                              if (!document.exists)
-                                {
-                                  FirebaseFirestore.instance
-                                      .collection('Users')
-                                      .doc(context.read<UserProvider>().userID)
-                                      .set({"card-id": 0, 'wallet': []})
-                                }
-                            });
-                    await FirebaseFirestore.instance
-                        .collection('Users')
-                        .doc(context.read<UserProvider>().getUserID)
-                        .update({
-                      'wallet': FieldValue.arrayUnion([cardMap['id']])
-                    });
 
-                    context
-                        .read<Cards>()
-                        .add(BusinessCard.fromJson(cardMap), false);
-                    controller.stop();
-                    Navigator.pop(context);
+                    try {
+                      await FirebaseFirestore.instance
+                          .collection('Cards')
+                          .doc(cardMap['id'])
+                          .update({'scancount': FieldValue.increment(1)});
+                      // ! append new card to current users' scanned cards
+                      await FirebaseFirestore.instance
+                          .collection('Users')
+                          .doc(context.read<UserProvider>().userID)
+                          .get()
+                          .then((document) => {
+                                if (!document.exists)
+                                  {
+                                    FirebaseFirestore.instance
+                                        .collection('Users')
+                                        .doc(
+                                            context.read<UserProvider>().userID)
+                                        .set({"card-id": 0, 'wallet': []})
+                                  }
+                              });
+                      await FirebaseFirestore.instance
+                          .collection('Users')
+                          .doc(context.read<UserProvider>().getUserID)
+                          .update({
+                        'wallet': FieldValue.arrayUnion([cardMap['id']])
+                      });
+
+                      context
+                          .read<Cards>()
+                          .add(BusinessCard.fromJson(cardMap), false);
+                      controller.stop();
+                      Navigator.pop(context);
+                    } on FirebaseException catch (e) {
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) => AlertDialog(
+                                title: const Text("Error"),
+                                content: const Text(
+                                    "Card not in database (deleted)"),
+                                actions: <Widget>[
+                                  TextButton(
+                                      onPressed: () =>
+                                          Navigator.pop(context, "Cancel"),
+                                      child: const Text("Cancel"))
+                                ],
+                              ));
+                    }
                   }
                 }),
           ),
