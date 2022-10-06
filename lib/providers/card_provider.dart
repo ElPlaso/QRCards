@@ -53,9 +53,9 @@ class Cards with ChangeNotifier {
     notifyListeners();
   }
 
-  void loadFromStorage(bool personal, String uid) async {
-    List<BusinessCard> list = personal ? _personalcards : _collectedcards;
-    list = await storage.readCards(personal, uid);
+  void loadFromStorage(String uid) async {
+    _personalcards = await storage.readCards(true, uid);
+    _collectedcards = await storage.readCards(false, uid);
     notifyListeners();
   }
 
