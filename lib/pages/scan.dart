@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:swen325_assignment_3/data/business_card.dart';
@@ -75,6 +76,14 @@ class _ScanState extends State<Scan> {
                           .read<Cards>()
                           .add(BusinessCard.fromJson(cardMap), false);
                       controller.stop();
+                      Fluttertoast.showToast(
+                          msg: "Card scanned!",
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.CENTER,
+                          timeInSecForIosWeb: 1,
+                          backgroundColor: Colors.blue,
+                          textColor: Colors.white,
+                          fontSize: 16.0);
                       Navigator.pop(context);
                     } on FirebaseException catch (e) {
                       showDialog(

@@ -152,7 +152,7 @@ class _CardPageState extends State<CardPage> {
                           });
                           context.read<QueryProvider>().updateWallet(context);
                           Fluttertoast.showToast(
-                              msg: "Card Removed!",
+                              msg: "Card removed!",
                               toastLength: Toast.LENGTH_SHORT,
                               gravity: ToastGravity.CENTER,
                               timeInSecForIosWeb: 1,

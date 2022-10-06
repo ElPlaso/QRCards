@@ -193,7 +193,7 @@ class UserCardPageState extends State<UserCardPage> {
                               .read<QueryProvider>()
                               .updatePersonalcards(context),
                           Fluttertoast.showToast(
-                              msg: "Card Deleted!",
+                              msg: "Card deleted!",
                               toastLength: Toast.LENGTH_SHORT,
                               gravity: ToastGravity.CENTER,
                               timeInSecForIosWeb: 1,
