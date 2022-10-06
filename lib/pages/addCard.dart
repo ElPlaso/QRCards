@@ -11,13 +11,13 @@ import 'package:swen325_assignment_3/providers/cardCreator_provider.dart';
 import 'package:swen325_assignment_3/providers/user_provider.dart';
 import '../main.dart';
 import '../widgets/button.dart';
+import '../widgets/card_view.dart';
 import '../widgets/logo_button.dart';
 import '../widgets/theme_toggle.dart';
 import '../widgets/card_form.dart';
 
 class AddCard extends StatelessWidget {
   const AddCard({super.key});
-  static const CardForm cf = CardForm();
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
@@ -32,16 +32,39 @@ class AddCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   const SizedBox(height: 24),
-                  cf,
+                  CardForm(card: BusinessCard(id: '', name: '')),
                   const ThemeToggle(),
                   Button(text: 'Clear All', onClicked: () => {}),
                   LogoButton(
                     text: 'Preview',
-                    onClicked: () => {},
+                    onClicked: () {
+                      showModalBottomSheet(
+                          context: context,
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.vertical(
+                              top: Radius.circular(20),
+                            ),
+                          ),
+                          builder: (context) => CardView(
+                                  card: BusinessCard(
+                                id: "preview",
+                                name: context.read<CardCreator>().name,
+                                position: context.read<CardCreator>().postion,
+                                email: context.read<CardCreator>().email,
+                                cellphone:
+                                    context.read<CardCreator>().cellphone,
+                                website: context.read<CardCreator>().website,
+                                company: context.read<CardCreator>().company,
+                                companyaddress:
+                                    context.read<CardCreator>().companyAddress,
+                                companyphone:
+                                    context.read<CardCreator>().companyPhone,
+                              )));
+                    },
                     icon: const Icon(Icons.remove_red_eye, size: 40),
                   ),
                   LogoButton(
-                    text: 'Save',
+                    text: 'Upload',
                     onClicked: () async {
                       WidgetsFlutterBinding.ensureInitialized();
                       // ! get UID
@@ -117,7 +140,7 @@ class AddCard extends StatelessWidget {
                       // ! is this how we can exit the create page flutterly?
                       Navigator.pop(context);
                     },
-                    icon: const Icon(Icons.download, size: 40),
+                    icon: const Icon(Icons.upload, size: 40),
                   ),
                 ],
               ),
