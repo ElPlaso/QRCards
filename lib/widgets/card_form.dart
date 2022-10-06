@@ -1,5 +1,6 @@
 // Create a Form widget.
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:swen325_assignment_3/widgets/button.dart';
 import 'package:swen325_assignment_3/providers/cardCreator_provider.dart';
@@ -83,6 +84,10 @@ class CardFormState extends State<CardForm> {
                     ),
                     TextFormField(
                       initialValue: card.cellphone,
+                      keyboardType: TextInputType.number,
+                      inputFormatters: <TextInputFormatter>[
+                        FilteringTextInputFormatter.digitsOnly
+                      ],
                       decoration: const InputDecoration(
                         icon: Icon(Icons.phone_android),
                         hintText: 'Enter your phone number',
@@ -121,6 +126,10 @@ class CardFormState extends State<CardForm> {
                     ),
                     TextFormField(
                       initialValue: card.companyphone,
+                      keyboardType: TextInputType.number,
+                      inputFormatters: <TextInputFormatter>[
+                        FilteringTextInputFormatter.digitsOnly
+                      ],
                       decoration: const InputDecoration(
                         icon: Icon(Icons.phone),
                         hintText: 'Enter phone number of company',
