@@ -10,6 +10,10 @@ import '../widgets/button.dart';
 import '../widgets/card_view.dart';
 import '../widgets/header.dart';
 
+import 'package:pdf/pdf.dart';
+import 'package:pdf/widgets.dart' as pw;
+import 'package:printing/printing.dart';
+
 class CardPage extends StatefulWidget {
   const CardPage({super.key});
 
@@ -64,6 +68,34 @@ class _CardPageState extends State<CardPage> {
                       backgroundColor: Colors.blue,
                       textColor: Colors.white,
                       fontSize: 16.0);
+                },
+              ),
+              Button(
+                text: 'Print Card',
+                onClicked: () async {
+                  final bytes = await controller.capture();
+                  setState(() {
+                    this.bytes = bytes;
+                  });
+                  if (bytes != null) {
+                    final doc = pw.Document();
+                    doc.addPage(
+                      pw.Page(
+                        pageFormat: const PdfPageFormat(
+                            9.3 * (72 / 2.54), 5.5 * (72 / 2.54),
+                            marginAll: 1.0 * (72 / 2.54)),
+                        build: (pw.Context context) {
+                          return pw.Center(
+                            child: pw.Transform.scale(
+                                scale: 0.65,
+                                child: pw.Image(pw.MemoryImage(bytes))),
+                          ); // Center
+                        },
+                      ),
+                    );
+                    await Printing.layoutPdf(
+                        onLayout: (PdfPageFormat format) async => doc.save());
+                  }
                 },
               ),
             ],

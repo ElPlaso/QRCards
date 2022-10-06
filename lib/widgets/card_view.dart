@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:swen325_assignment_3/data/business_card.dart';
 import 'package:swen325_assignment_3/widgets/qr_image_gen.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 class CardView extends StatelessWidget {
   final BusinessCard card;
@@ -27,36 +28,41 @@ class CardView extends StatelessWidget {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 2.5, 0, 2.5),
-                          child: Text(
-                            card.name,
-                            style: const TextStyle(
-                                color: Color.fromARGB(203, 203, 203, 255),
-                                fontWeight: FontWeight.bold,
-                                fontSize: 24),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 2.5, 0, 2.5),
-                          child: Text(
-                            card.position,
-                            style: const TextStyle(
+                        // Padding(
+                        //   padding: const EdgeInsets.fromLTRB(0, 2.5, 0, 2.5),
+                        //   child:
+                        AutoSizeText(
+                          card.name,
+                          style: const TextStyle(
                               color: Color.fromARGB(203, 203, 203, 255),
-                              fontStyle: FontStyle.italic,
-                            ),
-                          ),
+                              fontWeight: FontWeight.bold,
+                              fontSize: 24),
+                          minFontSize: 17,
                         ),
+                        // ),
+                        // Padding(
+                        //   padding: const EdgeInsets.fromLTRB(0, 2.5, 0, 2.5),
+                        //   child:
+                        AutoSizeText(
+                          card.position,
+                          style: const TextStyle(
+                            color: Color.fromARGB(203, 203, 203, 255),
+                            fontStyle: FontStyle.italic,
+                          ),
+                          minFontSize: 9,
+                        ),
+                        // ),
                       ],
                     ),
                     const Spacer(),
-                    Container(
-                      height: 128,
-                      width: 128,
-                      color: Colors.white,
-                      alignment: Alignment.center,
-                      child: QRImageGen(
-                        card: card,
+                    AspectRatio(
+                      aspectRatio: 1,
+                      child: Container(
+                        alignment: Alignment.center,
+                        color: Colors.white,
+                        child: QRImageGen(
+                          card: card,
+                        ),
                       ),
                     )
                   ],
@@ -71,77 +77,89 @@ class CardView extends StatelessWidget {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 2.5, 0, 2.5),
-                          child: Text(
-                            'E-mail: ${card.email}',
-                            textAlign: TextAlign.right,
-                            style: const TextStyle(
-                                color: Color.fromARGB(203, 203, 203, 255),
-                                fontSize: 12),
-                          ),
+                        // Padding(
+                        //   padding: const EdgeInsets.fromLTRB(0, 2.5, 0, 2.5),
+                        // child:
+                        AutoSizeText(
+                          'E-mail: ${card.email}',
+                          textAlign: TextAlign.right,
+                          style: const TextStyle(
+                              color: Color.fromARGB(203, 203, 203, 255),
+                              fontSize: 12),
+                          minFontSize: 5,
                         ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 2.5, 0, 2.5),
-                          child: Text(
-                            'Cellphone: ${card.cellphone}',
-                            textAlign: TextAlign.right,
-                            style: const TextStyle(
-                                color: Color.fromARGB(203, 203, 203, 255),
-                                fontSize: 12),
-                          ),
+                        // ),
+                        // Padding(
+                        //   padding: const EdgeInsets.fromLTRB(0, 2.5, 0, 2.5),
+                        //   child:
+                        AutoSizeText(
+                          'Cellphone: ${card.cellphone}',
+                          textAlign: TextAlign.right,
+                          style: const TextStyle(
+                              color: Color.fromARGB(203, 203, 203, 255),
+                              fontSize: 12),
+                          minFontSize: 5,
                         ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 2.5, 0, 2.5),
-                          child: Text(
-                            'Website: ${card.website}',
-                            textAlign: TextAlign.right,
-                            style: const TextStyle(
-                                color: Color.fromARGB(203, 203, 203, 255),
-                                fontSize: 12),
-                          ),
+                        // ),
+                        // Padding(
+                        //   padding: const EdgeInsets.fromLTRB(0, 2.5, 0, 2.5),
+                        //   child:
+                        AutoSizeText(
+                          'Website: ${card.website}',
+                          textAlign: TextAlign.right,
+                          style: const TextStyle(
+                              color: Color.fromARGB(203, 203, 203, 255),
+                              fontSize: 12),
+                          minFontSize: 5,
                         ),
+                        // ),
                       ],
                     ),
                     const Spacer(),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 2.5, 0, 2.5),
-                          child: Text(
-                            card.company,
-                            textAlign: TextAlign.right,
-                            style: const TextStyle(
-                              color: Color.fromARGB(203, 203, 203, 255),
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16,
-                            ),
+                        // Padding(
+                        //   padding: const EdgeInsets.fromLTRB(0, 2.5, 0, 2.5),
+                        //   child:
+                        AutoSizeText(
+                          card.company,
+                          textAlign: TextAlign.right,
+                          style: const TextStyle(
+                            color: Color.fromARGB(203, 203, 203, 255),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
                           ),
+                          minFontSize: 11,
                         ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 2.5, 0, 2.5),
-                          child: Text(
-                            'Address: ${card.companyaddress}',
-                            textAlign: TextAlign.right,
-                            style: const TextStyle(
+                        // ),
+                        // Padding(
+                        //   padding: const EdgeInsets.fromLTRB(0, 2.5, 0, 2.5),
+                        //   child:
+                        AutoSizeText(
+                          'Address: ${card.companyaddress}',
+                          textAlign: TextAlign.right,
+                          style: const TextStyle(
+                            color: Color.fromARGB(203, 203, 203, 255),
+                            fontStyle: FontStyle.italic,
+                            fontSize: 12,
+                          ),
+                          minFontSize: 5,
+                        ),
+                        // ),
+                        // Padding(
+                        //   padding: const EdgeInsets.fromLTRB(0, 2.5, 0, 2.5),
+                        //   child:
+                        AutoSizeText(
+                          'Phone: ${card.companyphone}',
+                          textAlign: TextAlign.right,
+                          style: const TextStyle(
                               color: Color.fromARGB(203, 203, 203, 255),
                               fontStyle: FontStyle.italic,
-                              fontSize: 12,
-                            ),
-                          ),
+                              fontSize: 12),
+                          minFontSize: 5,
                         ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 2.5, 0, 2.5),
-                          child: Text(
-                            'Phone: ${card.companyphone}',
-                            textAlign: TextAlign.right,
-                            style: const TextStyle(
-                                color: Color.fromARGB(203, 203, 203, 255),
-                                fontStyle: FontStyle.italic,
-                                fontSize: 12),
-                          ),
-                        ),
+                        // ),
                       ],
                     ),
                   ],

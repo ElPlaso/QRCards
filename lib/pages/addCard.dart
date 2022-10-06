@@ -13,6 +13,7 @@ import 'package:swen325_assignment_3/providers/cardCreator_provider.dart';
 import 'package:swen325_assignment_3/providers/user_provider.dart';
 import '../main.dart';
 import '../widgets/button.dart';
+import '../widgets/logo_button.dart';
 import '../widgets/theme_toggle.dart';
 import '../widgets/card_form.dart';
 
@@ -35,12 +36,14 @@ class AddCard extends StatelessWidget {
                   const SizedBox(height: 24),
                   cf,
                   const ThemeToggle(),
-                  Button(
-                    text: 'Clear All',
+                  Button(text: 'Clear All', onClicked: () => {}),
+                  LogoButton(
+                    text: 'Preview',
                     onClicked: () => {},
+                    icon: const Icon(Icons.remove_red_eye, size: 40),
                   ),
-                  Button(
-                    text: 'Save Card',
+                  LogoButton(
+                    text: 'Save',
                     onClicked: () async {
                       WidgetsFlutterBinding.ensureInitialized();
                       // ! get UID
@@ -115,6 +118,7 @@ class AddCard extends StatelessWidget {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) => Home()));
                     },
+                    icon: const Icon(Icons.download, size: 40),
                   ),
                 ],
               ),
