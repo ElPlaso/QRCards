@@ -40,7 +40,7 @@ class UserCardPageState extends State<UserCardPage> {
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
-          title: const Text(MyApp.title),
+          title: const Text('Your Cards'),
           centerTitle: true,
         ),
         body: Center(

@@ -19,7 +19,7 @@ class Wallet extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
-          title: const Text(MyApp.title),
+          title: const Text('Wallet'),
           centerTitle: true,
         ),
         body: Center(

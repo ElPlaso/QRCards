@@ -24,7 +24,7 @@ class EditCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
-          title: const Text(MyApp.title),
+          title: const Text('Edit Card'),
           centerTitle: true,
         ),
         body: Center(

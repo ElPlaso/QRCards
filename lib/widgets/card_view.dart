@@ -40,15 +40,15 @@ class CardView extends StatelessWidget {
                           style: const TextStyle(
                               color: Color.fromARGB(203, 203, 203, 255),
                               fontWeight: FontWeight.bold,
-                              fontSize: 24),
+                              fontSize: 27),
                           minFontSize: 17,
                         ),
                         AutoSizeText(
                           card.position,
                           style: const TextStyle(
-                            color: Color.fromARGB(203, 203, 203, 255),
-                            fontStyle: FontStyle.italic,
-                          ),
+                              color: Color.fromARGB(203, 203, 203, 255),
+                              fontStyle: FontStyle.italic,
+                              fontSize: 17),
                           minFontSize: 9,
                         ),
                       ],
@@ -92,7 +92,7 @@ class CardView extends StatelessWidget {
                           textAlign: TextAlign.right,
                           style: const TextStyle(
                               color: Color.fromARGB(203, 203, 203, 255),
-                              fontSize: 12),
+                              fontSize: 15),
                           minFontSize: 5,
                         ),
                         AutoSizeText(
@@ -100,7 +100,7 @@ class CardView extends StatelessWidget {
                           textAlign: TextAlign.right,
                           style: const TextStyle(
                               color: Color.fromARGB(203, 203, 203, 255),
-                              fontSize: 12),
+                              fontSize: 15),
                           minFontSize: 5,
                         ),
                         AutoSizeText(
@@ -108,7 +108,7 @@ class CardView extends StatelessWidget {
                           textAlign: TextAlign.right,
                           style: const TextStyle(
                               color: Color.fromARGB(203, 203, 203, 255),
-                              fontSize: 12),
+                              fontSize: 15),
                           minFontSize: 5,
                         ),
                       ],
@@ -126,7 +126,7 @@ class CardView extends StatelessWidget {
                           style: const TextStyle(
                             color: Color.fromARGB(203, 203, 203, 255),
                             fontWeight: FontWeight.bold,
-                            fontSize: 16,
+                            fontSize: 19,
                           ),
                           minFontSize: 11,
                         ),
@@ -136,7 +136,7 @@ class CardView extends StatelessWidget {
                           style: const TextStyle(
                             color: Color.fromARGB(203, 203, 203, 255),
                             fontStyle: FontStyle.italic,
-                            fontSize: 12,
+                            fontSize: 15,
                           ),
                           minFontSize: 5,
                         ),
@@ -146,7 +146,7 @@ class CardView extends StatelessWidget {
                           style: const TextStyle(
                               color: Color.fromARGB(203, 203, 203, 255),
                               fontStyle: FontStyle.italic,
-                              fontSize: 12),
+                              fontSize: 15),
                           minFontSize: 5,
                         ),
                       ],

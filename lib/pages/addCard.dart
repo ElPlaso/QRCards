@@ -19,7 +19,7 @@ class AddCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
-          title: const Text(MyApp.title),
+          title: const Text('Upload Card'),
           centerTitle: true,
         ),
         body: Center(

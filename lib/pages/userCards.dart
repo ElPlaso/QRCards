@@ -14,7 +14,7 @@ class UserCards extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
-          title: const Text(MyApp.title),
+          title: const Text('Your Cards'),
           centerTitle: true,
         ),
         body: Center(
