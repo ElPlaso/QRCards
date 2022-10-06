@@ -1,4 +1,3 @@
-import 'dart:ffi';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
@@ -7,7 +6,6 @@ import 'package:widgets_to_image/widgets_to_image.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import '../main.dart';
-import '../widgets/button.dart';
 import '../widgets/card_view.dart';
 
 import 'package:pdf/pdf.dart';
@@ -15,7 +13,6 @@ import 'package:pdf/widgets.dart' as pw;
 import 'package:printing/printing.dart';
 
 import '../widgets/qr_image_gen.dart';
-import 'editCard.dart';
 
 class CardPage extends StatefulWidget {
   final BusinessCard card;

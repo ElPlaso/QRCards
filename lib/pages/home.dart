@@ -11,7 +11,6 @@ import '../providers/user_provider.dart';
 import 'scan.dart';
 import 'userCards.dart';
 import 'wallet.dart';
-import 'cardPage.dart';
 import '../widgets/logo_button.dart';
 import '../widgets/carousel.dart';
 
@@ -110,7 +109,7 @@ class _HomeState extends State<Home> {
                     });
                     print('dowloaded');
                   },
-                  icon: Icon(Icons.refresh, size: 25)),
+                  icon: const Icon(Icons.refresh, size: 25)),
             ],
           ),
         ),
