@@ -158,7 +158,6 @@ class UserCardPageState extends State<UserCardPage> {
                               .get()
                               .then((value) {
                             value.docs.forEach((element) {
-                              print('======');
                               print(element);
                             });
                           }),
