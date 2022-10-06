@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:swen325_assignment_3/pages/home.dart';
 import 'package:swen325_assignment_3/pages/login.dart';
+import 'package:swen325_assignment_3/providers/query_provider.dart';
 import '../main.dart';
 import 'scan.dart';
 import 'userCards.dart';
@@ -39,6 +40,7 @@ class _EvalState extends State<Eval> {
             } else if (snapshot.hasData) {
               print('user ${snapshot.data?.uid}');
               context.read<UserProvider>().setUserId(snapshot.data!.uid);
+
               return Home();
             } else {
               print('oh no');
