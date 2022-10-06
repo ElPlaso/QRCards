@@ -97,10 +97,10 @@ class _HomeState extends State<Home> {
                         .then((doc) {
                       //   print(doc.docs.length);
                       String uid = context.read<UserProvider>().userID;
+                      context.read<Cards>().clear(true, uid);
                       doc.docs.forEach((element) {
                         print(element.get('card'));
                         // ? Delete cards that wern't downloaded?
-                        context.read<Cards>().clear(true, uid);
                         context.read<Cards>().add(
                             BusinessCard.fromJson(
                                 jsonDecode(element.get('card'))),
