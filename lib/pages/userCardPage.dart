@@ -1,12 +1,16 @@
 import 'dart:ffi';
 import 'dart:typed_data';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:swen325_assignment_3/data/business_card.dart';
 import 'package:widgets_to_image/widgets_to_image.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import '../main.dart';
+import '../providers/card_provider.dart';
+import '../providers/user_provider.dart';
 import '../widgets/button.dart';
 import '../widgets/card_view.dart';
 
@@ -129,6 +133,45 @@ class UserCardPageState extends State<UserCardPage> {
                           MaterialPageRoute(
                               builder: (context) => EditCard(card: card)),
                         ),
+                      ),
+                      OutlinedButton(
+                        child: const Text('Delete Card'),
+                        onPressed: () async => {
+                          // delete card from db
+                          print('1'),
+                          await FirebaseFirestore.instance
+                              .collection('Cards')
+                              .doc(card.id)
+                              .delete(),
+                          // delete card from owners' personal collection
+                          await FirebaseFirestore.instance
+                              .collection('Users')
+                              .doc(context.read<UserProvider>().getUserID)
+                              .update({
+                            'personalcards': FieldValue.arrayRemove([card.id])
+                          }),
+
+                          // delete every other reference to the card
+                          print('2'),
+                          await FirebaseFirestore.instance
+                              .collection('Users')
+                              .where('wallet', arrayContains: card.id)
+                              .get()
+                              .then((value) {
+                            value.docs.forEach((element) {
+                              print('======');
+                              print(element);
+                            });
+                          }),
+                          // .update({
+                          //   'personalcards': FieldValue.arrayRemove([card.id])
+                          // })
+                          print('3'),
+                          context.read<Cards>().delete(card, true,
+                              context.read<UserProvider>().getUserID),
+                          print('4'),
+                          Navigator.pop(context),
+                        },
                       ),
                     ],
                   )),

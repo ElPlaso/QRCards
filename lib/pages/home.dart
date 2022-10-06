@@ -11,7 +11,6 @@ import '../providers/user_provider.dart';
 import 'scan.dart';
 import 'userCards.dart';
 import 'wallet.dart';
-import 'cardPage.dart';
 import '../widgets/logo_button.dart';
 import '../widgets/carousel.dart';
 
@@ -96,6 +95,8 @@ class _HomeState extends State<Home> {
                         .get()
                         .then((doc) {
                       //   print(doc.docs.length);
+                      String uid = context.read<UserProvider>().userID;
+                      context.read<Cards>().clear(true, uid);
                       doc.docs.forEach((element) {
                         print(element.get('card'));
                         // ? Delete cards that wern't downloaded?
@@ -103,12 +104,12 @@ class _HomeState extends State<Home> {
                             BusinessCard.fromJson(
                                 jsonDecode(element.get('card'))),
                             true,
-                            context.read<UserProvider>().userID);
+                            uid);
                       });
                     });
                     print('dowloaded');
                   },
-                  icon: Icon(Icons.refresh, size: 25)),
+                  icon: const Icon(Icons.refresh, size: 25)),
             ],
           ),
         ),
