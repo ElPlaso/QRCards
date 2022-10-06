@@ -60,7 +60,9 @@ class _HomeState extends State<Home> {
                 onClicked: () => Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => const UserCards()),
-                ),
+                ).then((value) {
+                  print(value);
+                }),
                 icon: const Icon(Icons.library_add, size: 40),
               ),
               LogoButton(

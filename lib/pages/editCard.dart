@@ -54,6 +54,21 @@ class EditCard extends StatelessWidget {
                   LogoButton(
                     text: 'Save Changes',
                     onClicked: () async {
+                      // set the provider feilds to be consistent with the card displayed on screen
+                      context.read<CardCreator>().setCellphone(card.cellphone);
+                      context.read<CardCreator>().setPostion(card.position);
+                      context.read<CardCreator>().setEmail(card.email);
+                      context.read<CardCreator>().setCellphone(card.cellphone);
+                      context.read<CardCreator>().setWebsite(card.website);
+                      context.read<CardCreator>().setCompany(card.company);
+
+                      context
+                          .read<CardCreator>()
+                          .setCompanyAddress(card.companyaddress);
+                      context
+                          .read<CardCreator>()
+                          .setCompanyPhone(card.companyphone);
+
                       WidgetsFlutterBinding.ensureInitialized();
                       // ! get UID
                       // ! get the current id of the users' card
