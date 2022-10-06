@@ -58,9 +58,20 @@ class Item2 extends StatelessWidget {
         width: 300,
         child: CardView(
           card: BusinessCard(
-            id: "testID2",
-            name: "John",
-          ),
+              id: "testID",
+              name: "TestName",
+              company: "TestCompany",
+              position: "TestPosition",
+              companyaddress: {
+                'city': 'TestCity',
+                'country': 'TestCountry',
+                'streetname': 'TestStreet',
+                'streetnumber': '42'
+              },
+              companyphone: '123 456 7890',
+              email: 'test@testing.com',
+              website: 'www.testtesting.net',
+              cellphone: '098 765 4321'),
         ),
       ),
     );
