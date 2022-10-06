@@ -35,14 +35,15 @@ class _HomeState extends State<Home> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               context.read<Cards>().isEmpty(true)
-                  ? Card(
-                  child: SizedBox(
-                    width: 300,
-                    height: 100,
-                    child: Center(child: Text('Welcome To CardOn, add a card to get started!')),
-                  ),
-                ),
-              )
+                  ? const Card(
+                      child: SizedBox(
+                        width: 300,
+                        height: 100,
+                        child: Center(
+                            child: Text(
+                                'Welcome To CardOn, add a card to get started!')),
+                      ),
+                    )
                   : Carousel(),
               LogoButton(
                 text: 'Scan',
@@ -96,7 +97,7 @@ class _HomeState extends State<Home> {
                         .get()
                         .then((doc) {
                       //   print(doc.docs.length);
-                      
+
                       String uid = context.read<UserProvider>().userID;
                       context.read<Cards>().clear(true, uid);
                       doc.docs.forEach((element) {
