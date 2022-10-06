@@ -55,7 +55,7 @@ class EditCard extends StatelessWidget {
                     icon: const Icon(Icons.download, size: 40),
                   ),
                   LogoButton(
-                      text: 'Remove Card',
+                      text: 'Delete',
                       onClicked: () => {
                             // delete card from db
                             FirebaseFirestore.instance

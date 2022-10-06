@@ -1,3 +1,4 @@
+import 'dart:ffi';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
@@ -13,17 +14,24 @@ import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:printing/printing.dart';
 
+import '../widgets/qr_image_gen.dart';
+import 'editCard.dart';
+
 class CardPage extends StatefulWidget {
   final BusinessCard card;
   const CardPage({Key? key, required this.card}) : super(key: key);
 
   @override
-  State<CardPage> createState() => _CardPageState();
+  State<CardPage> createState() => _CardPageState(card: this.card);
 }
 
 class _CardPageState extends State<CardPage> {
   final WidgetsToImageController controller = WidgetsToImageController();
   Uint8List? bytes;
+
+  final BusinessCard card;
+
+  _CardPageState({required this.card});
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -99,7 +107,23 @@ class _CardPageState extends State<CardPage> {
                                     doc.save());
                           }
                         },
-                      )
+                      ),
+                      OutlinedButton(
+                        child: const Text('Show QR'),
+                        onPressed: () {
+                          showModalBottomSheet(
+                              context: context,
+                              shape: const RoundedRectangleBorder(
+                                borderRadius: BorderRadius.vertical(
+                                  top: Radius.circular(20),
+                                ),
+                              ),
+                              builder: (context) =>
+                                  Center(child: QRImageGen(card: card)));
+                        },
+                      ),
+                      OutlinedButton(
+                          child: const Text('Remove'), onPressed: () {}),
                     ],
                   )),
             ],
