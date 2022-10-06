@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import '../main.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +8,6 @@ import 'package:swen325_assignment_3/providers/card_provider.dart';
 
 import 'package:swen325_assignment_3/providers/user_provider.dart';
 import 'package:swen325_assignment_3/widgets/logo_button.dart';
-import '../main.dart';
 import 'package:swen325_assignment_3/data/business_card.dart';
 import '../widgets/wallet_wheel.dart';
 import 'cardPage.dart';
@@ -64,12 +63,3 @@ class Wallet extends StatelessWidget {
         ),
       );
 }
-// // // ! returns an array of cards the user owns
-// String[] ret_arry;
-// await FirebaseFirestore.instance
-//                           .collection('Cards')
-//                           .where('owner', isEqualTo: context.read<UserProvider>().userID).get().then((doc){
-//                             ret = doc.get('card');
-//                           });
-
-
