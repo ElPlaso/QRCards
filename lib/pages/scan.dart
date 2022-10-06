@@ -86,8 +86,8 @@ class _ScanState extends State<Scan> {
                                 actions: <Widget>[
                                   TextButton(
                                       onPressed: () =>
-                                          Navigator.pop(context, "Cancel"),
-                                      child: const Text("Cancel"))
+                                          Navigator.pop(context, "Okay"),
+                                      child: const Text("Okay"))
                                 ],
                               ));
                     }
