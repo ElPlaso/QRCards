@@ -15,11 +15,11 @@ class CardView extends StatelessWidget {
         background: const Color.fromARGB(255, 29, 29, 29),
         foreground: const Color.fromARGB(255, 200, 200, 200)),
     'eggshell': ThemeCard(
-        background: const Color.fromARGB(255, 29, 29, 29),
-        foreground: const Color.fromARGB(255, 200, 200, 200)),
+        background: const Color.fromARGB(255, 240, 234, 214),
+        foreground: Color.fromARGB(255, 0, 0, 0)),
     'off-white': ThemeCard(
-        background: const Color.fromARGB(255, 29, 29, 29),
-        foreground: const Color.fromARGB(255, 200, 200, 200)),
+        background: Color.fromARGB(255, 255, 255, 255),
+        foreground: Color.fromARGB(255, 0, 0, 0)),
   };
 
   const CardView({Key? key, required this.card, this.fit = BoxFit.contain})

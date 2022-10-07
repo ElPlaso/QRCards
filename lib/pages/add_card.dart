@@ -145,7 +145,7 @@ class AddCard extends StatelessWidget {
                               true);
                         }
                       });
-                      context
+                      await context
                           .read<QueryProvider>()
                           .updatePersonalcards(context);
 
