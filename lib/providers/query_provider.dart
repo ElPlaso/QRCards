@@ -26,9 +26,17 @@ class QueryProvider with ChangeNotifier {
                 .collection('Cards')
                 .doc(element)
                 .get()
-                .then((value) {
-              context.read<Cards>().add(
-                  BusinessCard.fromJson(jsonDecode(value.get('card'))), false);
+                .then((value) async {
+              BusinessCard card =
+                  BusinessCard.fromJson(jsonDecode(value.get('card')));
+              card.refreshcount = value.get("refreshcount") + 1;
+              card.scancount = element.get("scancount");
+              context.read<Cards>().add(card, false);
+
+              await FirebaseFirestore.instance
+                  .collection('Cards')
+                  .doc(card.id)
+                  .update({'scancount': FieldValue.increment(1)});
             })
           });
     });
@@ -47,14 +55,20 @@ class QueryProvider with ChangeNotifier {
         .collection('Cards')
         .where('owner', isEqualTo: context.read<UserProvider>().userID)
         .get()
-        .then((doc) {
-      String uid = context.read<UserProvider>().userID;
-      doc.docs.forEach((element) {
+        .then((doc) async {
+      //String uid = context.read<UserProvider>().userID;
+      for (var element in doc.docs) {
         print(element.get('card')); // ? Delete cards that wern't downloaded?
-        context
-            .read<Cards>()
-            .add(BusinessCard.fromJson(jsonDecode(element.get('card'))), true);
-      });
+        BusinessCard card =
+            BusinessCard.fromJson(jsonDecode(element.get('card')));
+        card.refreshcount = element.get("refreshcount") + 1;
+        card.scancount = element.get("scancount");
+        context.read<Cards>().add(card, true);
+        await FirebaseFirestore.instance
+            .collection('Cards')
+            .doc(card.id)
+            .update({'refreshcount': FieldValue.increment(1)});
+      }
     });
   }
 }

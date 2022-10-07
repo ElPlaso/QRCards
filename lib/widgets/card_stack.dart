@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../pages/editCard.dart';
-import '../pages/userCardPage.dart';
+import '../pages/user_card_page.dart';
 import '../providers/card_provider.dart';
 import 'card_view.dart';
+
+// * List view of user's cards
+// * Displays the cards stacked on top of eachother
 
 class CardStack extends StatefulWidget {
   const CardStack({super.key});
@@ -33,6 +35,7 @@ class CardStackState extends State<CardStack> {
             return Builder(
               builder: (BuildContext context) {
                 return Align(
+                  // Stack effect
                   heightFactor: 0.5,
                   alignment: Alignment.topCenter,
                   child: GestureDetector(

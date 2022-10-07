@@ -5,8 +5,8 @@ import 'package:swen325_assignment_3/pages/login.dart';
 
 class Navigate {
   static Map<String, Widget Function(BuildContext)> routes = {
-    '/home': (context) => Home(),
-    '/login': (context) => Login(),
-    '/eval': (context) => Eval(),
+    '/home': (context) => const Home(),
+    '/login': (context) => const Login(),
+    '/eval': (context) => const Eval(),
   };
 }

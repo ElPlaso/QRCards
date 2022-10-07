@@ -1,11 +1,11 @@
-// Create a Form widget.
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'package:swen325_assignment_3/widgets/button.dart';
-import 'package:swen325_assignment_3/providers/cardCreator_provider.dart';
-
+import 'package:swen325_assignment_3/providers/cardcreator_provider.dart';
 import '../data/business_card.dart';
+
+// * Form to take user input in order to create a new business card
+// * Is scrollable and features multiple text form fields
 
 class CardForm extends StatefulWidget {
   final BusinessCard card;
@@ -14,11 +14,11 @@ class CardForm extends StatefulWidget {
 
   @override
   CardFormState createState() {
-    return CardFormState(card: this.card);
+    return CardFormState(card: card);
   }
 }
 
-typedef textCallback = void Function(String input);
+typedef TextCallback = void Function(String input);
 
 // Create a corresponding State class. This class holds data related to the form.
 class CardFormState extends State<CardForm> {

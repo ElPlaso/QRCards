@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:swen325_assignment_3/pages/display.dart';
 import 'package:swen325_assignment_3/widgets/card_stack.dart';
-import 'addCard.dart';
-import '../main.dart';
-import '../widgets/button.dart';
-import '../widgets/wallet_wheel.dart';
+import 'add_card.dart';
 import '../widgets/floater.dart';
-import '../widgets/header.dart';
+
+// * Page to display user's created cards
+// * Allows user to then create a new card
 
 class UserCards extends StatelessWidget {
   const UserCards({super.key});
@@ -30,7 +28,7 @@ class UserCards extends StatelessWidget {
                         MaterialPageRoute(
                             builder: (context) => const AddCard()),
                       ),
-                  icon: Icon(Icons.add))
+                  icon: const Icon(Icons.add))
             ],
           ),
         ),

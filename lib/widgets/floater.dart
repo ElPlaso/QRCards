@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+// * Floating action button
+
 class Floater extends StatelessWidget {
   final String text;
   final VoidCallback onClicked;

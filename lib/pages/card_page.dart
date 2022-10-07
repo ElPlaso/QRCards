@@ -1,5 +1,4 @@
 import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:swen325_assignment_3/data/business_card.dart';
@@ -8,23 +7,24 @@ import 'package:swen325_assignment_3/providers/user_provider.dart';
 import 'package:widgets_to_image/widgets_to_image.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import '../main.dart';
 import '../widgets/card_view.dart';
-
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:printing/printing.dart';
-
 import '../widgets/qr_image_gen.dart';
 import '../widgets/small_button.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+
+// * Page that allows user to view a card in their wallet
+// * Requires a business card object
+// * Allows user to then save, print and remove cards from wallet
 
 class CardPage extends StatefulWidget {
   final BusinessCard card;
   const CardPage({Key? key, required this.card}) : super(key: key);
 
   @override
-  State<CardPage> createState() => _CardPageState(card: this.card);
+  State<CardPage> createState() => _CardPageState(card: card);
 }
 
 class _CardPageState extends State<CardPage> {
@@ -150,7 +150,9 @@ class _CardPageState extends State<CardPage> {
                               .update({
                             "wallet": FieldValue.arrayRemove([card.id])
                           });
-                          context.read<QueryProvider>().updateWallet(context);
+                          await context
+                              .read<QueryProvider>()
+                              .updateWallet(context);
                           Fluttertoast.showToast(
                               msg: "Card removed!",
                               toastLength: Toast.LENGTH_SHORT,

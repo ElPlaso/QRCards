@@ -4,9 +4,9 @@ import 'package:swen325_assignment_3/data/business_card.dart';
 // Provider for the list of person and collected cards.
 class Cards with ChangeNotifier {
   // Personal Card List
-  List<BusinessCard> _personalcards = [];
+  final List<BusinessCard> _personalcards = [];
   // Collected Card List
-  List<BusinessCard> _collectedcards = [];
+  final List<BusinessCard> _collectedcards = [];
   // Personal Card Getter
   List<BusinessCard> get personalcards => _personalcards;
   // Collected Card Getter

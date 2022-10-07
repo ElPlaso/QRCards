@@ -1,11 +1,10 @@
 import 'dart:convert';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:swen325_assignment_3/data/business_card.dart';
-import 'package:swen325_assignment_3/providers/cardCreator_provider.dart';
+import 'package:swen325_assignment_3/providers/cardcreator_provider.dart';
 import 'package:swen325_assignment_3/providers/user_provider.dart';
 import '../providers/card_provider.dart';
 import '../providers/query_provider.dart';
@@ -13,6 +12,8 @@ import '../widgets/card_view.dart';
 import '../widgets/logo_button.dart';
 import '../widgets/theme_toggle.dart';
 import '../widgets/card_form.dart';
+
+// * Page that allows user to preview and create cards
 
 class AddCard extends StatelessWidget {
   const AddCard({super.key});
@@ -30,12 +31,14 @@ class AddCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   const SizedBox(height: 24),
-                  CardForm(card: BusinessCard(id: '', name: '')),
+                  CardForm(
+                      card: BusinessCard(id: '', name: '', theme: 'nimbus')),
                   const ThemeToggle(),
                   LogoButton(
                     text: 'Preview',
                     onClicked: () {
                       showModalBottomSheet(
+                          // * Displays preview of business card
                           context: context,
                           shape: const RoundedRectangleBorder(
                             borderRadius: BorderRadius.vertical(
@@ -43,9 +46,10 @@ class AddCard extends StatelessWidget {
                             ),
                           ),
                           builder: (context) => CardView(
-                                  // * Create the BusinessCard from the providers
+                                  // * Create the mock BusinessCard from the providers
                                   card: BusinessCard(
                                 id: "preview",
+                                theme: context.read<CardCreator>().theme,
                                 name: context.read<CardCreator>().name,
                                 position: context.read<CardCreator>().postion,
                                 email: context.read<CardCreator>().email,
@@ -93,6 +97,7 @@ class AddCard extends StatelessWidget {
                       // * create the businesscard obj
                       var bCard = BusinessCard(
                         id: cardId,
+                        theme: context.read<CardCreator>().theme,
                         name: context.read<CardCreator>().name,
                         position: context.read<CardCreator>().postion,
                         email: context.read<CardCreator>().email,
@@ -112,6 +117,7 @@ class AddCard extends StatelessWidget {
                         'card': jsonEncode(bCard),
                         'owner': context.read<UserProvider>().userID,
                         'scancount': 0,
+                        'refreshcount': 0,
                       }).onError((error, stackTrace) =>
                               print("${error} + ${stackTrace} =========== "));
                       // Update the user profile with the ownership of the new card
@@ -129,17 +135,19 @@ class AddCard extends StatelessWidget {
                               isEqualTo: context.read<UserProvider>().userID)
                           .get()
                           .then((doc) {
-                        String uid = context.read<UserProvider>().userID;
+                        //String uid = context.read<UserProvider>().userID;
                         context.read<Cards>().clear(true);
-                        doc.docs.forEach((element) {
+                        for (var element in doc.docs) {
                           // ? Delete cards that wern't downloaded?
                           context.read<Cards>().add(
                               BusinessCard.fromJson(
                                   jsonDecode(element.get('card'))),
                               true);
-                        });
+                        }
                       });
-                      await context
+
+                      print('downloading cards');
+                      context
                           .read<QueryProvider>()
                           .updatePersonalcards(context);
 

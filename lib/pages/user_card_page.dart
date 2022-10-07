@@ -1,33 +1,34 @@
 import 'dart:typed_data';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:swen325_assignment_3/data/business_card.dart';
-import 'package:swen325_assignment_3/providers/cardCreator_provider.dart';
+import 'package:swen325_assignment_3/providers/cardcreator_provider.dart';
 import 'package:swen325_assignment_3/providers/query_provider.dart';
 import 'package:widgets_to_image/widgets_to_image.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import '../main.dart';
 import '../providers/card_provider.dart';
 import '../providers/user_provider.dart';
 import '../widgets/card_view.dart';
-
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:printing/printing.dart';
-
 import '../widgets/qr_image_gen.dart';
 import '../widgets/small_button.dart';
-import 'editCard.dart';
+import 'edit_card.dart';
+
+// * Allows user to view a card of their own
+// * Requires business card
+// * Users can then edit or delete card
+// * Users can also save, print, and view QR Code of card
 
 class UserCardPage extends StatefulWidget {
   final BusinessCard card;
   const UserCardPage({Key? key, required this.card}) : super(key: key);
 
   @override
-  State<UserCardPage> createState() => UserCardPageState(card: this.card);
+  State<UserCardPage> createState() => UserCardPageState(card: card);
 }
 
 class UserCardPageState extends State<UserCardPage> {
@@ -62,6 +63,7 @@ class UserCardPageState extends State<UserCardPage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
+                      // * Button to save image of card to phone
                       SmallButton(
                         text: 'Save Image',
                         onClicked: () async {
@@ -85,6 +87,7 @@ class UserCardPageState extends State<UserCardPage> {
                         },
                         icon: const Icon(Icons.camera_alt, size: 25),
                       ),
+                      // * Button to print card
                       SmallButton(
                         text: 'Print Card',
                         onClicked: () async {
@@ -104,7 +107,7 @@ class UserCardPageState extends State<UserCardPage> {
                                     child: pw.Transform.scale(
                                         scale: 0.65,
                                         child: pw.Image(pw.MemoryImage(bytes))),
-                                  ); // Center
+                                  );
                                 },
                               ),
                             );
@@ -115,6 +118,7 @@ class UserCardPageState extends State<UserCardPage> {
                         },
                         icon: const Icon(Icons.print_rounded, size: 25),
                       ),
+                      // * Displays QR Code of card
                       SmallButton(
                         text: 'Show QR',
                         onClicked: () {
@@ -130,6 +134,7 @@ class UserCardPageState extends State<UserCardPage> {
                         },
                         icon: const Icon(Icons.qr_code, size: 25),
                       ),
+                      // * Updates providers and navigates to edit page
                       SmallButton(
                         text: 'Edit Card',
                         onClicked: () => {
@@ -172,24 +177,20 @@ class UserCardPageState extends State<UserCardPage> {
                           }),
 
                           // ! delete every other reference to the card
-                          // TODO implement this
                           await FirebaseFirestore.instance
                               .collection('Users')
                               .where('wallet', arrayContains: card.id)
                               .get()
                               .then((value) {
-                            value.docs.forEach((element) {
+                            for (var element in value.docs) {
                               element.reference.update({
                                 'wallet': FieldValue.arrayRemove([card.id])
                               });
-                            });
+                            }
                           }),
-                          // .update({
-                          //   'personalcards': FieldValue.arrayRemove([card.id])
-                          // })
 
                           context.read<Cards>().delete(card, true),
-                          context
+                          await context
                               .read<QueryProvider>()
                               .updatePersonalcards(context),
                           Fluttertoast.showToast(

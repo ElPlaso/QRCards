@@ -3,13 +3,15 @@ import 'package:flutter/services.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:provider/provider.dart';
-import 'package:swen325_assignment_3/providers/cardCreator_provider.dart';
+import 'package:swen325_assignment_3/providers/cardcreator_provider.dart';
 import 'package:swen325_assignment_3/providers/query_provider.dart';
 import 'package:swen325_assignment_3/widgets/google_sign_in.dart';
 import 'package:swen325_assignment_3/widgets/navigate.dart';
 import 'firebase_options.dart';
 import 'package:swen325_assignment_3/providers/card_provider.dart';
 import 'package:swen325_assignment_3/providers/user_provider.dart';
+
+// * The App
 
 void main() async {
   //debugPaintSizeEnabled = true;

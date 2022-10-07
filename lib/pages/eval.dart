@@ -1,17 +1,13 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:swen325_assignment_3/pages/home.dart';
 import 'package:swen325_assignment_3/pages/login.dart';
-import 'package:swen325_assignment_3/providers/query_provider.dart';
-import '../main.dart';
-import 'scan.dart';
-import 'userCards.dart';
-import 'wallet.dart';
-import '../widgets/button.dart';
-import '../widgets/header.dart';
 import 'package:swen325_assignment_3/providers/user_provider.dart';
+
+// * Evaluates wether user is logged in or not
+// * Queries Firebase auth for current authentication status of user
+// * Redirects user to login page or home page accordingly
 
 class Eval extends StatefulWidget {
   const Eval({super.key});
@@ -41,11 +37,11 @@ class _EvalState extends State<Eval> {
               print('user ${snapshot.data?.uid}');
               context.read<UserProvider>().setUserId(snapshot.data!.uid);
 
-              return Home();
+              return const Home();
             } else {
               print('oh no');
               context.read<UserProvider>().setUserId('');
-              return Login();
+              return const Login();
             }
           }));
 }

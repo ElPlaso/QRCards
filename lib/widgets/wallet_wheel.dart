@@ -5,6 +5,8 @@ import 'package:swen325_assignment_3/pages/card_page.dart';
 import 'card_view.dart';
 import '../providers/card_provider.dart';
 
+// * Clickable Wheel Scroll View of user's collected cards
+
 class WalletWheel extends StatefulWidget {
   const WalletWheel({super.key});
 
