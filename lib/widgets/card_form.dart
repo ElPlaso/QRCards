@@ -123,6 +123,8 @@ class CardFormState extends State<CardForm> {
                         hintText: 'Enter the address of your company',
                         labelText: 'Address',
                       ),
+                      onChanged: (value) =>
+                          context.read<CardCreator>().setCompanyAddress(value),
                     ),
                     TextFormField(
                       initialValue: card.companyphone,
