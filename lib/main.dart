@@ -26,7 +26,6 @@ void main() async {
 
   /// * Init global providers, that will be used throughout the app.
   runApp(MultiProvider(providers: [
-    ChangeNotifierProvider(create: (_) => QueryProvider()),
     ChangeNotifierProvider(create: (_) => CardCreator()),
     ChangeNotifierProvider(create: (_) => QueryProvider()),
     ChangeNotifierProvider(create: (_) => Cards()),

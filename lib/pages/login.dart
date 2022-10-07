@@ -24,8 +24,8 @@ class _Login extends State<Login> {
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const HomeBanner(subheading: 'Sign in below :)'),
+            children: const [
+              HomeBanner(subheading: 'Sign in below :)'),
               SignUpWidget()
             ],
           ),
