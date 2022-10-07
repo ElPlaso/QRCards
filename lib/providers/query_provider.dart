@@ -41,7 +41,7 @@ class QueryProvider with ChangeNotifier {
               BusinessCard card =
                   BusinessCard.fromJson(jsonDecode(value.get('card')));
               card.refreshcount = value.get("refreshcount") + 1;
-              card.scancount = element.get("scancount");
+              card.scancount = value.get("scancount");
               context.read<Cards>().add(card, false);
 
               await FirebaseFirestore.instance
