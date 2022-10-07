@@ -56,9 +56,7 @@ class QueryProvider with ChangeNotifier {
         .where('owner', isEqualTo: context.read<UserProvider>().userID)
         .get()
         .then((doc) async {
-      //String uid = context.read<UserProvider>().userID;
       for (var element in doc.docs) {
-        print(element.get('card')); // ? Delete cards that wern't downloaded?
         BusinessCard card =
             BusinessCard.fromJson(jsonDecode(element.get('card')));
         card.refreshcount = element.get("refreshcount") + 1;
