@@ -3,6 +3,8 @@ import 'package:swen325_assignment_3/data/business_card.dart';
 import 'package:swen325_assignment_3/widgets/qr_image_gen.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 
+// * Widget to visualise a business card
+
 class CardView extends StatelessWidget {
   final BusinessCard card;
   final BoxFit fit;

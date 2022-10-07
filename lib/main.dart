@@ -11,6 +11,8 @@ import 'firebase_options.dart';
 import 'package:swen325_assignment_3/providers/card_provider.dart';
 import 'package:swen325_assignment_3/providers/user_provider.dart';
 
+// * The App
+
 void main() async {
   //debugPaintSizeEnabled = true;
 

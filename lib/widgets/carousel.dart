@@ -4,6 +4,8 @@ import 'package:provider/provider.dart';
 import 'card_view.dart';
 import '../providers/card_provider.dart';
 
+// * Displays user's cards as an automatic carousel
+
 class Carousel extends StatefulWidget {
   @override
   CarouselState createState() => CarouselState();

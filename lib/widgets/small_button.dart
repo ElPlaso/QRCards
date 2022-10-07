@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+// * Smaller version of logo button
+// * Requires button text and icon
+
 class SmallButton extends StatelessWidget {
   final String text;
   final VoidCallback onClicked;

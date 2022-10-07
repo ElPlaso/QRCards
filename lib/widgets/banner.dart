@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+// * Banner to welcome users to app
+// * Requires subheading String
+
 class HomeBanner extends StatelessWidget {
   final String subheading;
 

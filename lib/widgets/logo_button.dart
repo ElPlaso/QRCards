@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+// * Icon button that aligns icon to the right
+// * Requires button text and icon
+
 class LogoButton extends StatelessWidget {
   final String text;
   final VoidCallback onClicked;

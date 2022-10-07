@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:swen325_assignment_3/data/business_card.dart';
 
+// * Create QR-Code based on business card data
+// * Requires business card
+
 class QRImageGen extends StatelessWidget {
   final BusinessCard card;
 
