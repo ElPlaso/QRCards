@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:swen325_assignment_3/data/business_card.dart';
+import 'package:swen325_assignment_3/data/theme_card.dart';
 import 'package:swen325_assignment_3/widgets/qr_image_gen.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 
@@ -8,6 +9,18 @@ import 'package:auto_size_text/auto_size_text.dart';
 class CardView extends StatelessWidget {
   final BusinessCard card;
   final BoxFit fit;
+
+  static Map<String, ThemeCard> themes = {
+    'nimbus': ThemeCard(
+        background: const Color.fromARGB(255, 29, 29, 29),
+        foreground: const Color.fromARGB(255, 200, 200, 200)),
+    'eggshell': ThemeCard(
+        background: const Color.fromARGB(255, 29, 29, 29),
+        foreground: const Color.fromARGB(255, 200, 200, 200)),
+    'off-white': ThemeCard(
+        background: const Color.fromARGB(255, 29, 29, 29),
+        foreground: const Color.fromARGB(255, 200, 200, 200)),
+  };
 
   const CardView({Key? key, required this.card, this.fit = BoxFit.contain})
       : super(key: key);
@@ -21,7 +34,7 @@ class CardView extends StatelessWidget {
           width: 540,
           height: 320,
           alignment: Alignment.centerLeft,
-          color: const Color.fromARGB(255, 29, 29, 29),
+          color: themes[card.theme]?.background,
           padding: const EdgeInsets.fromLTRB(30, 15, 30, 15),
 
           //Row of columns separated by spacer
@@ -39,16 +52,16 @@ class CardView extends StatelessWidget {
                       children: [
                         AutoSizeText(
                           card.name,
-                          style: const TextStyle(
-                              color: Color.fromARGB(203, 203, 203, 255),
+                          style: TextStyle(
+                              color: themes[card.theme]?.foreground,
                               fontWeight: FontWeight.bold,
                               fontSize: 27),
                           minFontSize: 17,
                         ),
                         AutoSizeText(
                           card.position,
-                          style: const TextStyle(
-                              color: Color.fromARGB(203, 203, 203, 255),
+                          style: TextStyle(
+                              color: themes[card.theme]?.foreground,
                               fontStyle: FontStyle.italic,
                               fontSize: 17),
                           minFontSize: 9,
@@ -92,24 +105,24 @@ class CardView extends StatelessWidget {
                         AutoSizeText(
                           'E-mail: ${card.email}',
                           textAlign: TextAlign.right,
-                          style: const TextStyle(
-                              color: Color.fromARGB(203, 203, 203, 255),
+                          style: TextStyle(
+                              color: themes[card.theme]?.foreground,
                               fontSize: 15),
                           minFontSize: 5,
                         ),
                         AutoSizeText(
                           'Cellphone: ${card.cellphone}',
                           textAlign: TextAlign.right,
-                          style: const TextStyle(
-                              color: Color.fromARGB(203, 203, 203, 255),
+                          style: TextStyle(
+                              color: themes[card.theme]?.foreground,
                               fontSize: 15),
                           minFontSize: 5,
                         ),
                         AutoSizeText(
                           'Website: ${card.website}',
                           textAlign: TextAlign.right,
-                          style: const TextStyle(
-                              color: Color.fromARGB(203, 203, 203, 255),
+                          style: TextStyle(
+                              color: themes[card.theme]?.foreground,
                               fontSize: 15),
                           minFontSize: 5,
                         ),
@@ -125,8 +138,8 @@ class CardView extends StatelessWidget {
                         AutoSizeText(
                           card.company,
                           textAlign: TextAlign.right,
-                          style: const TextStyle(
-                            color: Color.fromARGB(203, 203, 203, 255),
+                          style: TextStyle(
+                            color: themes[card.theme]?.foreground,
                             fontWeight: FontWeight.bold,
                             fontSize: 19,
                           ),
@@ -135,8 +148,8 @@ class CardView extends StatelessWidget {
                         AutoSizeText(
                           'Address: ${card.companyaddress}',
                           textAlign: TextAlign.right,
-                          style: const TextStyle(
-                            color: Color.fromARGB(203, 203, 203, 255),
+                          style: TextStyle(
+                            color: themes[card.theme]?.foreground,
                             fontStyle: FontStyle.italic,
                             fontSize: 15,
                           ),
@@ -145,8 +158,8 @@ class CardView extends StatelessWidget {
                         AutoSizeText(
                           'Phone: ${card.companyphone}',
                           textAlign: TextAlign.right,
-                          style: const TextStyle(
-                              color: Color.fromARGB(203, 203, 203, 255),
+                          style: TextStyle(
+                              color: themes[card.theme]?.foreground,
                               fontStyle: FontStyle.italic,
                               fontSize: 15),
                           minFontSize: 5,
