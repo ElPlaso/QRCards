@@ -119,7 +119,7 @@ class AddCard extends StatelessWidget {
                         'scancount': 0,
                         'refreshcount': 0,
                       }).onError((error, stackTrace) =>
-                              print("${error} + ${stackTrace} =========== "));
+                              ("${error} + ${stackTrace} =========== "));
                       // Update the user profile with the ownership of the new card
                       await FirebaseFirestore.instance
                           .collection('Users')
@@ -127,7 +127,7 @@ class AddCard extends StatelessWidget {
                           .update({
                         'personalcards': FieldValue.arrayUnion([cardId])
                       }).onError((error, stackTrace) =>
-                              print("$error + $stackTrace ==========="));
+                              ("$error + $stackTrace ==========="));
 
                       await FirebaseFirestore.instance
                           .collection('Cards')
@@ -145,8 +145,6 @@ class AddCard extends StatelessWidget {
                               true);
                         }
                       });
-
-                      print('downloading cards');
                       context
                           .read<QueryProvider>()
                           .updatePersonalcards(context);

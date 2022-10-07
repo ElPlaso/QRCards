@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_database/firebase_database.dart';
 import 'package:provider/provider.dart';
 import 'package:swen325_assignment_3/providers/cardcreator_provider.dart';
 import 'package:swen325_assignment_3/providers/query_provider.dart';

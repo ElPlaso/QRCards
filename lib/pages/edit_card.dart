@@ -96,7 +96,7 @@ class EditCard extends StatelessWidget {
                         'card': jsonEncode(bCard),
                         'owner': context.read<UserProvider>().userID,
                       }).onError((error, stackTrace) =>
-                              print("${error} + ${stackTrace} =========== "));
+                              ("${error} + ${stackTrace} =========== "));
                       // ! is this how we can exit the create page flutterly?
 
                       await context

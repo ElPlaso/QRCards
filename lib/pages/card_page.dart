@@ -24,6 +24,7 @@ class CardPage extends StatefulWidget {
   const CardPage({Key? key, required this.card}) : super(key: key);
 
   @override
+  // ignore: no_logic_in_create_state
   State<CardPage> createState() => _CardPageState(card: card);
 }
 
