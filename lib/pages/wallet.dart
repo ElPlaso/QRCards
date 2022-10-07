@@ -21,7 +21,7 @@ class Wallet extends StatelessWidget {
             children: <Widget>[
               const WalletWheel(),
               SmallButton(
-                text: 'Refresh Counts',
+                text: 'Refresh Wallet',
                 onClicked: () async =>
                     {await context.read<QueryProvider>().updateWallet(context)},
                 icon: const Icon(Icons.refresh, size: 25),
