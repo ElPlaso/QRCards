@@ -190,7 +190,7 @@ class UserCardPageState extends State<UserCardPage> {
                           }),
 
                           context.read<Cards>().delete(card, true),
-                          context
+                          await context
                               .read<QueryProvider>()
                               .updatePersonalcards(context),
                           Fluttertoast.showToast(

@@ -24,10 +24,10 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   @override
-  void initState() {
+  void initState() async {
     super.initState();
-    context.read<QueryProvider>().updatePersonalcards(context);
-    context.read<QueryProvider>().updateWallet(context);
+    await context.read<QueryProvider>().updatePersonalcards(context);
+    await context.read<QueryProvider>().updateWallet(context);
   }
 
   final scaffoldKey = GlobalKey<ScaffoldState>();

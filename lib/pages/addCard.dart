@@ -160,7 +160,7 @@ class AddCard extends StatelessWidget {
                       });
 
                       print('downloading cards');
-                      context
+                      await context
                           .read<QueryProvider>()
                           .updatePersonalcards(context);
 

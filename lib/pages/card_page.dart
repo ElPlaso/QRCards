@@ -150,7 +150,9 @@ class _CardPageState extends State<CardPage> {
                               .update({
                             "wallet": FieldValue.arrayRemove([card.id])
                           });
-                          context.read<QueryProvider>().updateWallet(context);
+                          await context
+                              .read<QueryProvider>()
+                              .updateWallet(context);
                           Fluttertoast.showToast(
                               msg: "Card removed!",
                               toastLength: Toast.LENGTH_SHORT,

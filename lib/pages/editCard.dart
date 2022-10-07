@@ -97,7 +97,7 @@ class EditCard extends StatelessWidget {
                               print("${error} + ${stackTrace} =========== "));
                       // ! is this how we can exit the create page flutterly?
 
-                      context
+                      await context
                           .read<QueryProvider>()
                           .updatePersonalcards(context);
                       Fluttertoast.showToast(
