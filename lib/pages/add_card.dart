@@ -33,6 +33,8 @@ class AddCard extends StatelessWidget {
                   CardForm(
                       card: BusinessCard(id: '', name: '', theme: 'nimbus')),
                   const ThemeToggle(),
+
+                  /// * used as a style choice to display the icon to the right.
                   LogoButton(
                     text: 'Preview',
                     onClicked: () {
@@ -64,6 +66,9 @@ class AddCard extends StatelessWidget {
                     },
                     icon: const Icon(Icons.remove_red_eye, size: 40),
                   ),
+
+                  /// * Sends a upload query to the data base
+                  /// *
                   LogoButton(
                     text: 'Upload',
                     onClicked: () async {
@@ -72,6 +77,7 @@ class AddCard extends StatelessWidget {
                       // * get the current id of the users' card
                       String cardId = '0';
                       try {
+                        /// * if the user has an account
                         await FirebaseFirestore.instance
                             .collection('Users')
                             .doc(context.read<QueryProvider>().userID)
@@ -84,6 +90,7 @@ class AddCard extends StatelessWidget {
                             .set({"card-id": 0, 'wallet': []});
                       }
 
+                      /// * Gets the ID of the next card to upload.
                       await FirebaseFirestore.instance
                           .collection('Users')
                           .doc(context.read<QueryProvider>().userID)
@@ -119,6 +126,7 @@ class AddCard extends StatelessWidget {
                         'refreshcount': 0,
                       }).onError((error, stackTrace) =>
                               ("${error} + ${stackTrace} =========== "));
+
                       // Update the user profile with the ownership of the new card
                       await FirebaseFirestore.instance
                           .collection('Users')
@@ -128,22 +136,23 @@ class AddCard extends StatelessWidget {
                       }).onError((error, stackTrace) =>
                               ("$error + $stackTrace ==========="));
 
-                      await FirebaseFirestore.instance
-                          .collection('Cards')
-                          .where('owner',
-                              isEqualTo: context.read<QueryProvider>().userID)
-                          .get()
-                          .then((doc) {
-                        //String uid = context.read<QueryProvider>().userID;
-                        context.read<Cards>().clear(true);
-                        for (var element in doc.docs) {
-                          // ? Delete cards that wern't downloaded?
-                          context.read<Cards>().add(
-                              BusinessCard.fromJson(
-                                  jsonDecode(element.get('card'))),
-                              true);
-                        }
-                      });
+                      // * Updates the personal card provider with the latest
+                      // * * copy of the users cards
+                      //   await FirebaseFirestore.instance
+                      //       .collection('Cards')
+                      //       .where('owner',
+                      //           isEqualTo: context.read<QueryProvider>().userID)
+                      //       .get()
+                      //       .then((doc) {
+                      //     context.read<Cards>().clear(true);
+                      //     for (var element in doc.docs) {
+                      //       context.read<Cards>().add(
+                      //           BusinessCard.fromJson(
+                      //               jsonDecode(element.get('card'))),
+                      //           true);
+                      //     }
+                      //   });
+
                       await context
                           .read<QueryProvider>()
                           .updatePersonalcards(context);

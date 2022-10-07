@@ -20,6 +20,9 @@ class Wallet extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               const WalletWheel(),
+
+              /// * This button sends a refresh request to the Database for the
+              /// * most modern version of the QRCards stored in the users wallet.
               SmallButton(
                 text: 'Refresh Wallet',
                 onClicked: () async =>

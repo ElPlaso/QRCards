@@ -72,6 +72,7 @@ class _CardPageState extends State<CardPage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
+                      /// * Saves A image of the QRCard to the users android gallery
                       SmallButton(
                         text: 'Save Image',
 
@@ -101,6 +102,8 @@ class _CardPageState extends State<CardPage> {
                         },
                         icon: const Icon(Icons.camera_alt, size: 25),
                       ),
+
+                      /// * Sends a print request to printers connected to the local netwok
                       SmallButton(
                         text: 'Print Card',
 
@@ -137,6 +140,8 @@ class _CardPageState extends State<CardPage> {
                         },
                         icon: const Icon(Icons.print, size: 25),
                       ),
+
+                      /// * Shows the QR code of the selected QRCard
                       SmallButton(
                         text: 'Show QR',
                         onClicked: () {
@@ -152,8 +157,10 @@ class _CardPageState extends State<CardPage> {
                         },
                         icon: const Icon(Icons.qr_code, size: 25),
                       ),
+
+                      /// * Removes the selected card from the users' wallet
                       SmallButton(
-                        text: 'Remove from wallet',
+                        text: 'Discard',
                         onClicked: () async {
                           await FirebaseFirestore.instance
                               .collection('Users')
