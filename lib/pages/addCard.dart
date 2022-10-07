@@ -43,7 +43,7 @@ class AddCard extends StatelessWidget {
                             ),
                           ),
                           builder: (context) => CardView(
-                                  // * Create the BusinessCard
+                                  // * Create the BusinessCard from the providers
                                   card: BusinessCard(
                                 id: "preview",
                                 name: context.read<CardCreator>().name,
@@ -65,39 +65,22 @@ class AddCard extends StatelessWidget {
                     text: 'Upload',
                     onClicked: () async {
                       WidgetsFlutterBinding.ensureInitialized();
-                      // ! get UID
-                      await FirebaseFirestore.instance
-                          .collection('Users')
-                          .doc(context.read<UserProvider>().userID)
-                          .get()
-                          .then((document) => {
-                                if (!document.exists)
-                                  {
-                                    FirebaseFirestore.instance
-                                        .collection('Users')
-                                        .doc(
-                                            context.read<UserProvider>().userID)
-                                        .set({"card-id": 0, 'wallet': []})
-                                  }
-                                else
-                                  {
-                                    FirebaseFirestore.instance
-                                        .collection('Users')
-                                        .doc(
-                                            context.read<UserProvider>().userID)
-                                        .update({
-                                      'card-id': FieldValue.increment(1)
-                                    })
-                                  }
-                              });
-
-                      FirebaseFirestore.instance
-                          .collection('Users')
-                          .doc(context.read<UserProvider>().userID)
-                          .update({'card-id': FieldValue.increment(1)});
-
+                      // * Increment the ID
                       // * get the current id of the users' card
-                      String cardId = '';
+                      String cardId = '0';
+                      try {
+                        await FirebaseFirestore.instance
+                            .collection('Users')
+                            .doc(context.read<UserProvider>().userID)
+                            .update({'card-id': FieldValue.increment(1)});
+                      } on FirebaseException catch (e) {
+                        // * if the user was not found init their profile
+                        await FirebaseFirestore.instance
+                            .collection('Users')
+                            .doc(context.read<UserProvider>().userID)
+                            .set({"card-id": 0, 'wallet': []});
+                      }
+
                       await FirebaseFirestore.instance
                           .collection('Users')
                           .doc(context.read<UserProvider>().userID)
@@ -120,7 +103,7 @@ class AddCard extends StatelessWidget {
                             context.read<CardCreator>().companyAddress,
                         companyphone: context.read<CardCreator>().companyPhone,
                       );
-                      // past the bussiness card to the DB
+                      // pass the bussiness card to the DB
                       await FirebaseFirestore.instance
                           .collection('Cards')
                           .doc(cardId)
@@ -156,9 +139,7 @@ class AddCard extends StatelessWidget {
                               true);
                         });
                       });
-
-                      print('downloading cards');
-                      context
+                      await context
                           .read<QueryProvider>()
                           .updatePersonalcards(context);
 
@@ -170,7 +151,6 @@ class AddCard extends StatelessWidget {
                           backgroundColor: Colors.blue,
                           textColor: Colors.white,
                           fontSize: 16.0);
-                      // ! is this how we can exit the create page flutterly?
 
                       Navigator.pop(context);
                     },
