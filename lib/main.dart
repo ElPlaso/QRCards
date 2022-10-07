@@ -8,7 +8,6 @@ import 'package:swen325_assignment_3/widgets/google_sign_in.dart';
 import 'package:swen325_assignment_3/widgets/navigate.dart';
 import 'firebase_options.dart';
 import 'package:swen325_assignment_3/providers/card_provider.dart';
-import 'package:swen325_assignment_3/providers/user_provider.dart';
 
 // * The App
 
@@ -29,7 +28,7 @@ void main() async {
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(create: (_) => QueryProvider()),
     ChangeNotifierProvider(create: (_) => CardCreator()),
-    ChangeNotifierProvider(create: (_) => UserProvider()),
+    ChangeNotifierProvider(create: (_) => QueryProvider()),
     ChangeNotifierProvider(create: (_) => Cards()),
   ], child: const MyApp()));
 }

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:swen325_assignment_3/pages/home.dart';
 import 'package:swen325_assignment_3/pages/login.dart';
-import 'package:swen325_assignment_3/providers/user_provider.dart';
+import 'package:swen325_assignment_3/providers/query_provider.dart';
 
 // * Evaluates wether user is logged in or not
 // * Queries Firebase auth for current authentication status of user
@@ -33,11 +33,11 @@ class _EvalState extends State<Eval> {
                 child: Text('something went wrong'),
               );
             } else if (snapshot.hasData) {
-              context.read<UserProvider>().setUserId(snapshot.data!.uid);
+              context.read<QueryProvider>().setUserId(snapshot.data!.uid);
 
               return const Home();
             } else {
-              context.read<UserProvider>().setUserId('');
+              context.read<QueryProvider>().setUserId('');
               return const Login();
             }
           }));

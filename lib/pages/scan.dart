@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:swen325_assignment_3/data/business_card.dart';
 import 'package:swen325_assignment_3/providers/card_provider.dart';
-import 'package:swen325_assignment_3/providers/user_provider.dart';
+import 'package:swen325_assignment_3/providers/query_provider.dart';
 import '../main.dart';
 
 // * Allows user to scan a QR-Code
@@ -51,21 +51,22 @@ class _ScanState extends State<Scan> {
                       // ! append new card to current users' scanned cards
                       await FirebaseFirestore.instance
                           .collection('Users')
-                          .doc(context.read<UserProvider>().userID)
+                          .doc(context.read<QueryProvider>().userID)
                           .get()
                           .then((document) => {
                                 if (!document.exists)
                                   {
                                     FirebaseFirestore.instance
                                         .collection('Users')
-                                        .doc(
-                                            context.read<UserProvider>().userID)
+                                        .doc(context
+                                            .read<QueryProvider>()
+                                            .userID)
                                         .set({"card-id": 0, 'wallet': []})
                                   }
                               });
                       await FirebaseFirestore.instance
                           .collection('Users')
-                          .doc(context.read<UserProvider>().getUserID)
+                          .doc(context.read<QueryProvider>().getUserID)
                           .update({
                         'wallet': FieldValue.arrayUnion([cardMap['id']])
                       });

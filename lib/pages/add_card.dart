@@ -5,9 +5,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:swen325_assignment_3/data/business_card.dart';
 import 'package:swen325_assignment_3/providers/cardcreator_provider.dart';
-import 'package:swen325_assignment_3/providers/user_provider.dart';
+import 'package:swen325_assignment_3/providers/query_provider.dart';
 import '../providers/card_provider.dart';
-import '../providers/query_provider.dart';
 import '../widgets/card_view.dart';
 import '../widgets/logo_button.dart';
 import '../widgets/theme_toggle.dart';
@@ -75,23 +74,23 @@ class AddCard extends StatelessWidget {
                       try {
                         await FirebaseFirestore.instance
                             .collection('Users')
-                            .doc(context.read<UserProvider>().userID)
+                            .doc(context.read<QueryProvider>().userID)
                             .update({'card-id': FieldValue.increment(1)});
                       } on FirebaseException catch (e) {
                         // * if the user was not found init their profile
                         await FirebaseFirestore.instance
                             .collection('Users')
-                            .doc(context.read<UserProvider>().userID)
+                            .doc(context.read<QueryProvider>().userID)
                             .set({"card-id": 0, 'wallet': []});
                       }
 
                       await FirebaseFirestore.instance
                           .collection('Users')
-                          .doc(context.read<UserProvider>().userID)
+                          .doc(context.read<QueryProvider>().userID)
                           .get()
                           .then((doc) {
                         int val = doc.get('card-id');
-                        cardId = "${context.read<UserProvider>().userID}-$val";
+                        cardId = "${context.read<QueryProvider>().userID}-$val";
                       });
 
                       // * create the businesscard obj
@@ -115,7 +114,7 @@ class AddCard extends StatelessWidget {
                           .set({
                         'card_id': cardId,
                         'card': jsonEncode(bCard),
-                        'owner': context.read<UserProvider>().userID,
+                        'owner': context.read<QueryProvider>().userID,
                         'scancount': 0,
                         'refreshcount': 0,
                       }).onError((error, stackTrace) =>
@@ -123,7 +122,7 @@ class AddCard extends StatelessWidget {
                       // Update the user profile with the ownership of the new card
                       await FirebaseFirestore.instance
                           .collection('Users')
-                          .doc(context.read<UserProvider>().userID)
+                          .doc(context.read<QueryProvider>().userID)
                           .update({
                         'personalcards': FieldValue.arrayUnion([cardId])
                       }).onError((error, stackTrace) =>
@@ -132,10 +131,10 @@ class AddCard extends StatelessWidget {
                       await FirebaseFirestore.instance
                           .collection('Cards')
                           .where('owner',
-                              isEqualTo: context.read<UserProvider>().userID)
+                              isEqualTo: context.read<QueryProvider>().userID)
                           .get()
                           .then((doc) {
-                        //String uid = context.read<UserProvider>().userID;
+                        //String uid = context.read<QueryProvider>().userID;
                         context.read<Cards>().clear(true);
                         for (var element in doc.docs) {
                           // ? Delete cards that wern't downloaded?

@@ -9,7 +9,6 @@ import 'package:widgets_to_image/widgets_to_image.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import '../providers/card_provider.dart';
-import '../providers/user_provider.dart';
 import '../widgets/card_view.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
@@ -191,7 +190,7 @@ class UserCardPageState extends State<UserCardPage> {
                           // delete card from owners' personal collection
                           await FirebaseFirestore.instance
                               .collection('Users')
-                              .doc(context.read<UserProvider>().getUserID)
+                              .doc(context.read<QueryProvider>().getUserID)
                               .update({
                             'personalcards': FieldValue.arrayRemove([card.id])
                           }),

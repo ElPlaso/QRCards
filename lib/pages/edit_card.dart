@@ -6,8 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:swen325_assignment_3/data/business_card.dart';
 import 'package:swen325_assignment_3/pages/user_card_page.dart';
 import 'package:swen325_assignment_3/providers/cardcreator_provider.dart';
-import 'package:swen325_assignment_3/providers/user_provider.dart';
-import '../providers/query_provider.dart';
+import 'package:swen325_assignment_3/providers/query_provider.dart';
 import '../widgets/card_view.dart';
 import '../widgets/logo_button.dart';
 import '../widgets/theme_toggle.dart';
@@ -94,7 +93,7 @@ class EditCard extends StatelessWidget {
                           .update({
                         'card_id': cardId,
                         'card': jsonEncode(bCard),
-                        'owner': context.read<UserProvider>().userID,
+                        'owner': context.read<QueryProvider>().userID,
                       }).onError((error, stackTrace) =>
                               ("${error} + ${stackTrace} =========== "));
                       // ! is this how we can exit the create page flutterly?
