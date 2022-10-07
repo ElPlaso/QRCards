@@ -47,7 +47,6 @@ class QueryProvider with ChangeNotifier {
   /// *
   ///
   Future<void> updatePersonalcards(BuildContext context) async {
-    // print('downloading cards');
     if (!context.read<Cards>().isEmpty(true)) {
       context.read<Cards>().clear(true);
     }
