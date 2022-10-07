@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:swen325_assignment_3/data/business_card.dart';
-import 'package:swen325_assignment_3/pages/userCardPage.dart';
+import 'package:swen325_assignment_3/pages/user_card_page.dart';
 import 'package:swen325_assignment_3/providers/cardCreator_provider.dart';
 import 'package:swen325_assignment_3/providers/user_provider.dart';
 import '../providers/query_provider.dart';

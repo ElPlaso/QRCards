@@ -37,11 +37,11 @@ class _EvalState extends State<Eval> {
               print('user ${snapshot.data?.uid}');
               context.read<UserProvider>().setUserId(snapshot.data!.uid);
 
-              return Home();
+              return const Home();
             } else {
               print('oh no');
               context.read<UserProvider>().setUserId('');
-              return Login();
+              return const Login();
             }
           }));
 }

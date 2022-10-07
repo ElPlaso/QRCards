@@ -29,7 +29,7 @@ void main() async {
 //   });
 
   // ! idk just following tut
-  FirebaseDatabase db = FirebaseDatabase.instance;
+  //FirebaseDatabase db = FirebaseDatabase.instance;
 
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,

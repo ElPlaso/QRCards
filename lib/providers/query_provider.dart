@@ -48,13 +48,13 @@ class QueryProvider with ChangeNotifier {
         .where('owner', isEqualTo: context.read<UserProvider>().userID)
         .get()
         .then((doc) {
-      String uid = context.read<UserProvider>().userID;
-      doc.docs.forEach((element) {
+      //String uid = context.read<UserProvider>().userID;
+      for (var element in doc.docs) {
         print(element.get('card')); // ? Delete cards that wern't downloaded?
         context
             .read<Cards>()
             .add(BusinessCard.fromJson(jsonDecode(element.get('card'))), true);
-      });
+      }
     });
   }
 }

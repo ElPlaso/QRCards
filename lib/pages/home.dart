@@ -6,7 +6,7 @@ import 'package:swen325_assignment_3/providers/query_provider.dart';
 import '../main.dart';
 import '../widgets/banner.dart';
 import 'scan.dart';
-import 'userCards.dart';
+import 'user_cards.dart';
 import 'wallet.dart';
 import '../widgets/logo_button.dart';
 import '../widgets/carousel.dart';

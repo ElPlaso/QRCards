@@ -15,7 +15,7 @@ class Wallet extends StatelessWidget {
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[const WalletWheel()],
+            children: const <Widget>[WalletWheel()],
           ),
         ),
       );

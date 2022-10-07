@@ -148,15 +148,15 @@ class AddCard extends StatelessWidget {
                               isEqualTo: context.read<UserProvider>().userID)
                           .get()
                           .then((doc) {
-                        String uid = context.read<UserProvider>().userID;
+                        //String uid = context.read<UserProvider>().userID;
                         context.read<Cards>().clear(true);
-                        doc.docs.forEach((element) {
+                        for (var element in doc.docs) {
                           // ? Delete cards that wern't downloaded?
                           context.read<Cards>().add(
                               BusinessCard.fromJson(
                                   jsonDecode(element.get('card'))),
                               true);
-                        });
+                        }
                       });
 
                       print('downloading cards');

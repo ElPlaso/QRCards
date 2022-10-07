@@ -16,7 +16,7 @@ import 'package:pdf/widgets.dart' as pw;
 import 'package:printing/printing.dart';
 import '../widgets/qr_image_gen.dart';
 import '../widgets/small_button.dart';
-import 'editCard.dart';
+import 'edit_card.dart';
 
 // * Allows user to view a card of their own
 // * Requires business card
@@ -28,7 +28,7 @@ class UserCardPage extends StatefulWidget {
   const UserCardPage({Key? key, required this.card}) : super(key: key);
 
   @override
-  State<UserCardPage> createState() => UserCardPageState(card: this.card);
+  State<UserCardPage> createState() => UserCardPageState(card: card);
 }
 
 class UserCardPageState extends State<UserCardPage> {
@@ -182,11 +182,11 @@ class UserCardPageState extends State<UserCardPage> {
                               .where('wallet', arrayContains: card.id)
                               .get()
                               .then((value) {
-                            value.docs.forEach((element) {
+                            for (var element in value.docs) {
                               element.reference.update({
                                 'wallet': FieldValue.arrayRemove([card.id])
                               });
-                            });
+                            }
                           }),
 
                           context.read<Cards>().delete(card, true),

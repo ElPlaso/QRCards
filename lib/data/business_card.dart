@@ -1,5 +1,3 @@
-import 'dart:collection';
-
 // Class representing a Business Card.
 class BusinessCard {
   String id;

@@ -14,11 +14,11 @@ class CardForm extends StatefulWidget {
 
   @override
   CardFormState createState() {
-    return CardFormState(card: this.card);
+    return CardFormState(card: card);
   }
 }
 
-typedef textCallback = void Function(String input);
+typedef TextCallback = void Function(String input);
 
 // Create a corresponding State class. This class holds data related to the form.
 class CardFormState extends State<CardForm> {

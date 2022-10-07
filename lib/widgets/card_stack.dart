@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../pages/userCardPage.dart';
+import '../pages/user_card_page.dart';
 import '../providers/card_provider.dart';
 import 'card_view.dart';
 

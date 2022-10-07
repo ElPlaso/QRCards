@@ -7,6 +7,8 @@ import '../providers/card_provider.dart';
 // * Displays user's cards as an automatic carousel
 
 class Carousel extends StatefulWidget {
+  const Carousel({super.key});
+
   @override
   CarouselState createState() => CarouselState();
 }
@@ -24,8 +26,8 @@ class CarouselState extends State<Carousel> {
   Widget build(BuildContext context) => CarouselSlider(
         options: CarouselOptions(
           autoPlay: true,
-          autoPlayInterval: Duration(seconds: 3),
-          autoPlayAnimationDuration: Duration(milliseconds: 1000),
+          autoPlayInterval: const Duration(seconds: 3),
+          autoPlayAnimationDuration: const Duration(milliseconds: 1000),
           autoPlayCurve: Curves.fastOutSlowIn,
           pauseAutoPlayOnTouch: true,
         ),
