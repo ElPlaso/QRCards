@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:swen325_assignment_3/widgets/floater.dart';
 import '../providers/query_provider.dart';
 import '../widgets/wallet_wheel.dart';
-import '../widgets/small_button.dart';
 
 // * Page to display whallet wheel of user's collected cards
 
@@ -23,7 +23,7 @@ class Wallet extends StatelessWidget {
 
               /// * This button sends a refresh request to the Database for the
               /// * most modern version of the QRCards stored in the users wallet.
-              SmallButton(
+              Floater(
                 text: 'Refresh Wallet',
                 onClicked: () async =>
                     {await context.read<QueryProvider>().updateWallet(context)},

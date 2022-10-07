@@ -71,10 +71,7 @@ class _ScanState extends State<Scan> {
                         'wallet': FieldValue.arrayUnion([cardMap['id']])
                       });
 
-                      context
-                          .read<Cards>()
-                          .add(BusinessCard.fromJson(cardMap), false);
-                      controller.stop();
+                      await context.read<QueryProvider>().updateWallet(context);
                       Fluttertoast.showToast(
                           msg: "Card scanned!",
                           toastLength: Toast.LENGTH_SHORT,
