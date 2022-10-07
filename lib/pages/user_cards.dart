@@ -21,6 +21,7 @@ class UserCards extends StatelessWidget {
             children: <Widget>[
               const SizedBox(height: 24),
               const CardStack(),
+              // Navigates to the add card page
               Floater(
                   text: 'Add Card',
                   onClicked: () => Navigator.push(

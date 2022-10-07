@@ -11,8 +11,6 @@ class QueryProvider with ChangeNotifier {
   ///
   /// * Populates the context  _collectedcards
   ///
-  ///
-  ///
   String userID = '';
   String get getUserID => userID;
   void setUserId(String? uid) {
@@ -23,6 +21,9 @@ class QueryProvider with ChangeNotifier {
     }
   }
 
+  /// * Collects the cards found in the users wallet and stores the most updated
+  /// * * version locally in the Cards provider
+  ///
   Future<void> updateWallet(BuildContext context) async {
     if (!context.read<Cards>().isEmpty(false)) {
       context.read<Cards>().clear(false);
@@ -51,13 +52,6 @@ class QueryProvider with ChangeNotifier {
                     .doc(card.id)
                     .update({'refreshcount': FieldValue.increment(1)});
                 card.refreshcount = value.get("refreshcount") + 1;
-                // if (scan) {
-                //   await FirebaseFirestore.instance
-                //       .collection('Cards')
-                //       .doc(card.id)
-                //       .update({'scancount': FieldValue.increment(1)});
-                //   card.refreshcount = value.get("scancount") + 1;
-                // }
               }
             })
           });
@@ -65,7 +59,7 @@ class QueryProvider with ChangeNotifier {
   }
 
   ///
-  /// * Populates the context  _personalcards
+  /// * Populates the Cards provider with all the users personally created cards
   /// *
   ///
   Future<void> updatePersonalcards(BuildContext context) async {
@@ -83,10 +77,6 @@ class QueryProvider with ChangeNotifier {
         card.refreshcount = element.get("refreshcount");
         card.scancount = element.get("scancount");
         context.read<Cards>().add(card, true);
-        //   await FirebaseFirestore.instance
-        //       .collection('Cards')
-        //       .doc(card.id)
-        //       .update({'refreshcount': FieldValue.increment(1)});
       }
     });
   }

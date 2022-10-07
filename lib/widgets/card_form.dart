@@ -32,6 +32,9 @@ class CardFormState extends State<CardForm> {
 
   CardFormState({required this.card});
 
+  /// * The card is constructed from named text fields below.
+  /// * The corresponding provider fields are updated with every change to the text
+  /// * * fields
   @override
   Widget build(BuildContext context) => Container(
       margin: const EdgeInsets.only(left: 20.0, right: 20.0, bottom: 10),

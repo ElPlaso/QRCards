@@ -6,7 +6,6 @@ import 'package:provider/provider.dart';
 import 'package:swen325_assignment_3/data/business_card.dart';
 import 'package:swen325_assignment_3/providers/cardcreator_provider.dart';
 import 'package:swen325_assignment_3/providers/query_provider.dart';
-import '../providers/card_provider.dart';
 import '../widgets/card_view.dart';
 import '../widgets/logo_button.dart';
 import '../widgets/theme_toggle.dart';
@@ -138,20 +137,6 @@ class AddCard extends StatelessWidget {
 
                       // * Updates the personal card provider with the latest
                       // * * copy of the users cards
-                      //   await FirebaseFirestore.instance
-                      //       .collection('Cards')
-                      //       .where('owner',
-                      //           isEqualTo: context.read<QueryProvider>().userID)
-                      //       .get()
-                      //       .then((doc) {
-                      //     context.read<Cards>().clear(true);
-                      //     for (var element in doc.docs) {
-                      //       context.read<Cards>().add(
-                      //           BusinessCard.fromJson(
-                      //               jsonDecode(element.get('card'))),
-                      //           true);
-                      //     }
-                      //   });
 
                       await context
                           .read<QueryProvider>()

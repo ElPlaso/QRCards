@@ -208,10 +208,15 @@ class UserCardPageState extends State<UserCardPage> {
                             }
                           }),
 
+                          /// * Deletes seleted card from local storage
                           context.read<Cards>().delete(card, true),
+
+                          /// * refreshes the local storage
                           await context
                               .read<QueryProvider>()
                               .updatePersonalcards(context),
+
+                          /// * Popup to notify user of change.
                           Fluttertoast.showToast(
                               msg: "Card deleted!",
                               toastLength: Toast.LENGTH_SHORT,
