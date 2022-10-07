@@ -40,14 +40,25 @@ class QueryProvider with ChangeNotifier {
                 .then((value) async {
               BusinessCard card =
                   BusinessCard.fromJson(jsonDecode(value.get('card')));
-              card.refreshcount = value.get("refreshcount") + 1;
+
+              card.refreshcount = value.get("refreshcount");
               card.scancount = value.get("scancount");
               context.read<Cards>().add(card, false);
 
-              await FirebaseFirestore.instance
-                  .collection('Cards')
-                  .doc(card.id)
-                  .update({'scancount': FieldValue.increment(1)});
+              if (element != userID) {
+                await FirebaseFirestore.instance
+                    .collection('Cards')
+                    .doc(card.id)
+                    .update({'refreshcount': FieldValue.increment(1)});
+                card.refreshcount = value.get("refreshcount") + 1;
+                // if (scan) {
+                //   await FirebaseFirestore.instance
+                //       .collection('Cards')
+                //       .doc(card.id)
+                //       .update({'scancount': FieldValue.increment(1)});
+                //   card.refreshcount = value.get("scancount") + 1;
+                // }
+              }
             })
           });
     });
@@ -69,13 +80,13 @@ class QueryProvider with ChangeNotifier {
       for (var element in doc.docs) {
         BusinessCard card =
             BusinessCard.fromJson(jsonDecode(element.get('card')));
-        card.refreshcount = element.get("refreshcount") + 1;
+        card.refreshcount = element.get("refreshcount");
         card.scancount = element.get("scancount");
         context.read<Cards>().add(card, true);
-        await FirebaseFirestore.instance
-            .collection('Cards')
-            .doc(card.id)
-            .update({'refreshcount': FieldValue.increment(1)});
+        //   await FirebaseFirestore.instance
+        //       .collection('Cards')
+        //       .doc(card.id)
+        //       .update({'refreshcount': FieldValue.increment(1)});
       }
     });
   }

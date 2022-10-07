@@ -73,15 +73,15 @@ class UserCardPageState extends State<UserCardPage> {
                           Text('Refresh count: ${card.refreshcount}')
                         ],
                       ),
-                      SmallButton(
-                        text: 'Refresh Counts',
-                        onClicked: () async => {
-                          await context
-                              .read<QueryProvider>()
-                              .updatePersonalcards(context)
-                        },
-                        icon: const Icon(Icons.refresh, size: 25),
-                      ),
+                      // SmallButton(
+                      //   text: 'Refresh Counts',
+                      //   onClicked: () async => {
+                      //     await context
+                      //         .read<QueryProvider>()
+                      //         .updatePersonalcards(context)
+                      //   },
+                      //   icon: const Icon(Icons.refresh, size: 25),
+                      // ),
                       // * Button to save image of card to phone
                       SmallButton(
                         text: 'Save Image',
