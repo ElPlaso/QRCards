@@ -25,7 +25,6 @@ class _EvalState extends State<Eval> {
           stream: FirebaseAuth.instance.authStateChanges(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              //   print('waiting');
               return const Center(
                 child: CircularProgressIndicator(),
               );
@@ -34,12 +33,10 @@ class _EvalState extends State<Eval> {
                 child: Text('something went wrong'),
               );
             } else if (snapshot.hasData) {
-              //   print('user ${snapshot.data?.uid}');
               context.read<UserProvider>().setUserId(snapshot.data!.uid);
 
               return const Home();
             } else {
-              //   print('oh no');
               context.read<UserProvider>().setUserId('');
               return const Login();
             }
