@@ -11,6 +11,10 @@ import 'wallet.dart';
 import '../widgets/logo_button.dart';
 import '../widgets/carousel.dart';
 
+// * Homepage that users are redirected to when logged in
+// * Displays a welcome banner or user's cards if they exist
+// * Provides navigation to other pages
+
 class Home extends StatefulWidget {
   const Home({super.key});
 

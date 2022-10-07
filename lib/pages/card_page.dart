@@ -15,6 +15,10 @@ import '../widgets/qr_image_gen.dart';
 import '../widgets/small_button.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+// * Page that allows user to view a card in their wallet
+// * Requires a business card object
+// * Allows user to then save, print and remove cards from wallet
+
 class CardPage extends StatefulWidget {
   final BusinessCard card;
   const CardPage({Key? key, required this.card}) : super(key: key);

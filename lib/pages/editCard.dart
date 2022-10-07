@@ -13,6 +13,10 @@ import '../widgets/logo_button.dart';
 import '../widgets/theme_toggle.dart';
 import '../widgets/card_form.dart';
 
+// * Page to allow users to update an existing card of theirs
+// * Requires a business card object
+// * Allows users to preview changes made
+
 class EditCard extends StatelessWidget {
   final BusinessCard card;
 
@@ -36,6 +40,7 @@ class EditCard extends StatelessWidget {
                   LogoButton(
                     text: 'Preview',
                     onClicked: () {
+                      // * Displays preview of updated card view
                       showModalBottomSheet(
                           context: context,
                           shape: const RoundedRectangleBorder(

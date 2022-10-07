@@ -13,6 +13,8 @@ import '../widgets/logo_button.dart';
 import '../widgets/theme_toggle.dart';
 import '../widgets/card_form.dart';
 
+// * Page that allows user to preview and create cards
+
 class AddCard extends StatelessWidget {
   const AddCard({super.key});
   @override
@@ -35,6 +37,7 @@ class AddCard extends StatelessWidget {
                     text: 'Preview',
                     onClicked: () {
                       showModalBottomSheet(
+                          // * Displays preview of business card
                           context: context,
                           shape: const RoundedRectangleBorder(
                             borderRadius: BorderRadius.vertical(
@@ -42,7 +45,7 @@ class AddCard extends StatelessWidget {
                             ),
                           ),
                           builder: (context) => CardView(
-                                  // * Create the BusinessCard
+                                  // * Create the mock BusinessCard
                                   card: BusinessCard(
                                 id: "preview",
                                 name: context.read<CardCreator>().name,

@@ -18,6 +18,11 @@ import '../widgets/qr_image_gen.dart';
 import '../widgets/small_button.dart';
 import 'editCard.dart';
 
+// * Allows user to view a card of their own
+// * Requires business card
+// * Users can then edit or delete card
+// * Users can also save, print, and view QR Code of card
+
 class UserCardPage extends StatefulWidget {
   final BusinessCard card;
   const UserCardPage({Key? key, required this.card}) : super(key: key);
@@ -58,6 +63,7 @@ class UserCardPageState extends State<UserCardPage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
+                      // * Button to save image of card to phone
                       SmallButton(
                         text: 'Save Image',
                         onClicked: () async {
@@ -81,6 +87,7 @@ class UserCardPageState extends State<UserCardPage> {
                         },
                         icon: const Icon(Icons.camera_alt, size: 25),
                       ),
+                      // * Button to print card
                       SmallButton(
                         text: 'Print Card',
                         onClicked: () async {
@@ -100,7 +107,7 @@ class UserCardPageState extends State<UserCardPage> {
                                     child: pw.Transform.scale(
                                         scale: 0.65,
                                         child: pw.Image(pw.MemoryImage(bytes))),
-                                  ); // Center
+                                  );
                                 },
                               ),
                             );
@@ -111,6 +118,7 @@ class UserCardPageState extends State<UserCardPage> {
                         },
                         icon: const Icon(Icons.print_rounded, size: 25),
                       ),
+                      // * Displays QR Code of card
                       SmallButton(
                         text: 'Show QR',
                         onClicked: () {
@@ -126,6 +134,7 @@ class UserCardPageState extends State<UserCardPage> {
                         },
                         icon: const Icon(Icons.qr_code, size: 25),
                       ),
+                      // * Updates providers and navigates to edit page
                       SmallButton(
                         text: 'Edit Card',
                         onClicked: () => {
@@ -168,7 +177,6 @@ class UserCardPageState extends State<UserCardPage> {
                           }),
 
                           // ! delete every other reference to the card
-                          // TODO implement this
                           await FirebaseFirestore.instance
                               .collection('Users')
                               .where('wallet', arrayContains: card.id)
@@ -180,9 +188,6 @@ class UserCardPageState extends State<UserCardPage> {
                               });
                             });
                           }),
-                          // .update({
-                          //   'personalcards': FieldValue.arrayRemove([card.id])
-                          // })
 
                           context.read<Cards>().delete(card, true),
                           context

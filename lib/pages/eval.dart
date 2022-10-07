@@ -5,6 +5,10 @@ import 'package:swen325_assignment_3/pages/home.dart';
 import 'package:swen325_assignment_3/pages/login.dart';
 import 'package:swen325_assignment_3/providers/user_provider.dart';
 
+// * Evaluates wether user is logged in or not
+// * Queries Firebase auth for current authentication status of user
+// * Redirects user to login page or home page accordingly
+
 class Eval extends StatefulWidget {
   const Eval({super.key});
 

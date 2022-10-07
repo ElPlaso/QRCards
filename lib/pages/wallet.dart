@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import '../widgets/wallet_wheel.dart';
 
+// * Page to display whallet wheel of user's collected cards
+
 class Wallet extends StatelessWidget {
   const Wallet({super.key});
 

@@ -3,6 +3,8 @@ import 'package:swen325_assignment_3/widgets/sign_up_widget.dart';
 import '../main.dart';
 import '../widgets/banner.dart';
 
+// * Login page
+
 class Login extends StatefulWidget {
   const Login({super.key});
 

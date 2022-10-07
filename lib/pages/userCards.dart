@@ -3,6 +3,9 @@ import 'package:swen325_assignment_3/widgets/card_stack.dart';
 import 'addCard.dart';
 import '../widgets/floater.dart';
 
+// * Page to display user's created cards
+// * Allows user to then create a new card
+
 class UserCards extends StatelessWidget {
   const UserCards({super.key});
 
