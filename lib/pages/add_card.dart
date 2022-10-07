@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:swen325_assignment_3/data/business_card.dart';
-import 'package:swen325_assignment_3/providers/cardCreator_provider.dart';
+import 'package:swen325_assignment_3/providers/cardcreator_provider.dart';
 import 'package:swen325_assignment_3/providers/user_provider.dart';
 import '../providers/card_provider.dart';
 import '../providers/query_provider.dart';
@@ -31,7 +31,8 @@ class AddCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   const SizedBox(height: 24),
-                  CardForm(card: BusinessCard(id: '', name: '')),
+                  CardForm(
+                      card: BusinessCard(id: '', name: '', theme: 'nimbus')),
                   const ThemeToggle(),
                   LogoButton(
                     text: 'Preview',
@@ -48,6 +49,7 @@ class AddCard extends StatelessWidget {
                                   // * Create the mock BusinessCard
                                   card: BusinessCard(
                                 id: "preview",
+                                theme: context.read<CardCreator>().theme,
                                 name: context.read<CardCreator>().name,
                                 position: context.read<CardCreator>().postion,
                                 email: context.read<CardCreator>().email,
@@ -112,6 +114,7 @@ class AddCard extends StatelessWidget {
                       // * create the businesscard obj
                       var bCard = BusinessCard(
                         id: cardId,
+                        theme: context.read<CardCreator>().theme,
                         name: context.read<CardCreator>().name,
                         position: context.read<CardCreator>().postion,
                         email: context.read<CardCreator>().email,
@@ -131,6 +134,7 @@ class AddCard extends StatelessWidget {
                         'card': jsonEncode(bCard),
                         'owner': context.read<UserProvider>().userID,
                         'scancount': 0,
+                        'refreshcount': 0,
                       }).onError((error, stackTrace) =>
                               print("${error} + ${stackTrace} =========== "));
                       // Update the user profile with the ownership of the new card

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'package:swen325_assignment_3/providers/cardCreator_provider.dart';
+import 'package:swen325_assignment_3/providers/cardcreator_provider.dart';
 import '../data/business_card.dart';
 
 // * Form to take user input in order to create a new business card

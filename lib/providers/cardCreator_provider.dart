@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 
 class CardCreator with ChangeNotifier {
+  String _theme = 'nimbus';
+  String get theme => _theme;
+  void settheme(String theme) {
+    _theme = theme;
+    notifyListeners();
+  }
+
   String _name = '';
   String get name => _name;
   void setName(String name) {

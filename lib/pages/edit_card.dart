@@ -5,7 +5,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:swen325_assignment_3/data/business_card.dart';
 import 'package:swen325_assignment_3/pages/user_card_page.dart';
-import 'package:swen325_assignment_3/providers/cardCreator_provider.dart';
+import 'package:swen325_assignment_3/providers/cardcreator_provider.dart';
 import 'package:swen325_assignment_3/providers/user_provider.dart';
 import '../providers/query_provider.dart';
 import '../widgets/card_view.dart';
@@ -51,6 +51,7 @@ class EditCard extends StatelessWidget {
                           builder: (context) => CardView(
                                   card: BusinessCard(
                                 id: card.id,
+                                theme: context.read<CardCreator>().theme,
                                 name: context.read<CardCreator>().name,
                                 position: context.read<CardCreator>().postion,
                                 email: context.read<CardCreator>().email,
@@ -76,6 +77,7 @@ class EditCard extends StatelessWidget {
 
                       var bCard = BusinessCard(
                         id: cardId,
+                        theme: context.read<CardCreator>().theme,
                         name: context.read<CardCreator>().name,
                         position: context.read<CardCreator>().postion,
                         email: context.read<CardCreator>().email,
