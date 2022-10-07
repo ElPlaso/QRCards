@@ -5,15 +5,7 @@ import 'package:flutter/foundation.dart'
     show defaultTargetPlatform, kIsWeb, TargetPlatform;
 
 /// Default [FirebaseOptions] for use with your Firebase apps.
-///
-/// Example:
-/// ```dart
-/// import 'firebase_options.dart';
-/// // ...
-/// await Firebase.initializeApp(
-///   options: DefaultFirebaseOptions.currentPlatform,
-/// );
-/// ```
+
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
@@ -66,7 +58,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '568088724686',
     projectId: 'assignment-3-32093',
     storageBucket: 'assignment-3-32093.appspot.com',
-    iosClientId: '568088724686-u5fd8b0rdn3in6dbpd2715q2lo9efn18.apps.googleusercontent.com',
+    iosClientId:
+        '568088724686-u5fd8b0rdn3in6dbpd2715q2lo9efn18.apps.googleusercontent.com',
     iosBundleId: 'com.example.swen325Assignment3',
   );
 
@@ -76,7 +69,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '568088724686',
     projectId: 'assignment-3-32093',
     storageBucket: 'assignment-3-32093.appspot.com',
-    iosClientId: '568088724686-u5fd8b0rdn3in6dbpd2715q2lo9efn18.apps.googleusercontent.com',
+    iosClientId:
+        '568088724686-u5fd8b0rdn3in6dbpd2715q2lo9efn18.apps.googleusercontent.com',
     iosBundleId: 'com.example.swen325Assignment3',
   );
 }
