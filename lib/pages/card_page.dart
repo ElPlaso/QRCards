@@ -56,6 +56,17 @@ class _CardPageState extends State<CardPage> {
                   ),
                 ),
               ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text('Scan count: ${card.scancount}'),
+                  const SizedBox(
+                    width: 50,
+                    height: 1,
+                  ),
+                  Text('Refresh count: ${card.refreshcount}')
+                ],
+              ),
 
               Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 50),

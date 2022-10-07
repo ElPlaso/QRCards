@@ -63,6 +63,17 @@ class UserCardPageState extends State<UserCardPage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text('Scan count: ${card.scancount}'),
+                          const SizedBox(
+                            width: 50,
+                            height: 1,
+                          ),
+                          Text('Refresh count: ${card.refreshcount}')
+                        ],
+                      ),
                       // * Button to save image of card to phone
                       SmallButton(
                         text: 'Save Image',
