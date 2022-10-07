@@ -103,7 +103,7 @@ class _CardPageState extends State<CardPage> {
                         icon: const Icon(Icons.camera_alt, size: 25),
                       ),
 
-                      /// * Sends a print request to printers connected to the local netwok
+                      /// * Sends a print request to printers connected to the local network
                       SmallButton(
                         text: 'Print Card',
 
