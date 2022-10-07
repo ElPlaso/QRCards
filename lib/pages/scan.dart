@@ -1,6 +1,4 @@
 import 'dart:convert';
-import 'dart:io';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -10,8 +8,6 @@ import 'package:swen325_assignment_3/data/business_card.dart';
 import 'package:swen325_assignment_3/providers/card_provider.dart';
 import 'package:swen325_assignment_3/providers/user_provider.dart';
 import '../main.dart';
-import '../widgets/button.dart';
-import '../widgets/header.dart';
 
 class Scan extends StatefulWidget {
   const Scan({super.key});

@@ -1,15 +1,9 @@
-import 'dart:convert';
-import 'dart:ffi';
-
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:swen325_assignment_3/providers/card_provider.dart';
 import 'package:swen325_assignment_3/providers/query_provider.dart';
-import '../data/business_card.dart';
 import '../main.dart';
-import '../providers/user_provider.dart';
 import '../widgets/banner.dart';
 import 'scan.dart';
 import 'userCards.dart';

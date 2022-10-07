@@ -2,11 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:swen325_assignment_3/widgets/sign_up_widget.dart';
 import '../main.dart';
 import '../widgets/banner.dart';
-import 'scan.dart';
-import 'userCards.dart';
-import 'wallet.dart';
-import '../widgets/button.dart';
-import '../widgets/header.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});

@@ -1,16 +1,8 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:swen325_assignment_3/pages/home.dart';
 import 'package:swen325_assignment_3/pages/login.dart';
-import 'package:swen325_assignment_3/providers/query_provider.dart';
-import '../main.dart';
-import 'scan.dart';
-import 'userCards.dart';
-import 'wallet.dart';
-import '../widgets/button.dart';
-import '../widgets/header.dart';
 import 'package:swen325_assignment_3/providers/user_provider.dart';
 
 class Eval extends StatefulWidget {
