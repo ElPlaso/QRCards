@@ -1,5 +1,5 @@
 # QRCards
-QRCards allows users to create digital business cards for others to scan and collect. Developed by Oliver Hermens, Garnett Norton-Brown, Nicholas Woolf-Ben-Avraham, and Plaso Kusay. 
+This repo includes the widgets and pages for QRCards. QRCards is a mobile app allows users to create digital business cards for others to scan and collect. Developed by Oliver Hermens, Garnett Norton-Brown, Nicholas Woolf-Ben-Avraham, and Plaso Kusay. 
 
 # Screens
 
