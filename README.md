@@ -3,20 +3,24 @@ QRCards allows users to create digital business cards for others to scan and col
 
 # Screens
 
-![alt text](https://github.com/ElPlaso/QRCards/blob/main/images/home.png?raw=true) 
+<div>
+  <img src='https://github.com/ElPlaso/QRCards/blob/main/images/home.png' width=25% height=25%>
 
-![alt text](https://github.com/ElPlaso/QRCards/blob/main/images/carousel.png?raw=true) 
+  <img src='https://github.com/ElPlaso/QRCards/blob/main/images/carousel.png' width=25% height=25%>
 
-![alt text](https://github.com/ElPlaso/QRCards/blob/main/images/card-stack.png?raw=true) 
+  <img src='https://github.com/ElPlaso/QRCards/blob/main/images/card-stack.png' width=25% height=25%>
+</div> 
+<div>
+  <img src='https://github.com/ElPlaso/QRCards/blob/main/images/upload.png' width=25% height=25%>
 
-![alt text](https://github.com/ElPlaso/QRCards/blob/main/images/upload.png?raw=true) 
+  <img src='https://github.com/ElPlaso/QRCards/blob/main/images/upload-preview.png' width=25% height=25%>
 
-![alt text](https://github.com/ElPlaso/QRCards/blob/main/images/upload-preview.png?raw=true) 
+  <img src='https://github.com/ElPlaso/QRCards/blob/main/images/your-card.png' width=25% height=25%>
+ </div>
+<div>
+  <img src='https://github.com/ElPlaso/QRCards/blob/main/images/qr-popup.png' width=25% height=25%>
 
-![alt text](https://github.com/ElPlaso/QRCards/blob/main/images/your-card.png?raw=true) 
+  <img src='https://github.com/ElPlaso/QRCards/blob/main/images/wallet-wheel.png' width=25% height=25%>
 
-![alt text](https://github.com/ElPlaso/QRCards/blob/main/images/qr-popup.png?raw=true) 
-
-![alt text](https://github.com/ElPlaso/QRCards/blob/main/images/wallet-wheel.png?raw=true) 
-
-![alt text](https://github.com/ElPlaso/QRCards/blob/main/images/collected-card.png?raw=true) 
+  <img src='https://github.com/ElPlaso/QRCards/blob/main/images/collected-card.png' width=25% height=25%>
+</div> 
